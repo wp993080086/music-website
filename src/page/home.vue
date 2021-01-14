@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HelloWorld msg="网易云音乐"/>
+    <HelloWorld msg="搜索音乐"/>
 		<el-input v-model="value" placeholder="请输入内容开始搜索" @input="searchFn"></el-input>
 		<div>
 			<p v-for="(item,index) in list" :key="item.id">
@@ -29,12 +29,16 @@ export default {
 	mounted() {},
 	destroyed() {},
 	methods: {
+		// 搜索音乐
 		searchFn(){
-			console.log(this.value)
-			homeApi.getM(this.value).then(res=>{
-				console.log(res)
-				this.list = res.result.songs;
-			})
+			if(this.value.length > 0){
+				homeApi.getMusicList(this.value).then(res=>{
+					console.log(res)
+					this.list = res.result.songs;
+				})
+			}else{
+				this.list = [];
+			}
 		}
 	},
 	components: {

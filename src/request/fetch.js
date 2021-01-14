@@ -4,7 +4,7 @@ import baseURL from "./baseURL";
 import {Message} from 'element-ui'
 import router from "../router";
 
-axios.defaults.withCredentials=true;
+axios.defaults.withCredentials = true;
 
 // axios实例
 const instance = axios.create({
@@ -15,7 +15,9 @@ const instance = axios.create({
 	headers: {
 		"Content-Type": "application/x-www-form-urlencoded",
 	},
+	
 	withCredentials: true,
+	
 	// 项目baseURL
 	baseURL
 });

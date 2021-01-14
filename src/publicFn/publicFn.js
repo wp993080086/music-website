@@ -28,7 +28,7 @@ export default{
         }
     },
     // 生成随机uuid
-    CreateUuid() {
+    createUuid() {
         let Time = new Date().getTime();
         let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
         .replace(/[xy]/g, function(res) {
@@ -37,6 +37,10 @@ export default{
             return (res == 'x' ? Random : (Random & 0x3 | 0x8)).toString(16);
         });
         return "pdd"+ uuid;
+    },
+    // 生成时间戳
+    createDate() {
+        return Date.parse( new Date());
     },
     // 获取url后面的参数
     getUrlParams(Name) {
