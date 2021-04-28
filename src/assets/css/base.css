@@ -1,0 +1,181 @@
+/*****************************通用样式 ************************************/
+
+/* 浮动和清除 */
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clear_f:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/* 文字对齐 */
+.text_c {
+    text-align: center;
+}
+
+.text_l {
+    text-align: left;
+}
+
+.text_r {
+    text-align: right;
+}
+
+/* 文字删除线 */
+.del_line {
+    text-decoration: line-through;
+}
+
+/* 字体粗细 */
+.fw600 {
+    font-weight: 600;
+}
+
+/* 自动换行 */
+.wb {
+    word-break: break-all
+}
+
+/* 单行文本省略号 */
+.omit {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.omit2 {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+/* 圆角 */
+.br2 {
+    border-radius: 2px;
+}
+
+.br4 {
+    border-radius: 4px;
+}
+
+.br8 {
+    border-radius: 8px;
+}
+
+.br50 {
+    border-radius: 50%;
+}
+
+/* 定位 */
+.pa {
+    position: absolute;
+}
+
+.pr {
+    position: relative;
+}
+
+.pf {
+    position: fixed;
+}
+
+/* z-index层级 */
+.z-1 {
+    z-index: -1;
+}
+
+.z1 {
+    z-index: 1;
+}
+
+.z9 {
+    z-index: 9;
+}
+
+.z99 {
+    z-index: 99;
+}
+
+.z999 {
+    z-index: 999;
+}
+
+.z9999 {
+    z-index: 9999;
+}
+
+/* 内容溢出元素框 */
+.ofh {
+    overflow: hidden;
+}
+
+.ofa {
+    overflow: auto;
+}
+
+.ofx {
+    overflow-x: auto;
+}
+
+.ofy {
+    overflow-y: auto;
+}
+
+/* 弹性盒子*/
+.flex {
+    display: flex;
+}
+
+/* 两端对齐，项目之间的间隔都相等 */
+.flex_s_b {
+    justify-content: space-between;
+}
+
+/* 多列等高   如果子元素未设置高度或设为auto，将自动占满整个容器的高度 */
+.flex_a_s {
+    align-items: stretch;
+}
+
+/* Y 轴中间对齐 */
+.flex_a_c {
+    align-items: center;
+}
+
+/* X 轴中间对齐 */
+.flex_j_c {
+    justify-content: center;
+}
+
+/* 项目两侧的间隔相等。项目之间的间隔比项目与边框的间隔大一倍。 */
+.flex_s_a {
+    justify-content: space-around;
+}
+
+/* 主轴为垂直Y方向，起点在上沿 */
+.flex_d_y {
+    flex-direction: column;
+}
+
+/* 垂直水平对齐 */
+.flex_c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 鼠标变小手 */
+.h_hand {
+    cursor: pointer;
+}

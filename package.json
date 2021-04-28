@@ -1,11 +1,14 @@
 {
-  "name": "webwyy",
-  "version": "0.1.0",
+  "name": "my-blogs",
+  "version": "1.0.1",
   "private": true,
+  "author": "pdd11997110103 <993080086@qq.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serve-test": "vue-cli-service serve --mode test",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "test": "vue-cli-service build --mode test",
+    "all": "vue-cli-service build && vue-cli-service build --mode test"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -23,21 +26,15 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "style-resources-loader": "^1.4.1"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
+  "engines": {
+    "node": ">=8.9",
+    "npm": ">= 3.0.0"
   },
   "browserslist": [
     "> 1%",

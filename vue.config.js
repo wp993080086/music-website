@@ -1,30 +1,46 @@
+const baseURL = process.env.VUE_APP_BASE_URL;
+const path = require("path");
+
 module.exports = {
-    publicPath: "./",
-    outputDir: "dist",
-    assetsDir: "assets",
-    lintOnSave: true,
-    configureWebpack: {
-        devServer: {
-            overlay: {
-                warning: true,
-                errors: true,
-            },
-            host: "localhost",
-            port: "9000", //代理断就
-            hotOnly: false, //热更新
-            proxy: {
-				"/api": {
-					// target: "http://192.168.24.220:8080", //目标代理接口地址 - 本地
-					// target: "https://www.whzhangtongbao.com", //目标代理接口地址 - 正式线
-					target: "https://www.wuhanztb.com", //目标代理接口地址 - 测试线
+	publicPath: './',
+	outputDir: process.env.VUE_APP_BASE_OUTPUTDIR,
+	assetsDir: 'assets',
+	lintOnSave: true,
+	chainWebpack: config => {
+		const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
+		types.forEach(type => addStyleResource(config.module.rule('less').oneOf(type)))
+	},
+	configureWebpack: {
+		devServer: {
+			open: false,
+			overlay: {
+				warning: true,
+				errors: true,
+			},
+			host: 'localhost',
+			port: '8081',
+			hotOnly: false,
+			proxy: {
+				'/api': {
+					target: baseURL,
 					secure: false,
-					changeOrigin: true, //开启代理，本地创建一个虚拟服务器
-					//ws:true,//是否启用websockets
+					changeOrigin: true,//开启代理
 					pathRewrite: {
-						"^/api": "/",
+						'^/api': '/',
 					},
 				},
 			}
-        },
-    }
+		},
+	}
 };
+// 导入全局less
+function addStyleResource(rule) {
+	rule.use('style-resource')
+	.loader('style-resources-loader')
+	.options({
+		patterns: [
+			
+			path.resolve(__dirname, './src/assets/css/globalStyle.less')
+		],
+	})
+}

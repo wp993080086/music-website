@@ -1,39 +1,32 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-Vue.use(VueRouter);
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
 
-const Home = () => import ("@/page/home.vue");
 const routes = [
-    {
-        path: "/",
-        redirect: "/home",
-    },
-    {
-        path: "/home",
-        name: "home",
-        component: Home,
-    },
-    // {
-    //     path: "/Courselist",
-    //     name: "Courselist",
-    //     component: Courselist,
-    //     children: [{
-    //             path: "myCourses",
-    //             name: "myCourses",
-    //             component: myCourses,
-    //         },
-    //         {
-    //             path: "upvideo",
-    //             name: "upvideo",
-    //             component: upvideo,
-    //         },
-    //     ],
-    // }
-];
+	{
+		path: '/',
+		redirect: '/index'
+	},
+	{
+		path: '/index',
+		name: 'Index',
+		component: () => import('@/view/index')
+	},
+	{
+		path: '/head',
+		name: 'Head',
+		component: () => import('@/view/head')
+	},
+	{
+		path: '/footer',
+		name: 'Footer',
+		component: () => import('@/view/footer')
+	}
+]
 
 const router = new VueRouter({
-    mode: "hash",
-    routes,
-});
+	mode: 'hash',
+	routes
+})
 
-export default router;
+export default router
