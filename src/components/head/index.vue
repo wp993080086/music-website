@@ -106,7 +106,7 @@ export default {
 		padding: 0 20px;
 		box-sizing: border-box;
 		border-bottom: 1px solid @borderC;
-		background-color: @bgC;
+		background-color: @bgC_1;
 		position: fixed;
 		top: 0;
 		left: 0;

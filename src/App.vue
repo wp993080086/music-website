@@ -1,6 +1,8 @@
 <template>
 	<div v-cloak id="app">
-		<router-view />
+		<transition name="fade" mode="out-in">
+			<router-view />
+		</transition>
 	</div>
 </template>
 
@@ -21,4 +23,19 @@ body,html,#app{
 	height: 100%;
 	min-width: 1200px;
 }
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: #07c160;
+	border-radius: 4px;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0
+}
 </style>
+

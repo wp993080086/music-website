@@ -10,17 +10,10 @@ const routes = [
 	{
 		path: '/index',
 		name: 'Index',
-		component: () => import('@/view/index')
-	},
-	{
-		path: '/head',
-		name: 'Head',
-		component: () => import('@/view/head')
-	},
-	{
-		path: '/footer',
-		name: 'Footer',
-		component: () => import('@/view/footer')
+		component: () => import('@/view/index'),
+		mate: {
+			title: '首页'
+		}
 	}
 ]
 
