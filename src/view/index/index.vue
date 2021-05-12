@@ -32,9 +32,4 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-  #index{
-    height: 100%;
-		padding-top: 60px;
-  }
-</style>
+<style lang="less" scoped></style>
