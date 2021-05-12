@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style lang='less' scoped>
-@import '../../assets/css/changeColor.less';
+@import '../../assets/css/globalColor.less';
 	#head{
 		width: 100%;
 		.box{
