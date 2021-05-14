@@ -1,18 +1,18 @@
 import fetch from "../fetch";
 import baseServ from "../baseServ";
-import FN from "../../publicFn/publicFn"
+
 export default {
 	...baseServ,
 	apis: {
 		// 搜索音乐
-        get_courseList:`search?`
+    get_courseList:`search?`
 	},
 	/**
 	* 将接口路径后面加上时间戳
 	* @param {String} url -接口
 	*/
 	joinDate:url => {
-		return `${url}date=${FN.createDate()}`
+		return `${url}date=${new Date().getTime()}`
 	},
 	/**
 	* 搜索音乐
