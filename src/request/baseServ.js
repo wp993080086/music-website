@@ -3,12 +3,12 @@ import { Message } from 'element-ui'
 export default {
 	statusHandle(code, msg) {
 		switch (code) {
-			case 'w':
-				this.toast(msg)
-				break
-			case 'n':
-				this.toast(msg)
-				break
+		case 'w':
+			this.toast(msg)
+			break
+		case 'n':
+			this.toast(msg)
+			break
 		}
 	},
 	toast(message) {
@@ -16,6 +16,6 @@ export default {
 			type: 'error',
 			message,
 			duration: 1000
-		});
+		})
 	}
 }

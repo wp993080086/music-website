@@ -7,7 +7,7 @@
 
 <script>
 import Head from '../../components/head'
-
+import HTTP from '../../request/homeApi'
 export default {
 	name: 'Index',
 	components: {
@@ -24,10 +24,17 @@ export default {
 	},
 	mounted() {
 		this.console()
+		this.getMusicList()
 	},
 	methods: {
 		console() {
 			console.log(this.$baseUrl)
+		},
+		getMusicList() {
+			HTTP.getMusicList('七里香')
+				.then(res => {
+					console.log(res)
+				})
 		},
 		change_full_screen() {
 			// 全屏切换函数
