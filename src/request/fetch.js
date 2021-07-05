@@ -38,10 +38,8 @@ instance.interceptors.request.use(config => {
 // 响应拦截器
 instance.interceptors.response.use(
 	res => {
-		// 请求成功，status为2xx
 		return res.data
 	},
-
 	error => {
 		// 请求失败
 		console.log(error)

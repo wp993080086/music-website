@@ -1,24 +1,14 @@
 # webwyy
 
-## Project setup
-```
+## 安装&&运行
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
 npm run serve
-```
 
-### Compiles and minifies for production
-```
+## 测试环境打包
+npm run test
+
+## 正式环境打包
 npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 同时打包正式环境&&测试环境
+npm run all

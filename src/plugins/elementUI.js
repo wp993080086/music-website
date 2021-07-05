@@ -11,7 +11,9 @@ import {
   MenuItemGroup,
   Radio,
   RadioGroup,
-  RadioButton
+  RadioButton,
+  Tabs,
+  TabPane
 } from "element-ui";
 
 Vue.use(Button)
@@ -23,6 +25,8 @@ Vue.use(MenuItemGroup)
 Vue.use(Radio)
 Vue.use(RadioGroup)
 Vue.use(RadioButton)
+Vue.use(Tabs)
+Vue.use(TabPane)
 
 //消息组件需要进行全局挂载
 Vue.prototype.$message = Message;

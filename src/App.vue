@@ -24,12 +24,12 @@ body,html,#app{
 	min-width: 1200px;
 }
 ::-webkit-scrollbar {
-	width: 8px;
-	height: 8px;
+	width: 4px;
+	height: 4px;
 }
 ::-webkit-scrollbar-thumb {
 	background-color: #07c160;
-	border-radius: 4px;
+	border-radius: 2px;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s
@@ -38,4 +38,3 @@ body,html,#app{
   opacity: 0
 }
 </style>
-

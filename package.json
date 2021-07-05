@@ -2,7 +2,7 @@
   "name": "web-music",
   "version": "1.0.1",
   "private": true,
-  "author": "pdd11997110103 <993080086@qq.com>",
+  "author": "@鹏多多 <993080086@qq.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
     "serve-test": "vue-cli-service serve --mode test",

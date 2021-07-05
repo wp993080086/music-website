@@ -1,26 +1,9 @@
 const publicFunction = {
 	/**
-	* 时间格式转换
-	* @param {Number} sty 时间戳
-	* @param {String} type 格式 YYYY-MM-DD || YYYY-MM-DD HH:MM:SS || MM/DD  HH:MM:SS
+	* 将接口路径后面加上时间戳
+	* @param {String} url 接口
 	*/
-	dateFormat(str, type) {
-		let date = new Date(str)
-		let year = date.getFullYear()
-		let month = this.formatZero(date.getMonth() + 1, 2)
-		let day = this.formatZero(date.getDate(), 2)
-		let hour = this.formatZero(date.getHours(), 2)
-		let minute = this.formatZero(date.getMinutes(), 2)
-		let seconds = this.formatZero(date.getSeconds(), 2)
-		if (type == 'YYYY-MM-DD') {
-			return `${year}-${month}-${day}`
-		} else if (type == 'YYYY-MM-DD HH:MM:SS') {
-			return `${year}-${month}-${day} ${hour}:${minute}:${seconds}`
-		} else if (type == 'MM/DD  HH:MM:SS') {
-			return `${month}/${day} ${hour}:${minute}:${seconds}`
-		}
-	},
-
+	joinTime: url => `${url}?time=${new Date().getTime()}`,
 	/**
 	* 数字转整数 如 100000 转为10万
 	* @param {Number} num 需要转化的数

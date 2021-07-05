@@ -1,13 +1,13 @@
 <template>
 	<div id="index">
 		<Head />
-		<div style="height:1000px;">1</div>
 	</div>
 </template>
 
 <script>
 import Head from '../../components/head'
-import HTTP from '../../request/homeApi'
+import HTTP from '../../request/api/loginApi'
+
 export default {
 	name: 'Index',
 	components: {
@@ -15,53 +15,20 @@ export default {
 	},
 	data() {
 		return {
-			title: 'hello world',
-			fullscreen: false
+			title: 'hello world'
 		}
 	},
-	created() {
-		console.log(process.env.NODE_ENV)
-	},
+	created() {},
 	mounted() {
-		this.console()
 		this.getMusicList()
 	},
 	methods: {
 		console() {
 			console.log(this.$baseUrl)
 		},
-		getMusicList() {
-			HTTP.getMusicList('七里香')
-				.then(res => {
-					console.log(res)
-				})
-		},
-		change_full_screen() {
-			// 全屏切换函数
-			const element = document.documentElement
-			if (this.fullscreen) {
-				if (document.exitFullscreen) {
-					document.exitFullscreen()
-				} else if (document.webkitCancelFullScreen) {
-					document.webkitCancelFullScreen()
-				} else if (document.mozCancelFullScreen) {
-					document.mozCancelFullScreen()
-				} else if (document.msExitFullscreen) {
-					document.msExitFullscreen()
-				}
-			} else {
-				if (element.requestFullscreen) {
-					element.requestFullscreen()
-				} else if (element.webkitRequestFullScreen) {
-					element.webkitRequestFullScreen()
-				} else if (element.mozRequestFullScreen) {
-					element.mozRequestFullScreen()
-				} else if (element.msRequestFullscreen) {
-					// IE11
-					element.msRequestFullscreen()
-				}
-			}
-			this.fullscreen = !this.fullscreen // 判断全屏状态
+		async getMusicList() {
+			const res = await HTTP.phoneLogin('18707194966', 993080086)
+			console.log(res)
 		}
 	}
 }

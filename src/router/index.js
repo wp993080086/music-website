@@ -14,6 +14,14 @@ const routes = [
 		mate: {
 			title: '首页'
 		}
+	},
+	{
+		path: '/login',
+		name: 'Login',
+		component: () => import('@/view/login'),
+		mate: {
+			title: '登录'
+		}
 	}
 ]
 
