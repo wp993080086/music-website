@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
-import { Message } from 'element-ui'
 import router from '../router'
+import MSG from '../utils/info'
 
 const baseURL = process.env.VUE_APP_BASE_URL
 
@@ -38,7 +38,12 @@ instance.interceptors.request.use(config => {
 // 响应拦截器
 instance.interceptors.response.use(
 	res => {
-		return res.data
+		if (res.data.code === 200) {
+			return res.data
+		} else {
+			MSG.alert(res.data.message)
+			console.warn(res.data)
+		}
 	},
 	error => {
 		// 请求失败
@@ -47,22 +52,13 @@ instance.interceptors.response.use(
 		const status = errorResponse.status * 1
 		switch (status) {
 		case 500:
-			Message({
-				type: 'error',
-				message: '服务端出错，请联系管理员'
-			})
+			MSG.info('服务端出错，请联系管理员', 2)
 			break
 		case 404:
-			Message({
-				type: 'error',
-				message: '参数错误，或者api接口不存在'
-			})
+			MSG.info('参数错误，或者api接口不存在', 2)
 			break
 		case 403:
-			Message({
-				type: 'error',
-				message: '您尚未登录或者登录已失效'
-			})
+			MSG.info('您尚未登录或者登录已失效', 2)
 			router.push('/login')
 			break
 		}

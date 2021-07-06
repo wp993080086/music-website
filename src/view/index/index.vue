@@ -1,12 +1,12 @@
 <template>
 	<div id="index">
 		<Head />
+		<div class="test" @click="console">993080086</div>
 	</div>
 </template>
 
 <script>
 import Head from '../../components/head'
-import HTTP from '../../request/api/loginApi'
 
 export default {
 	name: 'Index',
@@ -19,19 +19,17 @@ export default {
 		}
 	},
 	created() {},
-	mounted() {
-		this.getMusicList()
-	},
+	mounted() {},
 	methods: {
-		console() {
-			console.log(this.$baseUrl)
-		},
-		async getMusicList() {
-			const res = await HTTP.phoneLogin('18707194966', 993080086)
-			console.log(res)
-		}
+		console() {}
 	}
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+	.test{
+		width: 100%;
+		height: 30px;
+		background-color: gray;
+	}
+</style>

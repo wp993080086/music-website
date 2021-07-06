@@ -2,8 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import FN from './utils/public'
 import './plugins/elementUI'
+import FN from './utils/public'
+import MSG from './utils/info'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/init.css'
 import './assets/css/base.css'
@@ -11,11 +12,11 @@ import './assets/icon/iconfont.css'
 
 Vue.config.productionTip = false
 
-const baseUrl = process.env.VUE_APP_BASE_URL
+Vue.prototype.$baseUrl = process.env.VUE_APP_BASE_URL
 
-Vue.prototype.$baseUrl = baseUrl
+Vue.prototype.$fn = FN
 
-Vue.prototype.$FN = FN
+Vue.prototype.$info = MSG
 
 new Vue({
 	router,
