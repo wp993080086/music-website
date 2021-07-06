@@ -38,16 +38,17 @@ instance.interceptors.request.use(config => {
 // 响应拦截器
 instance.interceptors.response.use(
 	res => {
-		if (res.data.code === 200) {
+		const status = [200, 801, 802, 803]
+		if (status.includes(res.data.code)) {
 			return res.data
 		} else {
 			MSG.alert(res.data.message)
 			console.warn(res.data)
+			throw new Error(res.data.message)
 		}
 	},
 	error => {
 		// 请求失败
-		console.log(error)
 		const errorResponse = error.response
 		const status = errorResponse.status * 1
 		switch (status) {
@@ -61,6 +62,8 @@ instance.interceptors.response.use(
 			MSG.info('您尚未登录或者登录已失效', 2)
 			router.push('/login')
 			break
+		default:
+			MSG.info(errorResponse.data.message, 3)
 		}
 		return Promise.reject(errorResponse)
 	}
