@@ -15,7 +15,7 @@ const publicFunction = {
 		if (numStr.length < 6) {
 			return numStr
 		}
-		//大于8位数是亿
+		// 大于8位数是亿
 		else if (numStr.length > 8) {
 			let decimal = numStr.substring(
 				numStr.length - 8,
@@ -31,7 +31,18 @@ const publicFunction = {
 			)
 			return parseFloat(parseInt(num / 10000) + '.' + decimal) + '万'
 		}
+	},
+	/**
+	* 休眠
+	* @param {Number} time 休眠时间
+	*/
+	sleep(time = 1000) {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				resolve()
+			}, time)
+		})
 	}
-};
+}
 
 export default publicFunction;

@@ -5,19 +5,24 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		school: '清华大学',
-		a: 'nice',
-		zoom: true// 菜单是否折叠
+		cookie: null,
+		token: null,
+		userMsg: null
 	},
 	getters: {
-		returnVal(state) {
-			return state.school + state.a
+		getCookie(state) {
+			return state.cookie
 		}
 	},
 	mutations: {
-		changeSchool(state, val) {
-			state.school = val
-			console.log('修改成功')
+		setUserMsg(state, val) {
+			state.userMsg = val
+		},
+		setCookie(state, val) {
+			state.cookie = val
+		},
+		setToken(state, val) {
+			state.token = val
 		}
 	},
 	actions: {},

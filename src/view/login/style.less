@@ -1,7 +1,9 @@
+.snowFlake{position: absolute;}
 #login{
   width: 100%;
   height: 100%;
   background-image: linear-gradient(-90deg, #29bdd9 0%, #276ace 100%);
+  overflow: hidden;
   .center{
     width: 420px;
     height: 320px;
@@ -17,13 +19,25 @@
         width: 200px;
         top: -150px;
         left: 100px;
+        transition: 1s ease;
+        cursor: pointer;
+        &:hover{
+          transform: scale(1.1);
+          filter: brightness(1.5);
+        }
       }
       .logo{
         width: 100%;
         height: 50px;
         padding: 10px 0px;
+        transition: 1s ease;
         img{
           height: 100%;
+          cursor: pointer;
+        }
+        &:hover{
+          transform: scale(1.2);
+          filter: brightness(1.5)
         }
       }
       .login_btn{
@@ -54,6 +68,9 @@
     .qr_code{
       width: 100%;
       height: 190px;
+      p{
+        font-size: 16px;
+      }
       .qr_code_box{
         width: 120px;
         height: 120px;
