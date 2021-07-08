@@ -22,9 +22,19 @@
 					</div>
 				</template>
 				<template v-else>
-					<div class="qr_code flex_d_y flex flex_a_c flex_s_a" title="点击刷新">
-						<div ref="qr_codeode_url" class="qr_codeode_url" />
-						<p>打开网易云APP扫一扫</p>
+					<div class="qr_code flex_d_y flex flex_a_c flex_s_a">
+						<div class="qr_code_box pr">
+							<div ref="qr_codeode_url" class="qr_codeode_url" />
+							<div
+								v-if="countDown === 0"
+								class="qr_shadow pa z9 flex_c flex_d_y"
+								@click="handleRefreshQRcode"
+							>
+								<i class="el-icon-refresh" />
+								<span>已过期点击刷新</span>
+							</div>
+						</div>
+						<p>{{ codeHint }}</p>
 					</div>
 				</template>
 				<div class="footer_btn">
@@ -68,16 +78,19 @@ export default {
 			],
 			nowFocus: 0, // 熊猫变化
 			nowType: false, // true扫码登录 false密码登录
-			codeKey: '',
-			codeUrl: '',
-			codeTimer: null
+			codeKey: '', // 二维码key
+			codeUrl: '', // 二维码路径
+			codeTimer: null, // 轮询的定时器
+			countDown: 60, // 倒计时
+			status: 0, // 当前扫码状态 0 未扫码 1 已扫码没确认 2 确认
+			nickName: '', // 用户昵称
+			codeHint: '打开网易云APP扫一扫', // 二维码底部提示
+			cookie: '' // 扫码成功后的cookie
 		}
 	},
 	watch: {},
 	created() {},
-	mounted() {
-		this.getKey()
-	},
+	mounted() {},
 	updated() {},
 	methods: {
 		// 熊猫归位
@@ -95,9 +108,9 @@ export default {
 		// 改变登录方式
 		handleChangeType() {
 			this.nowType = !this.nowType
-			this.$nextTick(function() {
+			this.$nextTick(() => {
 				if (this.nowType) {
-					this.handleCreateQRcode()
+					this.getKey()
 				} else if (this.codeTimer) {
 					clearInterval(this.codeTimer)
 				}
@@ -122,9 +135,13 @@ export default {
 		},
 		// 获取二维码key
 		async getKey() {
+			if (this.codeTimer) {
+				clearInterval(this.codeTimer)
+			}
+			document.getElementsByClassName('qr_codeode_url')[0].innerHTML = ''
 			try {
-				const res = await HTTP.getKey()
-				this.codeKey = res.data.unikey
+				// const res = await HTTP.getKey()
+				// this.codeKey = res.data.unikey
 				this.getQRcode()
 			} catch (error) {
 				console.error(error)
@@ -133,8 +150,9 @@ export default {
 		// 获取二维码
 		async getQRcode() {
 			try {
-				const res = await HTTP.getQRcode(this.codeKey)
-				this.codeUrl = res.data.qrurl
+				// const res = await HTTP.getQRcode(this.codeKey)
+				// this.codeUrl = res.data.qrurl
+				this.handleCreateQRcode()
 			} catch (error) {
 				console.error(error)
 			}
@@ -142,15 +160,26 @@ export default {
 		// 创造二维码
 		handleCreateQRcode() {
 			new QRCode(this.$refs.qr_codeode_url, {
-				text: this.codeUrl, // 需要转换为二维码的内容
+				// text: this.codeUrl,
+				text: 'https://music.163.com/login?codekey=0c900595-54be-4e1a-91d6-ebe3660248f9',
 				width: 120,
 				height: 120,
 				colorDark: '#000000',
 				colorLight: '#ffffff',
 				correctLevel: QRCode.CorrectLevel.H
 			})
+			// 去掉title
+			this.$nextTick(() => {
+				document.getElementsByClassName('qr_codeode_url')[0].setAttribute('title', '')
+			})
 			this.codeTimer = setInterval(() => {
-				this.handleQueryQRcode()
+				this.countDown--
+				if (this.countDown <= 0) {
+					this.countDown = 0
+					clearInterval(this.codeTimer)
+				}
+				console.log(this.countDown)
+				// this.handleQueryQRcode()
 			}, 1000)
 		},
 		// 查询二维码
@@ -158,10 +187,36 @@ export default {
 			try {
 				const res = await HTTP.queryQRcode(this.codeKey)
 				console.log(res)
+				switch (res.data.code) {
+				case 200:
+					// 扫码成功
+					this.cookie = res.data.cookie
+					break
+				case 800:
+					// 等待扫码
+					this.codeHint = `用户 "${res.data.user}" 已扫码待确认`
+					break
+				case 801:
+					// 超时
+					if (this.codeTimer) {
+						clearInterval(this.codeTimer)
+					}
+					this.codeHint = '打开网易云APP扫一扫'
+					this.countDown = 0
+					break
+				}
 			} catch (error) {
 				console.error(error)
 				clearInterval(this.codeTimer)
 			}
+		},
+		// 刷新二维码
+		handleRefreshQRcode() {
+			if (this.codeTimer) {
+				clearInterval(this.codeTimer)
+			}
+			this.countDown = 60
+			this.getKey()
 		}
 	}
 }
