@@ -1,10 +1,11 @@
 <template>
-	<div id="head">
-		<div class="box">
-			<button @click="changeTheme('dark')">换黑色</button>
-			<button @click="changeTheme('bright')">换金色</button>
-			<button @click="changeTheme('red')">换红色</button>
-		</div>
+	<div id="head" class="pr flex_c">
+		<el-tabs v-model="activeName" @tab-click="handleClick">
+			<el-tab-pane label="用户管理" name="first"></el-tab-pane>
+			<el-tab-pane label="配置管理" name="second"></el-tab-pane>
+			<el-tab-pane label="角色管理" name="third"></el-tab-pane>
+			<el-tab-pane label="定时任务补偿" name="fourth"></el-tab-pane>
+		</el-tabs>
 	</div>
 </template>
 
@@ -16,8 +17,7 @@ export default {
 	data() {
 		return {
 			logo: require('../../assets/icon/pdd.png'),
-			title: '鹏多多的音乐盒',
-			theme: 'theme_a'
+			activeName: 'first'
 		}
 	},
 	watch: {},
@@ -25,13 +25,9 @@ export default {
 	mounted() {},
 	updated() {},
 	methods: {
-		changeTheme(key) {
-			const colorList = {
-				dark: '#000000',
-				bright: '#ffb515',
-				red: '#e33100'
-			}
-			document.documentElement.style.setProperty('--themeColor', colorList[key])
+		handleClick() {},
+		changeTheme() {
+			document.documentElement.style.setProperty('--themeColor', '#e33100')
 		}
 	}
 }
@@ -41,16 +37,8 @@ export default {
 @import '../../assets/css/globalColor.less';
 	#head{
 		width: 100%;
-		.box{
-			width: 100%;
-			height: 50px;
-			background-color:@bg_theme;
-			border-bottom: 1px solid @bg_theme;
-			button{
-				width: 50px;
-				height: 50px;
-				margin-right: 50px;
-			}
-		}
+		height: 60px;
+		border-bottom: 1px solid #dcdfe6;
+		box-sizing: border-box;
 	}
 </style>

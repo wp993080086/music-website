@@ -1,7 +1,6 @@
 <template>
 	<div id="index">
 		<Head />
-		<div class="test" @click="console">993080086</div>
 	</div>
 </template>
 
@@ -26,10 +25,4 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-	.test{
-		width: 100%;
-		height: 30px;
-		background-color: gray;
-	}
-</style>
+<style lang="less" scoped></style>
