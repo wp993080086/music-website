@@ -1,6 +1,6 @@
 import HTTP from '@/request/api/loginApi'
 import QRCode from 'qrcodejs2'
-import SnowFlake from './snowflake'
+import SnowFlake from '@/plugins/snowflake'
 
 export default {
 	name: 'Login',
