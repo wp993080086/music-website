@@ -38,31 +38,31 @@ export default {
 			codeHint: '打开网易云APP扫一扫', // 二维码底部提示
 			cookie: '', // 扫码成功后的cookie
 			token: '',
-			userMsg: ''
+			userMsg: '',
+			snowTimes: null
 		}
 	},
 	watch: {},
 	created() {},
 	mounted() {
-		this.goSnow(require('../../assets/image/snow1.png'), 16, 2)
+		this.startSnow(require('../../assets/image/snow1.png'), require('../../assets/image/snow2.png'), 30)
 	},
 	updated() {},
 	methods: {
 		// 雪花
-		goSnow(src, num, style) {
+		startSnow(src1, src2, num) {
 			const snowArr = []
-			console.log(src)
 			for (let j = 0; j < num; j++) {
-				snowArr.push(new SnowFlake.CreateSnow('login', src, style))
+				snowArr.push(new SnowFlake.CreateSnow('login', src1, src2))
 			}
-			setInterval(function() {
+			this.snowTimes = setInterval(function() {
 				// 找到数组中的最新的一个
 				for (let i = snowArr.length - 1; i >= 0; i--) {
 					if (snowArr[i]) {
 						snowArr[i].move()
 					}
 				}
-			}, 40)
+			}, 30)
 		},
 		// 熊猫归位
 		handleInitPanda() {

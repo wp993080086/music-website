@@ -13,7 +13,14 @@
 								<el-input v-model="user.phone" placeholder="账号" clearable @focus="getUesrFocus" />
 							</el-form-item>
 							<el-form-item prop="pwd">
-								<el-input v-model="user.password" placeholder="密码" clearable show-password @focus="getPwdFocus" />
+								<el-input
+									v-model="user.password"
+									placeholder="密码"
+									clearable
+									show-password
+									@keyup.enter="submitForm"
+									@focus="getPwdFocus"
+								/>
 							</el-form-item>
 							<el-form-item>
 								<el-button type="primary" class="login_btn" @click="submitForm">登陆</el-button>

@@ -1,8 +1,7 @@
 // 定义雪花
-function CreateSnow(snowBox, src, style) {
+function CreateSnow(snowBox, src1, src2) {
 	try {
 		this.snowBox = document.getElementById(snowBox) // 找到容器
-		this.snowStyle = Math.ceil(Math.random() * style) // 雪花类型[1,2]
 		this.maxLeft = this.snowBox.offsetWidth - Math.random() * 5 + 3 // 运动范围
 		this.maxTop = this.snowBox.offsetHeight - Math.random() * 5 + 3
 		this.left = this.snowBox.offsetWidth * Math.random() // 起始位置
@@ -12,7 +11,12 @@ function CreateSnow(snowBox, src, style) {
 		this.maxAngle = 1.9
 		this.angleDelta = 0.01 * Math.random()
 		this.speed = 1.4 + Math.random() // 下落速度
-		this.createEle(src) // 制作雪花dom   凹=放在最后，使得原型里能取到值
+		const random = Math.floor(Math.random() * 2 + 1)
+		if (random === 1) {
+			this.createEle(src1)
+		} else {
+			this.createEle(src2)
+		}
 	} catch (err) {
 		console.warn(err)
 	}
@@ -21,13 +25,10 @@ function CreateSnow(snowBox, src, style) {
 CreateSnow.prototype = {
 	// 生成雪花元素
 	createEle: function(baseSrc) {
-		// 获取最后一个'.'
-		const srcIndex = baseSrc.lastIndexOf('.')
-		const src = baseSrc.substring(0, srcIndex) + this.snowStyle + baseSrc.substring(srcIndex, baseSrc.length)
 		const image = new Image()
-		image.src = src
+		image.src = baseSrc
 		this.ele = document.createElement('img')
-		this.ele.setAttribute('src', src)
+		this.ele.setAttribute('src', baseSrc)
 		this.ele.style.position = 'absolute'
 		this.ele.style.zIndex = '99'
 		this.snowBox.appendChild(this.ele)
@@ -66,7 +67,7 @@ CreateSnow.prototype = {
 		if (this.top > this.maxTop) {
 			this.top = 0
 		}
-		this.ele.style.left = this.left + 'px' // 凹=加‘px’
+		this.ele.style.left = this.left + 'px'
 		this.ele.style.top = this.top + 'px'
 	}
 }
