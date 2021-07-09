@@ -31,23 +31,23 @@ export default {
 			nowType: false, // true扫码登录 false密码登录
 			codeKey: '', // 二维码key
 			codeUrl: '', // 二维码路径
-			codeTimer: null, // 轮询的定时器
-			countDown: 60, // 倒计时
-			status: 0, // 当前扫码状态 0 未扫码 1 已扫码没确认 2 确认
+			codeTimer: null, // 扫码轮询的定时器
+			countDown: 60, // 过期倒计时
 			nickName: '', // 用户昵称
 			codeHint: '打开网易云APP扫一扫', // 二维码底部提示
-			cookie: '', // 扫码成功后的cookie
+			cookie: '',
 			token: '',
-			userMsg: '',
-			snowTimes: null
+			userMsg: '', // 用户信息
+			snowTimes: null // 雪花的定时器
 		}
 	},
-	watch: {},
-	created() {},
 	mounted() {
 		this.startSnow(require('../../assets/image/snow1.png'), require('../../assets/image/snow2.png'), 30)
 	},
-	updated() {},
+	beforeDestroy() {
+		this.snowTimes && clearInterval(this.snowTimes)
+		this.codeTimer && clearInterval(this.codeTimer)
+	},
 	methods: {
 		// 雪花
 		startSnow(src1, src2, num) {
