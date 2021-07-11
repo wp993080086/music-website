@@ -5,8 +5,10 @@ import {
   Form,
   FormItem,
   Loading,
-  Tabs,
-  TabPane
+  Autocomplete,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem
 } from "element-ui";
 
 Vue.use(Button)
@@ -14,5 +16,7 @@ Vue.use(Input)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Loading)
-Vue.use(Tabs)
-Vue.use(TabPane)
+Vue.use(Autocomplete)
+Vue.use(Dropdown)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)

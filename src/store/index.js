@@ -12,6 +12,11 @@ export default new Vuex.Store({
 	getters: {
 		getCookie(state) {
 			return state.cookie
+		},
+		getToken(state) {
+			return (val) => {
+				return val + state.cookie
+			}
 		}
 	},
 	mutations: {
