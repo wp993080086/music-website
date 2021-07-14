@@ -1,9 +1,11 @@
 <template>
 	<div id="head" class="pr flex_c">
+		<!-- logo -->
 		<div class="logo pa">
 			<img class="pa z1" :src="logo" alt="logo">
 			<span>鹏多多</span>
 		</div>
+		<!-- 选项卡 -->
 		<div class="tabs flex_c pr">
 			<div
 				v-for="(item, index) in tabs"
@@ -17,7 +19,9 @@
 				<div class="active_line pa" :style="{left: (nowIndex * 20) + '%'}" />
 			</div>
 		</div>
-		<div class="right pa flex_c">
+		<!-- 右侧 -->
+		<div class="right pa flex">
+			<!-- 搜索 -->
 			<div class="search">
 				<el-autocomplete
 					v-model="state"
@@ -28,12 +32,13 @@
 				>
 					<i slot="prefix" class="el-icon-search el-input__icon" />
 					<template slot-scope="{ item }">
-						<div class="name">{{ item.value }}</div>
-						<span class="addr">{{ item.address }}</span>
+						<div class="title">{{ item.value }}</div>
+						<div class="subhead omit">{{ item.address }}</div>
 					</template>
 				</el-autocomplete>
 			</div>
-			<div class="setting">
+			<!-- 设置 -->
+			<div class="setting flex_c">
 				<el-dropdown>
 					<span class="el-dropdown-link">
 						<span>鹏多多iii</span>
@@ -55,36 +60,36 @@ export default {
 	components: {},
 	props: [],
 	data() {
+		this.tabs = [
+			{
+				title: '推荐',
+				path: 'Recommend',
+				index: 0
+			},
+			{
+				title: '排行榜',
+				path: 'RankingList',
+				index: 1
+			},
+			{
+				title: '歌单',
+				path: 'SongList',
+				index: 2
+			},
+			{
+				title: '歌手',
+				path: 'Singer',
+				index: 3
+			},
+			{
+				title: 'MV',
+				path: 'Mv',
+				index: 4
+			}
+		]
 		return {
 			logo: require('../../assets/icon/pdd.png'),
 			nowIndex: 0,
-			tabs: [
-				{
-					title: '推荐',
-					path: 'Recommend',
-					index: 0
-				},
-				{
-					title: '排行榜',
-					path: 'RankingList',
-					index: 1
-				},
-				{
-					title: '歌单',
-					path: 'SongList',
-					index: 2
-				},
-				{
-					title: '歌手',
-					path: 'Singer',
-					index: 3
-				},
-				{
-					title: 'MV',
-					path: 'Mv',
-					index: 4
-				}
-			],
 			restaurants: [],
 			state: ''
 		}

@@ -4,8 +4,6 @@ import SnowFlake from '@/plugins/snowflake'
 
 export default {
 	name: 'Login',
-	components: {},
-	props: [],
 	data() {
 		return {
 			user: {
@@ -37,15 +35,13 @@ export default {
 			codeHint: '打开网易云APP扫一扫', // 二维码底部提示
 			cookie: '',
 			token: '',
-			userMsg: '', // 用户信息
-			snowTimes: null // 雪花的定时器
+			userMsg: '' // 用户信息
 		}
 	},
 	mounted() {
 		this.startSnow(require('../../assets/image/snow1.png'), require('../../assets/image/snow2.png'), 30)
 	},
 	beforeDestroy() {
-		this.snowTimes && clearInterval(this.snowTimes)
 		this.codeTimer && clearInterval(this.codeTimer)
 	},
 	methods: {
@@ -55,7 +51,7 @@ export default {
 			for (let j = 0; j < num; j++) {
 				snowArr.push(new SnowFlake.CreateSnow('login', src1, src2))
 			}
-			this.snowTimes = setInterval(function() {
+			let snowTimes = setInterval(function() {
 				// 找到数组中的最新的一个
 				for (let i = snowArr.length - 1; i >= 0; i--) {
 					if (snowArr[i]) {
@@ -63,6 +59,11 @@ export default {
 					}
 				}
 			}, 30)
+			// 销毁时清除
+			this.$once('hook:beforeDestroy', () => {
+				clearInterval(snowTimes)
+				snowTimes = null
+			})
 		},
 		// 熊猫归位
 		handleInitPanda() {

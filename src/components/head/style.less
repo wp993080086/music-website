@@ -54,5 +54,25 @@
     width: 400px;
     height: 100%;
     right: 20px;
+    align-items: center;
+    justify-content: space-between;
+    .search{
+      width: 240px;
+      & /deep/ .el-autocomplete{
+        width: 100%;
+        .el-input__inner{
+          border-radius: 20px;
+        }
+      }
+    }
+    .setting{
+      width: 120px;
+    }
   }
+}
+.subhead{
+  font-size: 12px;
+  color: #C0C4CC;
+  height: 20px;
+  line-height: 20px;
 }
