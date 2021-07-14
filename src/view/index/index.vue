@@ -1,16 +1,19 @@
 <template>
 	<div id="index">
 		<Head />
+		<Footer />
 	</div>
 </template>
 
 <script>
 import Head from '../../components/head'
+import Footer from '../../components/footer'
 
 export default {
 	name: 'Index',
 	components: {
-		Head
+		Head,
+		Footer
 	},
 	data() {
 		return {

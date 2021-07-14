@@ -1,6 +1,6 @@
 <template>
 	<div id="footer">
-		<div class="footer_box"></div>
+		<div class="footer_box">1</div>
 	</div>
 </template>
 
@@ -10,9 +10,14 @@ export default {
 	components: {},
 	props: [],
 	data() {
-		return {
-			gitHub: require('../../assets/icon/pdd.png')
-		}
+		this.QQ = require('../../assets/icon/pdd.png')
+		this.weixin = require('../../assets/icon/pdd.png')
+		this.gitHub = require('../../assets/icon/pdd.png')
+		this.jianshu = require('../../assets/icon/pdd.png')
+		this.juejin = require('../../assets/icon/pdd.png')
+		this.csdn = require('../../assets/icon/pdd.png')
+		this.bookyuan = require('../../assets/icon/pdd.png')
+		return {}
 	},
 	watch: {},
 	created() {},
