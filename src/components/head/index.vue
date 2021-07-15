@@ -1,7 +1,7 @@
 <template>
-	<div id="head" class="pr flex_c">
+	<div id="head" class="pr flex">
 		<!-- logo -->
-		<div class="logo pa">
+		<div class="logo pr">
 			<img class="pa z1" :src="logo" alt="logo">
 			<span>鹏多多</span>
 		</div>
@@ -20,10 +20,10 @@
 			</div>
 		</div>
 		<!-- 右侧 -->
-		<div class="right pa flex">
+		<div class="right flex">
 			<!-- 搜索 -->
 			<div class="search" @click.self="toggleSearch(true)">
-				<span v-if="!isSearch" class="hint">搜索歌名/歌手</span>
+				<span v-if="!isSearch" class="hint" @click.self="toggleSearch(true)">搜索歌名/歌手</span>
 				<transition name="scale" mode="out-in">
 					<Search v-if="isSearch" @handleClose="toggleSearch" />
 				</transition>
