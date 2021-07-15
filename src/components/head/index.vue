@@ -24,19 +24,6 @@
 			<!-- 搜索 -->
 			<div class="search" @click.self="toggleSearch(true)">
 				<span v-if="!isSearch" class="hint">搜索歌名/歌手</span>
-				<!-- <el-autocomplete
-					v-model="state"
-					popper-class="autocomplete"
-					:fetch-suggestions="handleSearch"
-					placeholder="搜索歌名/歌手"
-					@select="handleSelect"
-				>
-					<i slot="prefix" class="el-icon-search el-input__icon" />
-					<template slot-scope="{ item }">
-						<div class="title">{{ item.value }}</div>
-						<div class="subhead omit">{{ item.address }}</div>
-					</template>
-				</el-autocomplete> -->
 				<transition name="scale" mode="out-in">
 					<Search v-if="isSearch" @handleClose="toggleSearch" />
 				</transition>
@@ -98,47 +85,18 @@ export default {
 		return {
 			logo: require('../../assets/icon/pdd.png'),
 			nowIndex: 0,
-			restaurants: [],
 			state: '',
 			isSearch: false
 		}
 	},
 	watch: {},
 	created() {},
-	mounted() {
-		this.restaurants = this.loadAll()
-	},
+	mounted() {},
 	updated() {},
 	methods: {
 		handleTabs(index) {
 			console.log(index)
 			this.nowIndex = index
-		},
-		changeTheme() {
-			document.documentElement.style.setProperty('--themeColor', '#e33100')
-		},
-		// 搜索
-		handleSearch(e, cb) {
-			const restaurants = this.restaurants
-			const results = e ? restaurants.filter(this.createFilter(e)) : restaurants
-			// 调用 callback 返回建议列表的数据
-			cb(results)
-		},
-		// 选中
-		handleSelect(e) {
-			console.log(e)
-		},
-		loadAll() {
-			return [
-				{ 'value': '三全鲜食（北新泾店）', 'address': '长宁区新渔路144号' },
-				{ 'value': 'Hot honey 首尔炸鸡（仙霞路）', 'address': '上海市长宁区淞虹路661号' },
-				{ 'value': '新旺角茶餐厅', 'address': '上海市普陀区真北路988号创邑金沙谷6号楼113' }
-			]
-		},
-		createFilter(queryString) {
-			return (restaurant) => {
-				return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0)
-			}
 		},
 		// 切换搜索框
 		toggleSearch(e) {
