@@ -22,8 +22,9 @@
 		<!-- 右侧 -->
 		<div class="right pa flex">
 			<!-- 搜索 -->
-			<div class="search">
-				<el-autocomplete
+			<div class="search" @click.self="toggleSearch(true)">
+				111
+				<!-- <el-autocomplete
 					v-model="state"
 					popper-class="autocomplete"
 					:fetch-suggestions="handleSearch"
@@ -35,7 +36,10 @@
 						<div class="title">{{ item.value }}</div>
 						<div class="subhead omit">{{ item.address }}</div>
 					</template>
-				</el-autocomplete>
+				</el-autocomplete> -->
+				<transition name="scale" mode="out-in">
+					<Search v-if="isSearch" @handleClose="toggleSearch" />
+				</transition>
 			</div>
 			<!-- 设置 -->
 			<div class="setting flex_c">
@@ -55,9 +59,13 @@
 </template>
 
 <script>
+import Search from '../search'
+
 export default {
 	name: 'Head',
-	components: {},
+	components: {
+		Search
+	},
 	props: [],
 	data() {
 		this.tabs = [
@@ -91,7 +99,8 @@ export default {
 			logo: require('../../assets/icon/pdd.png'),
 			nowIndex: 0,
 			restaurants: [],
-			state: ''
+			state: '',
+			isSearch: false
 		}
 	},
 	watch: {},
@@ -130,6 +139,11 @@ export default {
 			return (restaurant) => {
 				return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0)
 			}
+		},
+		// 切换搜索框
+		toggleSearch(e) {
+			console.log(e)
+			this.isSearch = e
 		}
 	}
 }
