@@ -23,7 +23,7 @@
 		<div class="right pa flex">
 			<!-- 搜索 -->
 			<div class="search" @click.self="toggleSearch(true)">
-				111
+				<span v-if="!isSearch" class="hint">搜索歌名/歌手</span>
 				<!-- <el-autocomplete
 					v-model="state"
 					popper-class="autocomplete"

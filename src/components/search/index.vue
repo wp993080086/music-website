@@ -1,7 +1,7 @@
 <template>
 	<div id="search" class="pf z1">
-		<div class="close pa flex_c">
-			<i class="el-icon-close" @click="handleClose" />
+		<div class="close pa flex_c" @click="handleClose">
+			<i class="el-icon-close" />
 		</div>
 		<div class="search_box pa ofh">
 			<el-autocomplete

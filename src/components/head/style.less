@@ -58,12 +58,21 @@
     justify-content: space-between;
     .search{
       width: 240px;
-      & /deep/ .el-autocomplete{
-        width: 100%;
-        .el-input__inner{
-          border-radius: 20px;
-        }
+      height: 40px;
+      box-sizing: border-box;
+      border: 1px solid #dcdfe6;
+      border-radius: 20px;
+      line-height: 40px;
+      padding-left: 20px;
+      .hint{
+        color: #999999;
       }
+      // & /deep/ .el-autocomplete{
+      //   width: 100%;
+      //   .el-input__inner{
+      //     border-radius: 20px;
+      //   }
+      // }
     }
     .setting{
       width: 120px;
