@@ -4,7 +4,7 @@ import timeStamp from '../../utils/public'
 export default {
 	apis: {
 		banner: '/banner',
-    topList: '/toplist'
+		topList: '/toplist'
 	},
 	/**
 	* 获取banner图
@@ -19,7 +19,7 @@ export default {
 			}
 		})
 	},
-  /**
+	/**
 	* 获取所有榜单
 	*/
 	topList() {

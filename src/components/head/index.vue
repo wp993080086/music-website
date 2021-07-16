@@ -94,13 +94,13 @@ export default {
 	mounted() {},
 	updated() {},
 	methods: {
+		// 切换tabs
 		handleTabs(index) {
 			console.log(index)
 			this.nowIndex = index
 		},
-		// 切换搜索框
+		// 开关搜索框
 		toggleSearch(e) {
-			console.log(e)
 			this.isSearch = e
 		}
 	}

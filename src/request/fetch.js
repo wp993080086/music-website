@@ -37,12 +37,13 @@ instance.interceptors.request.use(config => {
 // 响应拦截器
 instance.interceptors.response.use(
 	res => {
+		console.log(res.data)
 		return res.data
 	},
 	error => {
 		// 请求失败
 		const errorResponse = error.response
-		const status = errorResponse.status * 1
+		const status = (errorResponse.status || 0) * 1
 		switch (status) {
 		case 500:
 			MSG.info('服务器不堪重负跑路了', 2)

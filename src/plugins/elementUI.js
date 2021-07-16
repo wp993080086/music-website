@@ -8,7 +8,10 @@ import {
   Autocomplete,
   Dropdown,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Popover,
+  Carousel,
+  CarouselItem
 } from "element-ui";
 
 Vue.use(Button)
@@ -20,3 +23,6 @@ Vue.use(Autocomplete)
 Vue.use(Dropdown)
 Vue.use(DropdownMenu)
 Vue.use(DropdownItem)
+Vue.use(Popover)
+Vue.use(Carousel)
+Vue.use(CarouselItem)

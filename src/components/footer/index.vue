@@ -1,9 +1,30 @@
 <template>
-	<div id="footer" class="flex_c">
-		<div class="footer_box">
-			<div class="item flex_c">
-				<img :src="qq" alt="QQ">
-				<span>QQ</span>
+	<div id="footer" class="flex_c pa">
+		<div class="footer_box flex">
+			<div
+				v-for="(item, index) in infoQRcode"
+				:key="index + item.title"
+				class="item flex_c"
+			>
+				<el-popover
+					placement="top"
+					width="150"
+					trigger="hover"
+				>
+					<img :src="item.QRcode" class="QRcode" alt="QQ群">
+					<div slot="reference">
+						<img :src="item.path" class="info" alt="QQ QRcode">
+						<span>{{ item.title }}</span>
+					</div>
+				</el-popover>
+			</div>
+			<div
+				v-for="(item, index) in info"
+				:key="index + item.url"
+				class="item flex_c"
+			>
+				<img :src="item.path" class="info" alt="QQ QRcode">
+				<a :href="item.url">{{ item.title }}</a>
 			</div>
 		</div>
 	</div>
@@ -15,15 +36,55 @@ export default {
 	components: {},
 	props: [],
 	data() {
-		this.qq = require('../../assets/image/logo/qq.png')
-		this.weixin = require('../../assets/image/logo/weixin.png')
-		this.gitHub = require('../../assets/image/logo/github.png')
-		this.jianShu = require('../../assets/image/logo/jianshu.png')
-		this.jueJin = require('../../assets/image/logo/juejin.png')
-		this.csdn = require('../../assets/image/logo/csdn.png')
-		this.bookYuan = require('../../assets/image/logo/bookyuan.png')
-		this.bilibili = require('../../assets/image/logo/bilibili.png')
-		this.gitee = require('../../assets/image/logo/gitee.png')
+		this.infoQRcode = [
+			{
+				title: 'QQ群',
+				path: require('../../assets/image/info/qq.png'),
+				QRcode: require('../../assets/image/info/qqQRcode.png')
+			},
+			{
+				title: '公众号',
+				path: require('../../assets/image/info/weixin.png'),
+				QRcode: require('../../assets/image/info/weixinQRcode.png')
+			}
+		]
+		this.info = [
+			{
+				title: 'gitHub',
+				path: require('../../assets/image/info/github.png'),
+				url: ''
+			},
+			{
+				title: '简书',
+				path: require('../../assets/image/info/jianshu.png'),
+				url: ''
+			},
+			{
+				title: '掘金',
+				path: require('../../assets/image/info/juejin.png'),
+				url: ''
+			},
+			{
+				title: 'CSDN',
+				path: require('../../assets/image/info/csdn.png'),
+				url: ''
+			},
+			{
+				title: '博客园',
+				path: require('../../assets/image/info/bookyuan.png'),
+				url: ''
+			},
+			{
+				title: '哔哩哔哩',
+				path: require('../../assets/image/info/bilibili.png'),
+				url: ''
+			},
+			{
+				title: 'Gitee',
+				path: require('../../assets/image/info/gitee.png'),
+				url: ''
+			}
+		]
 		return {}
 	},
 	watch: {},
@@ -39,15 +100,20 @@ export default {
 	width: 100%;
 	height: 40px;
 	border-top: 1px solid #f1f1f1;
-	margin-top: 30px;
-	border-bottom: 1px solid #f1f1f1;
+	left: 0;
+	bottom: 0;
 	.footer_box{
 		width: 800px;
 		height: 100%;
 		.item{
-			width: 50px;
+			width: 100px;
 			height: 100%;
-			img{
+			cursor: pointer;
+			.QRcode{
+				width: 150px;
+				height: 150px;
+			}
+			.info{
 				width: 20px;
 				height: 20px;
 				margin-right: 5px;
