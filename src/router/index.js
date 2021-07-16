@@ -12,7 +12,8 @@ const routes = [
 		name: 'Index',
 		component: () => import('@/view/index'),
 		mate: {
-			title: '首页'
+			title: '首页',
+			auth: false
 		}
 	},
 	{
@@ -20,7 +21,8 @@ const routes = [
 		name: 'Login',
 		component: () => import('@/view/login'),
 		mate: {
-			title: '登录'
+			title: '登录',
+			auth: false
 		}
 	}
 ]

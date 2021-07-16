@@ -71,7 +71,7 @@ const MSG = {
     })
   },
   /**
-	* 确认框
+	* 通知框
   * @param {String} msg
   * @param {String} type
   * @param {Number} time

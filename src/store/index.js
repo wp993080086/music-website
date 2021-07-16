@@ -1,35 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import State from './state'
+import Getters from './getters'
+import Mutations from './mutations'
+import Actions from './actions'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		cookie: null,
-		token: null,
-		userMsg: null
+		...State
 	},
 	getters: {
-		getCookie(state) {
-			return state.cookie
-		},
-		getToken(state) {
-			return (val) => {
-				return val + state.cookie
-			}
-		}
+		...Getters
 	},
 	mutations: {
-		setUserMsg(state, val) {
-			state.userMsg = val
-		},
-		setCookie(state, val) {
-			state.cookie = val
-		},
-		setToken(state, val) {
-			state.token = val
-		}
+		...Mutations
 	},
-	actions: {},
+	actions: {
+		...Actions
+	},
 	modules: {}
 })

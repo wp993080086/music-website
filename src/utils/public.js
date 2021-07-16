@@ -1,7 +1,7 @@
 const publicFunction = {
 	/**
 	* 将接口路径后面加上时间戳
-	* @param {String} url 接口
+	* @param {String} url 接口路径
 	*/
 	joinTime: url => `${url}?time=${new Date().getTime()}`,
 	/**
@@ -42,7 +42,32 @@ const publicFunction = {
 				resolve()
 			}, time)
 		})
-	}
+	},
+	/**
+  * 去除首尾空格或内部全部空格
+  * @param {String} value 字符串
+  * @param {Boolean} all 全部空格
+  */
+	trim(value, all = false) {
+    let reg = /(^\s*)|(\s*$)/g
+    if (all) {
+      reg = /\s/g
+    }
+    return value.replace(reg, '')
+  },
+	/**
+   * 下载文件
+   * @param {string} url 文件地址
+   */
+	 downloadFile(url) {
+    let aaa = document.createElement('a')
+    aaa.setAttribute('id', 'download')
+    aaa.setAttribute('href', url)
+    aaa.style.display = 'none'
+    document.body.appendChild(aaa)
+    aaa.click()
+    document.body.removeChild(document.getElementById('download'))
+  }
 }
 
-export default publicFunction;
+export default publicFunction
