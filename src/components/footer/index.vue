@@ -1,5 +1,5 @@
 <template>
-	<div id="footer" class="flex_c pa">
+	<div id="footer" class="flex_c">
 		<div class="footer_box flex">
 			<div
 				v-for="(item, index) in infoQRcode"
@@ -23,8 +23,10 @@
 				:key="index + item.url"
 				class="item flex_c"
 			>
-				<img :src="item.path" class="info" alt="QQ QRcode">
-				<a :href="item.url">{{ item.title }}</a>
+				<a :href="item.url" target="_blank">
+					<img :src="item.path" class="info" alt="QQ QRcode">
+					<span>{{ item.title }}</span>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -52,37 +54,37 @@ export default {
 			{
 				title: 'gitHub',
 				path: require('../../assets/image/info/github.png'),
-				url: ''
+				url: 'https://github.com/pdd11997110103'
 			},
 			{
 				title: '简书',
 				path: require('../../assets/image/info/jianshu.png'),
-				url: ''
+				url: 'https://www.jianshu.com/u/b7a8536bff06'
 			},
 			{
 				title: '掘金',
 				path: require('../../assets/image/info/juejin.png'),
-				url: ''
+				url: 'https://juejin.cn/user/747323639737191'
 			},
 			{
 				title: 'CSDN',
 				path: require('../../assets/image/info/csdn.png'),
-				url: ''
+				url: 'https://blog.csdn.net/pdd11997110103?spm=1010.2135.3001.5421'
 			},
 			{
 				title: '博客园',
 				path: require('../../assets/image/info/bookyuan.png'),
-				url: ''
+				url: 'https://www.cnblogs.com/-pdd/'
 			},
 			{
 				title: '哔哩哔哩',
 				path: require('../../assets/image/info/bilibili.png'),
-				url: ''
+				url: 'https://space.bilibili.com/11649554'
 			},
 			{
 				title: 'Gitee',
 				path: require('../../assets/image/info/gitee.png'),
-				url: ''
+				url: 'https://gitee.com/pdd11997110103'
 			}
 		]
 		return {}

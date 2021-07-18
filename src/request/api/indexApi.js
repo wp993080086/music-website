@@ -3,8 +3,11 @@ import timeStamp from '../../utils/public'
 
 export default {
 	apis: {
-		banner: '/banner',
-		topList: '/toplist'
+		banner: '/banner', // banner图
+		recommendSongList: '/personalized', // 推荐歌单
+		recommendSong: '/personalized/newsong', // 推荐新音乐
+		topSinger: '/top/artists', // 热门歌手
+		highqualitySongList: '/top/playlist/highquality' // 获取精品歌单
 	},
 	/**
 	* 获取banner图
@@ -20,13 +23,42 @@ export default {
 		})
 	},
 	/**
-	* 获取所有榜单
+	* 推荐歌单
+	* @param {Number} limit 数量
 	*/
-	topList() {
+	recommendSongList(limit = 18) {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.topList),
+			url: timeStamp.joinTime(this.apis.recommendSongList),
 			method: 'post',
-			data: {}
+			data: {
+				limit
+			}
+		})
+	},
+	/**
+	* 推荐新音乐
+	* @param {Number} limit 数量
+	*/
+	recommendSong(limit = 10) {
+		return fetch({
+			url: timeStamp.joinTime(this.apis.recommendSong),
+			method: 'post',
+			data: {
+				limit
+			}
+		})
+	},
+	/**
+	* 热门歌手
+	* @param {Number} limit 数量
+	*/
+	topSinger(limit = 28) {
+		return fetch({
+			url: timeStamp.joinTime(this.apis.topSinger),
+			method: 'post',
+			data: {
+				limit
+			}
 		})
 	}
 }

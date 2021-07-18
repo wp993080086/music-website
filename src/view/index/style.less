@@ -1,0 +1,170 @@
+#index{
+  .module_line{
+    width: 100%;
+    height: 40px;
+    padding: 0 40px 0 40px;
+    box-sizing: border-box;
+    line-height: 40px;
+    margin: 20px auto;
+    .module_title{
+      color: #303133;
+      .hint{
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .more{
+        color: #F56C6C;
+        font-size: 14px;
+        cursor: pointer;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+      &::before{
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: #409EFF;
+        left: 0;
+        bottom: -3px;
+      }
+    }
+  }
+  .song_list{
+    width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .song_item{
+      width: 200px;
+      height: 240px;
+      box-sizing: border-box;
+      padding: 20px;
+      img{
+        width: 100%;
+        height: 160px;
+        cursor: pointer;
+      }
+      .shadow{
+        width: calc(100% - 40px);
+        height: 30px;
+        padding: 0 5px;
+        box-sizing: border-box;
+        background-color: rgba(0, 0, 0, .5);
+        left: 20px;
+        bottom: 60px;
+        color: #cccccc;
+        .shadow_left{
+          width: calc(100% - 50px);
+          i{
+            margin-right: 3px;
+          }
+        }
+        .shadow_rignt{
+          width: 50px;
+          font-size: 18px;
+          i{
+            cursor: pointer;
+            &:hover{
+              color: #ffffff;
+            }
+          }
+        }
+      }
+      .introduce{
+        width: 100%;
+        height: 40px;
+        line-height: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .recommend_list{
+    width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    .singer_item{
+      width: 580px;
+      height: 70px;
+      flex-shrink: 0;
+      margin-bottom: 20px;
+      background-color: #ffffff;
+      div{
+        flex-shrink: 0;
+      }
+      .item_index{
+        width: 50px;
+        height: 50px;
+      }
+      .item_img{
+        width: 50px;
+        height: 50px;
+        img{
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .song_name{
+        width: 300px;
+        box-sizing: border-box;
+        padding: 0 5px;
+      }
+      .singer_name{
+        width: 100px;
+        font-weight: bold;
+      }
+      .item_play{
+        width: 80px;
+        font-size: 32px;
+        transition: 0.5s ease;
+        cursor: pointer;
+        &:hover{
+          color: #409EFF;
+          transform: scale(1.2)
+        }
+      }
+    }
+  }
+  .singer_list{
+    width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    .singer_item{
+      width: 160px;
+      height: 240px;
+      padding-top: 20px;
+      box-sizing: border-box;
+      .singer_photograph{
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+      }
+      .singer_name{
+        width: 100%;
+        height: 40px;
+        color: #303133;
+        font-size: 16px;
+      }
+      .singer_hint{
+        width: 100%;
+        height: 20px;
+        color: #ff5777;
+        font-size: 14px;
+      }
+    }
+  }
+}
+.image_slot{
+  width: 100%;
+  height: 100%;
+  background-color: #F5F7FA;
+  font-size: 24px;
+  color: #409EFF;
+}

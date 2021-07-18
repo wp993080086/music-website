@@ -1,15 +1,23 @@
 <template>
 	<div v-cloak id="app">
+		<Head />
 		<transition name="fade" mode="out-in">
 			<router-view />
 		</transition>
+		<Footer />
 	</div>
 </template>
 
 <script>
+import Head from './components/head'
+import Footer from './components/footer'
 
 export default {
-	name: 'App'
+	name: 'App',
+	components: {
+		Head,
+		Footer
+	}
 }
 </script>
 
@@ -22,6 +30,7 @@ body,html,#app{
 	width: 100%;
 	height: 100%;
 	min-width: 1200px;
+	background-color: #f9f9f9;
 }
 ::-webkit-scrollbar {
 	width: 4px;
