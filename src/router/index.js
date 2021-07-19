@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 const routes = [
 	{
 		path: '/',
-		redirect: '/index'
+		redirect: '/signin'
 	},
 	{
 		path: '/index',
@@ -13,16 +13,28 @@ const routes = [
 		component: () => import('@/view/index'),
 		mate: {
 			title: '首页',
-			auth: false
+			auth: false,
+			showNav: true
 		}
 	},
 	{
 		path: '/login',
 		name: 'Login',
 		component: () => import('@/view/login'),
-		mate: {
+		meta: {
 			title: '登录',
-			auth: false
+			auth: false,
+			showNav: false
+		}
+	},
+	{
+		path: '/signin',
+		name: 'Signin',
+		component: () => import('@/view/signin'),
+		meta: {
+			title: '注册',
+			auth: false,
+			showNav: false
 		}
 	}
 ]

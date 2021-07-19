@@ -70,6 +70,7 @@
       flex-shrink: 0;
       margin-bottom: 20px;
       background-color: #ffffff;
+      box-shadow: 3px 3px 3px #f1f1f1;
       div{
         flex-shrink: 0;
       }
@@ -119,6 +120,10 @@
         width: 100px;
         height: 100px;
         cursor: pointer;
+        transition: 0.5s ease;
+        &:hover{
+          transform: scale(1.1);
+        }
       }
       .singer_name{
         width: 100%;

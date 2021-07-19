@@ -6,7 +6,9 @@ export default {
 		phone_login: '/login/cellphone',
 		get_key: '/login/qr/key',
 		get_qrcode: '/login/qr/create',
-		check_qrcode: '/login/qr/check'
+		check_qrcode: '/login/qr/check',
+		signin: '/register/cellphone',
+		sendCaptcha: '/captcha/sent'
 	},
 	/**
 	* 手机号码登录
@@ -55,6 +57,35 @@ export default {
 			method: 'post',
 			data: {
 				key
+			}
+		})
+	},
+	/**
+	* 发送验证码
+	* @param {String} phone 手机号码
+	*/
+	sendCaptcha(phone) {
+		return fetch({
+			url: timeStamp.joinTime(this.apis.sendCaptcha),
+			method: 'post',
+			data: {
+				phone
+			}
+		})
+	},
+	/**
+	* 注册&修改密码
+	* @param {String} nickname 昵称
+	* @param {String} phone 手机号码
+	* @param {String} password 密码
+	* @param {String} captcha 验证码
+	*/
+	signin(param) {
+		return fetch({
+			url: timeStamp.joinTime(this.apis.signin),
+			method: 'post',
+			data: {
+				...param
 			}
 		})
 	}

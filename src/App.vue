@@ -1,10 +1,10 @@
 <template>
 	<div v-cloak id="app">
-		<Head />
+		<Head v-if="showNav" />
 		<transition name="fade" mode="out-in">
 			<router-view />
 		</transition>
-		<Footer />
+		<Footer v-if="showNav" />
 	</div>
 </template>
 
@@ -17,6 +17,16 @@ export default {
 	components: {
 		Head,
 		Footer
+	},
+	data() {
+		return {
+			showNav: false
+		}
+	},
+	watch: {
+		$route(to, from) {
+			this.showNav = to.meta.showNav
+		}
 	}
 }
 </script>
