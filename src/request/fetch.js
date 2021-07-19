@@ -42,19 +42,25 @@ instance.interceptors.response.use(
 	},
 	error => {
 		// 请求失败
-		const errorResponse = error.response
-		const status = (errorResponse.status || 0) * 1
-		switch (status) {
-		case 500:
-			MSG.info('服务器不堪重负跑路了', 2)
-			break
-		case 404:
-			MSG.info('接口不存在', 2)
-			break
-		default:
-			MSG.info(errorResponse.data.message, 3)
+		try {
+			const errorResponse = error.response
+			const status = (errorResponse.status || 0) * 1
+			switch (status) {
+			case 500:
+				MSG.info('服务器不堪重负跑路了', 2)
+				break
+			case 404:
+				MSG.info('接口不存在', 2)
+				break
+			default:
+				MSG.info(errorResponse.data.message, 3)
+			}
+			return Promise.reject(errorResponse)
+		}	catch (e) {
+			MSG.info('哦豁，网络开小差啦 ~', 3)
+			const ORRER = new Error('哦豁，网络开小差啦 ~')
+			return Promise.reject(ORRER)
 		}
-		return Promise.reject(errorResponse)
 	}
 )
 

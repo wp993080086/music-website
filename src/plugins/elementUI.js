@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue from "vue"
 import {
   Button,
   Input,
@@ -12,8 +12,10 @@ import {
   Popover,
   Carousel,
   CarouselItem,
-  Image
-} from "element-ui";
+  Image,
+  Skeleton,
+  SkeletonItem
+} from "element-ui"
 
 Vue.use(Button)
 Vue.use(Input)
@@ -28,3 +30,5 @@ Vue.use(Popover)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
 Vue.use(Image)
+Vue.use(Skeleton)
+Vue.use(SkeletonItem)

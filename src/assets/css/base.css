@@ -138,12 +138,22 @@
     display: flex;
 }
 
+/* 一行排不下就换行 */
+.flex_w_w{
+    flex-wrap: wrap;
+}
+
+/* 项目两侧的间隔相等。项目之间的间隔比项目与边框的间隔大一倍。 */
+.flex_s_a {
+    justify-content: space-around;
+}
+
 /* 两端对齐，项目之间的间隔都相等 */
 .flex_s_b {
     justify-content: space-between;
 }
 
-/* 多列等高   如果子元素未设置高度或设为auto，将自动占满整个容器的高度 */
+/* 默认值 多列等高 如果子元素未设置高度或设为auto，将自动占满整个容器的高度 */
 .flex_a_s {
     align-items: stretch;
 }
@@ -156,11 +166,6 @@
 /* X 轴中间对齐 */
 .flex_j_c {
     justify-content: center;
-}
-
-/* 项目两侧的间隔相等。项目之间的间隔比项目与边框的间隔大一倍。 */
-.flex_s_a {
-    justify-content: space-around;
 }
 
 /* 主轴为垂直Y方向，起点在上沿 */
