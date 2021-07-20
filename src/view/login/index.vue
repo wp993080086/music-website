@@ -18,7 +18,7 @@
 									placeholder="密码"
 									clearable
 									show-password
-									@keyup.enter="submitForm"
+									@keyup.enter.native="submitForm"
 									@focus="getPwdFocus"
 								/>
 							</el-form-item>

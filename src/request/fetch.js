@@ -9,7 +9,7 @@ axios.defaults.withCredentials = true
 // axios实例
 const instance = axios.create({
 	// 请求超时时间
-	timeout: 30 * 1000,
+	timeout: 10 * 1000,
 
 	// 通用headers
 	headers: {

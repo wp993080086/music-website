@@ -99,16 +99,22 @@ export default {
 		},
 		// 登陆
 		async login() {
+			this.$info.loading()
 			try {
 				const res = await HTTP.phoneLogin(this.user)
-				console.log(res)
-				this.cookie = res.cookie
-				this.token = res.token
-				this.userMsg = res.profile
-				this.$store.commit('setToken', this.token)
-				this.$store.commit('setUserMsg', this.userMsg)
-				this.handleLoginSucceed()
+				this.$info.loading(false)
+				if (res.code === 200) {
+					this.cookie = res.cookie
+					this.token = res.token
+					this.userMsg = res.profile
+					this.$store.commit('setToken', this.token)
+					this.$store.commit('setUserMsg', this.userMsg)
+					this.handleLoginSucceed()
+				} else {
+					this.$info.alert(res.msg)
+				}
 			} catch (error) {
+				this.$info.loading(false)
 				console.error(error)
 			}
 		},
@@ -167,7 +173,6 @@ export default {
 		async handleQueryQRcode() {
 			try {
 				const res = await HTTP.queryQRcode(this.codeKey)
-				console.log(res)
 				switch (res.code) {
 				case 801:
 					// 等待扫码

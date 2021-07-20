@@ -20,14 +20,20 @@ export default {
 	},
 	data() {
 		return {
-			showNav: false
+			showNav: true,
+			special: [
+				'Login',
+				'Signin'
+			]
 		}
 	},
 	watch: {
 		$route(to, from) {
-			this.showNav = to.meta.showNav
-			console.log(to)
-			console.log(to.meta.showNav)
+			if (this.special.includes(to.name)) {
+				this.showNav = false
+			} else {
+				this.showNav = true
+			}
 		}
 	}
 }

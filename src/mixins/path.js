@@ -9,6 +9,7 @@ export default {
 		async getSongUrl(songId) {
 			this.$info.loading()
 			try {
+				await this.$fn.sleep(500)
 				const res = await HTTP.getSongUrl(songId)
 				this.$info.loading(false)
 				if (res.code === 200) {
