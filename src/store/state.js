@@ -1,5 +1,6 @@
 export default {
 	cookie: null,
 	token: null,
-	userMsg: null
+	userMsg: null,
+	songList: []
 }

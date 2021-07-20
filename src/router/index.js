@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 const routes = [
 	{
 		path: '/',
-		redirect: '/signin'
+		redirect: '/player'
 	},
 	{
 		path: '/index',
@@ -33,6 +33,16 @@ const routes = [
 		component: () => import('@/view/signin'),
 		meta: {
 			title: '注册',
+			auth: false,
+			showNav: false
+		}
+	},
+	{
+		path: '/player',
+		name: 'Player',
+		component: () => import('@/components/player'),
+		meta: {
+			title: '播放',
 			auth: false,
 			showNav: false
 		}

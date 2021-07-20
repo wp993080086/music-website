@@ -87,13 +87,13 @@ const MSG = {
   LOADING:null,
   /**
 	* 开启&关闭 Loading
-  * @param {Number} type
+  * @param {Boolean} type
 	*/
-  loading(type) {
+  loading(type = true) {
     MSG.LOADING && MSG.LOADING.close()
-    if (type === 1) {
+    if (type) {
       MSG.LOADING = Loading.service({
-        lock: true,
+        lock: false,
         text: '加载中...'
       })
     } else {

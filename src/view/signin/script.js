@@ -26,7 +26,8 @@ export default {
 				password: '',
 				captcha: ''
 			},
-			countDown: 60,
+			sendLoading: false,
+			count: 60,
 			times: null
 		}
 	},
@@ -34,20 +35,45 @@ export default {
 		// 校验手机号
 		handleVerifyPhone() {
 			this.$refs['form'].validateField('phone', err => {
+				if (this.sendLoading) return
 				!err && this.handleSendVcode()
 			})
 		},
 		// 发送验证码
 		async handleSendVcode() {
 			try {
+				this.sendLoading = true
+				this.countDown()
 				const res = await HTTP.sendCaptcha(this.user.phone)
 				console.log(res)
 				if (res.code === 200) {
+					this.sendLoading = false
 					this.$info.info('发送成功', 1)
+					this.countDown()
 				}
 			} catch (error) {
+				this.sendLoading = false
 				console.warn(error)
 			}
+		},
+		// 倒计时
+		countDown() {
+			this.times = setInterval(() => {
+				this.count--
+				if (this.count <= 0) {
+					clearInterval(this.times)
+					this.times = null
+					this.sendLoading = false
+					this.count = 60
+				}
+			}, 1000)
+			// 销毁时清除
+			this.$once('hook:beforeDestroy', () => {
+				if (this.times) {
+					clearInterval(this.times)
+					this.times = null
+				}
+			})
 		},
 		// 注册校验
 		submitForm() {

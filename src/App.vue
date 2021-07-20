@@ -26,6 +26,8 @@ export default {
 	watch: {
 		$route(to, from) {
 			this.showNav = to.meta.showNav
+			console.log(to)
+			console.log(to.meta.showNav)
 		}
 	}
 }

@@ -65,18 +65,7 @@
 				>
 					<div class="item_index flex_c">{{ index + 1 }}</div>
 					<div class="item_img ofh br2">
-						<el-image
-							style="width: 50px; height: 50px"
-							:src="item.picUrl"
-							fit="cover"
-						>
-							<div slot="error" class="image-slot">
-								<i class="el-icon-picture-outline" />
-							</div>
-							<div slot="placeholder" class="image_slot flex_c">
-								<i class="el-icon-loading" />
-							</div>
-						</el-image>
+						<img :src="item.picUrl">
 					</div>
 					<div class="song_name flex_c omit">
 						<p class="omit">{{ item.name }}</p>
@@ -114,19 +103,7 @@
 					class="singer_item flex flex_a_c flex_d_y"
 				>
 					<div class="singer_photograph br50 ofh">
-						<el-image
-							style="width: 100px; height: 100px"
-							:src="item.picUrl"
-							fit="cover"
-							@click="toSingerDetails(item.id)"
-						>
-							<div slot="error" class="image-slot">
-								<i class="el-icon-picture-outline" />
-							</div>
-							<div slot="placeholder" class="image_slot flex_c">
-								<i class="el-icon-loading" />
-							</div>
-						</el-image>
+						<img :src="item.picUrl" @click="toSingerDetails(item.id)">
 					</div>
 					<div class="singer_name flex_c">
 						<p>{{ item.name }}</p>
@@ -144,6 +121,7 @@
 import HTTP from '../../request/api/indexApi'
 import Banner from '../../components/banner'
 import Title from './component/titleLine'
+import mixin from '../../mixins/path'
 
 export default {
 	name: 'Index',
@@ -151,6 +129,7 @@ export default {
 		Banner,
 		Title
 	},
+	mixins: [mixin],
 	data() {
 		return {
 			bannerList: [],
@@ -252,8 +231,9 @@ export default {
 			this.$info.info(id)
 		},
 		// 播放
-		handlePlay(id) {
-			this.$info.info(id)
+		async handlePlay(id) {
+			const res = await this.getSongUrl(id)
+			console.log(res)
 		}
 	}
 }

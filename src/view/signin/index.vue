@@ -13,7 +13,7 @@
 						<el-form-item prop="phone">
 							<el-input v-model="user.phone" placeholder="手机号码" clearable />
 						</el-form-item>
-						<el-form-item prop="pwd">
+						<el-form-item prop="password">
 							<el-input
 								v-model="user.password"
 								placeholder="密码"
@@ -25,11 +25,17 @@
 						<el-form-item prop="captcha">
 							<el-input v-model="user.captcha" placeholder="验证码" clearable>
 								<template slot="append">
-									<div v-if="countDown === 60" class="verification" @click="handleVerifyPhone">
+									<div
+										v-if="count === 60"
+										class="verification"
+										:style="{opacity: sendLoading ? '0.7':'1'}"
+										@click="handleVerifyPhone"
+									>
+										<i v-if="sendLoading" class="el-icon-loading" />
 										<span>发送验证码</span>
 									</div>
 									<div v-else class="disabled_btn">
-										<span>{{ countDown }}S</span>
+										<span>{{ count }}S</span>
 									</div>
 								</template>
 							</el-input>

@@ -12,9 +12,9 @@ import {
   Popover,
   Carousel,
   CarouselItem,
-  Image,
   Skeleton,
-  SkeletonItem
+  SkeletonItem,
+  Progress
 } from "element-ui"
 
 Vue.use(Button)
@@ -29,6 +29,6 @@ Vue.use(DropdownItem)
 Vue.use(Popover)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
-Vue.use(Image)
 Vue.use(Skeleton)
 Vue.use(SkeletonItem)
+Vue.use(Progress)

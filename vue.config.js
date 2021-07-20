@@ -6,6 +6,7 @@ module.exports = {
 	outputDir: process.env.VUE_APP_BASE_OUTPUTDIR,
 	assetsDir: 'assets',
 	lintOnSave: true,
+	productionSourceMap: false,
 	chainWebpack: config => {
 		const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
 		types.forEach(type => addStyleResource(config.module.rule('less').oneOf(type)))
