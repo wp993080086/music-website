@@ -10,5 +10,9 @@ export default {
 	// 设置Token
 	setToken(state, val) {
 		state.token = val
+	},
+	// 设置歌曲信息
+	setSongInfo(state, param) {
+		state.songInfo = param
 	}
 }

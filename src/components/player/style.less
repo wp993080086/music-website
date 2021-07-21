@@ -1,0 +1,144 @@
+#player{
+  background-color: #ffffff;
+	width: 100%;
+	min-width: 1200px;
+	padding: 0 20px;
+	box-sizing: border-box;
+	height: 61px;
+	left: 0;
+	bottom: 0;
+	border-top: 1px solid #cccccc;
+	.song_img{
+		width: 50px;
+		height: 100%;
+		flex-basis: 50px;
+		.song_img_box{
+			width: 40px;
+			height: 40px;
+		}
+		img{
+			width: 100%;
+			height: 100%;
+			animation: rotate 5s linear infinite;
+		}
+	}
+	.song_name{
+		width: 230px;
+		height: 100%;
+		flex-basis: 230px;
+		.song_name_txt{
+			width: 100%;
+			height: 50%;
+			font-size: 14px;
+			box-sizing: border-box;
+			padding: 0 10px;
+		}
+		.song_singer{
+			width: 100%;
+			height: 50%;
+			color: #cccccc;
+		}
+	}
+	.operation{
+		width: 100px;
+		height: 100%;
+		flex-basis: 100px;
+		font-size: 18px;
+		.item{
+			cursor: pointer;
+		}
+		.play, .pause{
+			font-size: 30px;
+		}
+	}
+	.progress{
+		width: calc(100% - 700px);
+		height: 100%;
+		.progress_slider{
+			width: calc(100% - 150px);
+			height: 100%;
+			box-sizing: border-box;
+			padding: 11px 20px;
+		}
+		.progress_time{
+			width: 150px;
+			.start, .end{
+				font-size: 14px;
+				font-weight: bold;
+			}
+			.line{
+				width: 2px;
+				height: 20px;
+				background-color: #cccccc;
+				margin: 0 6px;
+			}
+		}
+	}
+	.progress_voice{
+		width: 120px;
+		height: 100%;
+		flex-basis: 120px;
+		.voice_icon{
+			width: 40px;
+			height: 100%;
+			flex-basis: 40px;
+			font-size: 18px;
+		}
+		.voice{
+			width: 80px;
+			height: 100%;
+			box-sizing: border-box;
+			padding: 11px 10px;
+		}
+	}
+	.sort{
+		width: 100px;
+		height: 100%;
+		flex-basis: 100px;
+		font-size: 24px;
+	}
+	.list{
+		width: 100px;
+		height: 100%;
+		flex-basis: 100px;
+		font-size: 24px;
+	}
+}
+.song_list{
+	box-sizing: border-box;
+	max-height: 300px;
+	padding-bottom: 20px;
+	.song_list_title{
+		width: 100%;
+		height: 40px;
+		border-bottom: 1px solid #000000;
+		box-sizing: border-box;
+		font-size: 16px;
+		margin-bottom: 10px;
+		img{
+			width: 36px;
+			height: 36px;
+			margin-right: 10px;
+		}
+	}
+	.song_list_box{
+		max-height: 240px;
+		overflow-y: auto;
+		.song_list_item{
+			width: 100%;
+			height: 40px;
+			border-bottom: 1px solid #f1f1f1;
+			&:hover{
+				color: #409eff;
+			}
+			.list_play{
+				margin-left: 5px;
+				font-size: 20px;
+			}
+		}
+	}
+}
+@keyframes rotate
+{
+	100% { transform: rotate(360deg) }
+}

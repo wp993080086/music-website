@@ -74,7 +74,11 @@
 						<span>{{ item.song.album.artists[0].name }}</span>
 					</div>
 					<div class="item_play flex_c">
-						<i class="el-icon-video-play" title="播放" @click="handlePlay(item.id)" />
+						<i
+							class="el-icon-video-play"
+							title="播放"
+							@click="handlePlay(item.id, item.name, item.picUrl, item.song.album.artists[0].name)"
+						/>
 					</div>
 				</div>
 			</template>
@@ -114,20 +118,23 @@
 				</div>
 			</template>
 		</el-skeleton>
+		<my-player />
 	</div>
 </template>
 
 <script>
+import mixin from '../../mixins/path'
 import HTTP from '../../request/api/indexApi'
 import Banner from '../../components/banner'
 import Title from './component/titleLine'
-import mixin from '../../mixins/path'
+import myPlayer from '../../components/player'
 
 export default {
 	name: 'Index',
 	components: {
 		Banner,
-		Title
+		Title,
+		myPlayer
 	},
 	mixins: [mixin],
 	data() {
@@ -231,9 +238,16 @@ export default {
 			this.$info.info(id)
 		},
 		// 播放
-		async handlePlay(id) {
+		async handlePlay(id, name, img, singer) {
 			const res = await this.getSongUrl(id)
-			console.log(res)
+			const param = {
+				id,
+				name,
+				img,
+				singer,
+				path: res[0].url
+			}
+			this.$store.commit('setSongInfo', param)
 		}
 	}
 }
