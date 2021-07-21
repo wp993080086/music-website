@@ -14,7 +14,7 @@ import {
   CarouselItem,
   Skeleton,
   SkeletonItem,
-  Progress
+  Slider
 } from "element-ui"
 
 Vue.use(Button)
@@ -31,4 +31,4 @@ Vue.use(Carousel)
 Vue.use(CarouselItem)
 Vue.use(Skeleton)
 Vue.use(SkeletonItem)
-Vue.use(Progress)
+Vue.use(Slider)

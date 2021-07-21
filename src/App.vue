@@ -23,7 +23,8 @@ export default {
 			showNav: true,
 			special: [
 				'Login',
-				'Signin'
+				'Signin',
+				'Player'
 			]
 		}
 	},

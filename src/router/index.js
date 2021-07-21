@@ -13,8 +13,7 @@ const routes = [
 		component: () => import('@/view/index'),
 		mate: {
 			title: '首页',
-			auth: false,
-			showNav: true
+			auth: false
 		}
 	},
 	{
@@ -23,8 +22,7 @@ const routes = [
 		component: () => import('@/view/login'),
 		meta: {
 			title: '登录',
-			auth: false,
-			showNav: false
+			auth: false
 		}
 	},
 	{
@@ -33,8 +31,7 @@ const routes = [
 		component: () => import('@/view/signin'),
 		meta: {
 			title: '注册',
-			auth: false,
-			showNav: false
+			auth: false
 		}
 	},
 	{
@@ -43,8 +40,7 @@ const routes = [
 		component: () => import('@/components/player'),
 		meta: {
 			title: '播放',
-			auth: false,
-			showNav: false
+			auth: false
 		}
 	}
 ]
