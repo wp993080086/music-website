@@ -5,11 +5,11 @@
 				<template slot="template">
 					<el-skeleton-item
 						variant="image"
-						style="width: 100%; height: 285px;"
+						style="width: 100%; height: 222px;"
 					/>
 				</template>
 				<template>
-					<el-carousel :interval="3000" type="card" height="285px" indicator-position="none">
+					<el-carousel :interval="3000" type="card" height="222px" indicator-position="none">
 						<el-carousel-item v-for="item in bannerList" :key="item.imageUrl">
 							<div class="banner_item pr">
 								<img :src="item.imageUrl" alt="Banner">
@@ -89,8 +89,9 @@ export default {
 <style lang='less' scoped>
 #banner{
 	width: 100%;
-	height: 285px;
-	margin-top: 10px;
+	max-width: 1200px;
+	height: 222px;
+	margin: 10px auto 0px;
 	.el-carousel__item h3 {
 		margin: 0;
 	}
