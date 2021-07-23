@@ -6,42 +6,68 @@ const baseURL = process.env.VUE_APP_BASE_URL
 
 axios.defaults.withCredentials = true
 
+const RequestInfo = {
+	count: 0,
+	requestList: [],
+	times: null,
+	showLoading() {
+		if (RequestInfo.count === 0) {
+			console.log('开启计时器')
+			RequestInfo.times = setTimeout(() => {
+				MSG.loading()
+				clearTimeout(RequestInfo.times)
+				RequestInfo.times = null
+			}, 200)
+		}
+		RequestInfo.count++
+	},
+	hideLoading() {
+		RequestInfo.count--
+		if (RequestInfo.count <= 0) RequestInfo.count = 0
+		if (RequestInfo.count === 0) {
+			MSG.loading(false)
+			RequestInfo.times && clearTimeout(RequestInfo.times)
+			RequestInfo.times = null
+		}
+	}
+}
+
 // axios实例
 const instance = axios.create({
-	// 请求超时时间
 	timeout: 10 * 1000,
-
-	// 通用headers
-	headers: {
-		'Content-Type': 'application/x-www-form-urlencoded'
-	},
-	withCredentials: true,
-	// 项目baseURL
+	headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 	baseURL
 })
 
 // 请求拦截器
-instance.interceptors.request.use(config => {
-	if (
-		config.method === 'post' &&
-		config.headers['Content-Type'] === 'application/x-www-form-urlencoded'
-	) {
-		// 当请求的header为application/x-www-form-urlencoded，请求方式为post时，序列化data
-		config.data = qs.stringify(config.data)
+instance.interceptors.request.use(
+	config => {
+		if (config.method === 'post') {
+			config.data = qs.stringify(config.data)
+		}
+		console.log(config.notLoad)
+		if (config.notLoad) {
+			console.log('不显示loading')
+		} else {
+			RequestInfo.showLoading()
+		}
+		return config
+	},
+	error => {
+		return Promise.reject(error)
 	}
-	return config
-}, err => {
-	return Promise.reject(err)
-})
+)
 
 // 响应拦截器
 instance.interceptors.response.use(
 	res => {
 		console.log(res.data)
+		RequestInfo.hideLoading()
 		return res.data
 	},
 	error => {
 		// 请求失败
+		RequestInfo.hideLoading()
 		try {
 			const errorResponse = error.response
 			const status = (errorResponse.status || 0) * 1

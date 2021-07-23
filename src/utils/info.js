@@ -84,20 +84,23 @@ const MSG = {
       duration: time
     })
   },
-  LOADING:null,
+  LOADING: null,
   /**
 	* 开启&关闭 Loading
   * @param {Boolean} type
 	*/
   loading(type = true) {
-    MSG.LOADING && MSG.LOADING.close()
     if (type) {
+      if (MSG.LOADING) {
+        MSG.LOADING.close()
+        MSG.LOADING = null
+      }
       MSG.LOADING = Loading.service({
         lock: false,
         text: '加载中...'
       })
     } else {
-      MSG.LOADING.close()
+      MSG.LOADING && MSG.LOADING.close()
     }
   }
 }

@@ -57,7 +57,8 @@ export default {
 			method: 'post',
 			data: {
 				key
-			}
+			},
+			notLoad: true
 		})
 	},
 	/**
