@@ -41,7 +41,7 @@
 				<i class="el-icon-bell" />
 			</div>
 			<div class="voice">
-				<el-slider v-model="levelVoice" :step="10" />
+				<el-slider v-model="levelVoice" :step="10" @change="handleVolume" />
 			</div>
 		</div>
 		<!-- 顺序 -->
@@ -135,7 +135,11 @@ export default {
 		// 播放完毕
 		handelPlayEnd() {},
 		// 修改播放时间
-		handleUpdateTime() {}
+		handleUpdateTime() {},
+		// 音量
+		handleVolume(e) {
+			this.$refs.audio.volume = e / 100
+		}
 	}
 }
 </script>
