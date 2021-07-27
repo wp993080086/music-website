@@ -14,5 +14,9 @@ export default {
 	// 设置歌曲信息
 	setSongInfo(state, param) {
 		state.songInfo = param
+	},
+	// 添加歌曲列表
+	setSongList(state, param) {
+		state.songList.push(param)
 	}
 }

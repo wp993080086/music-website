@@ -10,14 +10,15 @@ export default {
 	* @param {String} cat 类型
 	* @param {Number} limit 每页数量
 	*/
-	highqualitySongList(cat = '', limit = 18) {
+	highqualitySongList(limit = 18, cat = '') {
 		return fetch({
 			url: timeStamp.joinTime(this.apis.highqualitySongList),
 			method: 'post',
 			data: {
-				cat,
-				limit
-			}
+				limit,
+				cat
+			},
+			notLoad: true
 		})
 	}
 }

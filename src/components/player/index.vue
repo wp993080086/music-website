@@ -86,26 +86,33 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
 	name: 'Player',
 	data() {
 		return {
 			isPlay: false, // 是否播放
-			levelLength: 10, // 播放时长
-			levelVoice: 20 // 音量
+			levelLength: 0, // 播放时长
+			levelVoice: 100 // 音量
 		}
 	},
 	computed: {
 		...mapState([
-			'songInfo'
+			'songInfo',
+			'songList'
 		])
 	},
 	watch: {
-		songInfo(a, b) {
-			if (a.path) {
+		songInfo(newVal, oldVal) {
+			if (newVal.path) {
 				this.handlePlay()
+				const bool = this.songList.some((item) => {
+					return item.id === newVal.id
+				})
+				if (!bool) {
+					this.handleSongListPush(newVal)
+				}
 			}
 		}
 	},
@@ -113,6 +120,9 @@ export default {
 	mounted() {},
 	updated() {},
 	methods: {
+		...mapMutations({
+			handleSongListPush: 'setSongList'
+		}),
 		// 准备好
 		HandleAudioReady() {
 			console.log('准备好了')
@@ -136,7 +146,7 @@ export default {
 		handelPlayEnd() {},
 		// 修改播放时间
 		handleUpdateTime() {},
-		// 音量
+		// 修改音量
 		handleVolume(e) {
 			this.$refs.audio.volume = e / 100
 		}

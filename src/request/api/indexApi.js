@@ -19,7 +19,8 @@ export default {
 			method: 'post',
 			data: {
 				type
-			}
+			},
+			notLoad: true
 		})
 	},
 	/**
@@ -32,7 +33,8 @@ export default {
 			method: 'post',
 			data: {
 				limit
-			}
+			},
+			notLoad: true
 		})
 	},
 	/**
@@ -45,7 +47,8 @@ export default {
 			method: 'post',
 			data: {
 				limit
-			}
+			},
+			notLoad: true
 		})
 	},
 	/**
@@ -58,7 +61,8 @@ export default {
 			method: 'post',
 			data: {
 				limit
-			}
+			},
+			notLoad: true
 		})
 	}
 }

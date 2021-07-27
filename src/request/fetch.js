@@ -45,10 +45,7 @@ instance.interceptors.request.use(
 		if (config.method === 'post') {
 			config.data = qs.stringify(config.data)
 		}
-		console.log(config.notLoad)
-		if (config.notLoad) {
-			console.log('不显示loading')
-		} else {
+		if (!config.notLoad) {
 			RequestInfo.showLoading()
 		}
 		return config

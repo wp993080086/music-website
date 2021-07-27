@@ -33,6 +33,15 @@ const routes = [
 			title: '注册',
 			auth: false
 		}
+	},
+	{
+		path: '/songlist',
+		name: 'SongList',
+		component: () => import('@/view/songList'),
+		meta: {
+			title: '歌单',
+			auth: false
+		}
 	}
 ]
 
