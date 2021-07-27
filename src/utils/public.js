@@ -56,10 +56,10 @@ const publicFunction = {
     return value.replace(reg, '')
   },
 	/**
-   * 下载文件
-   * @param {string} url 文件地址
-   */
-	 downloadFile(url) {
+  * 下载文件
+  * @param {string} url 文件地址
+  */
+	downloadFile(url) {
     let aaa = document.createElement('a')
     aaa.setAttribute('id', 'download')
     aaa.setAttribute('href', url)
@@ -67,7 +67,29 @@ const publicFunction = {
     document.body.appendChild(aaa)
     aaa.click()
     document.body.removeChild(document.getElementById('download'))
-  }
+  },
+	/**
+  * 对象深拷贝
+  * @param {Object} obj 目标对象
+  */
+	deepClone(obj) {
+		let target
+		if (typeof obj === 'object') {
+			target = Array.isArray(obj) ? [] : {}
+			for (let key in obj) {
+				if (obj.hasOwnProperty(key)) {
+					if (typeof obj[key] !== 'object') {
+						target[key] = obj[key]
+					} else {
+						target[key] = publicFunction.deepClone(obj[key])
+					}
+				}
+			}
+		} else {
+			target = obj
+		}
+		return target
+	}
 }
 
 export default publicFunction
