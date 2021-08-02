@@ -1,5 +1,4 @@
 import fetch from '../fetch'
-import timeStamp from '../../utils/public'
 
 export default {
 	apis: {
@@ -17,7 +16,7 @@ export default {
 	*/
 	phoneLogin(param) {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.phone_login),
+			url: UTILS.joinTime(this.apis.phone_login),
 			method: 'post',
 			data: {
 				...param
@@ -29,7 +28,7 @@ export default {
 	*/
 	getKey() {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.get_key),
+			url: UTILS.joinTime(this.apis.get_key),
 			method: 'post',
 			data: {}
 		})
@@ -40,7 +39,7 @@ export default {
 	*/
 	getQRcode(key) {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.get_qrcode),
+			url: UTILS.joinTime(this.apis.get_qrcode),
 			method: 'post',
 			data: {
 				key
@@ -53,7 +52,7 @@ export default {
 	*/
 	queryQRcode(key) {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.check_qrcode),
+			url: UTILS.joinTime(this.apis.check_qrcode),
 			method: 'post',
 			data: {
 				key
@@ -67,7 +66,7 @@ export default {
 	*/
 	sendCaptcha(phone) {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.sendCaptcha),
+			url: UTILS.joinTime(this.apis.sendCaptcha),
 			method: 'post',
 			data: {
 				phone
@@ -83,7 +82,7 @@ export default {
 	*/
 	signin(param) {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.signin),
+			url: UTILS.joinTime(this.apis.signin),
 			method: 'post',
 			data: {
 				...param

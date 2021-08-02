@@ -27,12 +27,12 @@
 		<!-- 进度 -->
 		<div class="progress flex_c">
 			<div class="progress_slider">
-				<el-slider v-model="levelLength" />
+				<el-slider v-model="levelLength" :show-tooltip="false" @change="handleMovePlay" />
 			</div>
 			<div class="progress_time flex_c">
-				<div class="start">02:02:32</div>
+				<div class="start">{{ newLength }}</div>
 				<div class="line" />
-				<div class="end">03:08:35</div>
+				<div class="end">{{ songLength }}</div>
 			</div>
 		</div>
 		<!-- 音量 -->
@@ -80,7 +80,7 @@
 			:src="songInfo.path"
 			@canplay="HandleAudioReady"
 			@timeupdate="handleUpdateTime"
-			@ended="handelPlayEnd()"
+			@ended="handelPlayEnd"
 		/>
 	</div>
 </template>
@@ -93,8 +93,10 @@ export default {
 	data() {
 		return {
 			isPlay: false, // 是否播放
-			levelLength: 0, // 播放时长
-			levelVoice: 100 // 音量
+			levelLength: 0, // 播放长度
+			levelVoice: 100, // 音量
+			newLength: '00:00', // 当前时长
+			songLength: '00:00' // 总时长
 		}
 	},
 	computed: {
@@ -105,13 +107,17 @@ export default {
 	},
 	watch: {
 		songInfo(newVal, oldVal) {
-			if (newVal.path) {
-				this.handlePlay()
-				const bool = this.songList.some((item) => {
-					return item.id === newVal.id
-				})
-				if (!bool) {
-					this.handleSongListPush(newVal)
+			if (!oldVal.path) {
+				return
+			} else {
+				if (newVal.path) {
+					this.handlePlay()
+					const bool = this.songList.some((item) => {
+						return item.id === newVal.id
+					})
+					if (!bool) {
+						this.handleSongListPush(newVal)
+					}
 				}
 			}
 		}
@@ -126,6 +132,12 @@ export default {
 		// 准备好
 		HandleAudioReady() {
 			console.log('准备好了')
+			try {
+				const songLength = this.$refs.audio.duration
+				this.songLength = UTILS.formatSecondTime(songLength)
+			} catch (error) {
+				console.warn(error)
+			}
 		},
 		// 上一首
 		handleLast() {},
@@ -139,16 +151,33 @@ export default {
 			})
 		},
 		// 暂停
-		handlePause() {},
-		// 改变播放顺序
+		handlePause() {
+			this.$nextTick(() => {
+				this.$refs.audio.pause()
+				this.isPlay = false
+			})
+		},
+		// 改变播放模式
 		handlePlaySort() {},
 		// 播放完毕
-		handelPlayEnd() {},
-		// 修改播放时间
-		handleUpdateTime() {},
+		handelPlayEnd() {
+			TOAST.info('播放完毕')
+			this.isPlay = false
+		},
+		// 同步播放进度
+		handleUpdateTime() {
+			// 播放条长度
+			this.levelLength = (this.$refs.audio.currentTime / this.$refs.audio.duration) * 100
+			// 当前时长
+			this.newLength = UTILS.formatSecondTime(this.$refs.audio.currentTime)
+		},
 		// 修改音量
 		handleVolume(e) {
 			this.$refs.audio.volume = e / 100
+		},
+		// 修改播放进度
+		handleMovePlay(e) {
+			this.$refs.audio.currentTime = (this.levelLength / 100) * this.$refs.audio.duration
 		}
 	}
 }

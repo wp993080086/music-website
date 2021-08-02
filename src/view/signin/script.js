@@ -48,7 +48,7 @@ export default {
 				console.log(res)
 				if (res.code === 200) {
 					this.sendLoading = false
-					this.$info.info('发送成功', 1)
+					TOAST.info('发送成功')
 					this.countDown()
 				}
 			} catch (error) {
@@ -91,7 +91,7 @@ export default {
 				if (res.code === 200) {
 					this.handleSigninSucceed()
 				} else {
-					this.$info.info('注册失败', 2)
+					TOAST.error('注册失败')
 				}
 			} catch (error) {
 				console.error(error)
@@ -99,8 +99,8 @@ export default {
 		},
 		// 注册成功
 		async handleSigninSucceed() {
-			this.$info.info('注册成功，2秒后跳转至登录页', 1)
-			await this.$fn.sleep(2000)
+			TOAST.success('注册成功，2秒后跳转至登录页')
+			await UTILS.sleep(2000)
 			this.$router.push({
 				path: 'Login'
 			})

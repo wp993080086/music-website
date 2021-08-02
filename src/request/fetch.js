@@ -1,6 +1,5 @@
 import axios from 'axios'
 import qs from 'qs'
-import MSG from '../utils/info'
 
 const baseURL = process.env.VUE_APP_BASE_URL
 
@@ -11,23 +10,31 @@ const RequestInfo = {
 	requestList: [],
 	times: null,
 	showLoading() {
-		if (RequestInfo.count === 0) {
-			console.log('开启计时器')
-			RequestInfo.times = setTimeout(() => {
-				MSG.loading()
-				clearTimeout(RequestInfo.times)
-				RequestInfo.times = null
-			}, 200)
+		try {
+			if (RequestInfo.count === 0) {
+				console.log('开启计时器')
+				RequestInfo.times = setTimeout(() => {
+					LOADING.show()
+					clearTimeout(RequestInfo.times)
+					RequestInfo.times = null
+				}, 200)
+			}
+			RequestInfo.count++
+		} catch (error) {
+			console.warn(error)
 		}
-		RequestInfo.count++
 	},
 	hideLoading() {
-		RequestInfo.count--
-		if (RequestInfo.count <= 0) RequestInfo.count = 0
-		if (RequestInfo.count === 0) {
-			MSG.loading(false)
-			RequestInfo.times && clearTimeout(RequestInfo.times)
-			RequestInfo.times = null
+		try {
+			RequestInfo.count--
+			if (RequestInfo.count <= 0) RequestInfo.count = 0
+			if (RequestInfo.count === 0) {
+				LOADING.hide()
+				RequestInfo.times && clearTimeout(RequestInfo.times)
+				RequestInfo.times = null
+			}
+		} catch (error) {
+			console.warn(error)
 		}
 	}
 }
@@ -70,17 +77,17 @@ instance.interceptors.response.use(
 			const status = (errorResponse.status || 0) * 1
 			switch (status) {
 			case 500:
-				MSG.info('服务器不堪重负跑路了', 2)
+				TOAST.error('服务器不堪重负跑路了')
 				break
 			case 404:
-				MSG.info('接口不存在', 2)
+				TOAST.error('接口不存在')
 				break
 			default:
-				MSG.info(errorResponse.data.message, 3)
+				TOAST.error(errorResponse.data.message, 3)
 			}
 			return Promise.reject(errorResponse)
 		}	catch (e) {
-			MSG.info('哦豁，网络开小差啦 ~', 3)
+			TOAST.error('哦豁，网络开小差啦 ~')
 			const ORRER = new Error('哦豁，网络开小差啦 ~')
 			return Promise.reject(ORRER)
 		}

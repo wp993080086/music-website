@@ -33,6 +33,73 @@ const publicFunction = {
 		}
 	},
 	/**
+	* 格式化时间毫秒转分秒
+	* @param {Number} time 时间
+	*/
+  formatTime(time) {
+    time = ~~time
+    let formatTime
+    if (time < 10) {
+      formatTime = '00:0' + time
+    } else if (time < 60) {
+      formatTime = '00:' + time
+    } else {
+      var m = ~~parseInt((time % (1000 * 60 * 60)) / (1000 * 60))
+      if (m < 10) {
+        m = '0' + m
+      }
+      var s = ~~parseInt((time % (1000 * 60)) / 1000)
+      if (s < 10) {
+        s = '0' + s
+      }
+      formatTime = m + ':' + s
+    }
+    return formatTime
+  },
+	/**
+	* 秒转00:00
+	* @param {Number} Seconds 秒
+	*/
+  formatSecondTime(Seconds) {
+		const m = Number.parseInt(Seconds / 60)
+		let s = Number.parseInt(Seconds % 60)
+		s < 10 ? s = `0${s}` : s
+		return `0${m}:${s}`
+  },
+	/**
+	* 时间戳转换成几分钟前，几小时前，几天前
+	* @param {Number} timestamp 时间戳
+	*/
+  formatMsgTime(timestamp) {
+    let result = ''
+    const minute = 1000 * 60
+    const hour = minute * 60
+    const day = hour * 24
+    const month = day * 30
+    const now = new Date().getTime()
+    const diffValue = now - timestamp
+    if (diffValue < 0) return
+    const monthC = diffValue / month
+    const weekC = diffValue / (7 * day)
+    const dayC = diffValue / day
+    const hourC = diffValue / hour
+    const minC = diffValue / minute
+    if (monthC >= 1) {
+      result = '' + parseInt(monthC) + '月前'
+    } else if (weekC >= 1) {
+      result = '' + parseInt(weekC) + '周前'
+    } else if (dayC >= 1) {
+      result = '' + parseInt(dayC) + '天前'
+    } else if (hourC >= 1) {
+      result = '' + parseInt(hourC) + '小时前'
+    } else if (minC >= 1) {
+      result = '' + parseInt(minC) + '分钟前'
+    } else {
+      result = '刚刚'
+    }
+    return result
+  },
+	/**
 	* 休眠
 	* @param {Number} time 休眠时间
 	*/

@@ -1,5 +1,4 @@
 import fetch from '../fetch'
-import timeStamp from '../../utils/public'
 
 export default {
 	apis: {
@@ -11,7 +10,7 @@ export default {
 	*/
 	getSongUrl(id) {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.getSongUrl),
+			url: UTILS.joinTime(this.apis.getSongUrl),
 			method: 'post',
 			data: {
 				id

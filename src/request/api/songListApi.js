@@ -1,5 +1,4 @@
 import fetch from '../fetch'
-import timeStamp from '../../utils/public'
 
 export default {
 	apis: {
@@ -12,7 +11,7 @@ export default {
 	*/
 	highqualitySongList(limit = 18, cat = '') {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.highqualitySongList),
+			url: UTILS.joinTime(this.apis.highqualitySongList),
 			method: 'post',
 			data: {
 				limit,

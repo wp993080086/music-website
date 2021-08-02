@@ -1,5 +1,4 @@
 import fetch from '../fetch'
-import timeStamp from '../../utils/public'
 
 export default {
 	apis: {
@@ -15,7 +14,7 @@ export default {
 	*/
 	banner(type = 0) {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.banner),
+			url: UTILS.joinTime(this.apis.banner),
 			method: 'post',
 			data: {
 				type
@@ -29,7 +28,7 @@ export default {
 	*/
 	recommendSongList(limit = 18) {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.recommendSongList),
+			url: UTILS.joinTime(this.apis.recommendSongList),
 			method: 'post',
 			data: {
 				limit
@@ -43,7 +42,7 @@ export default {
 	*/
 	recommendSong(limit = 10) {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.recommendSong),
+			url: UTILS.joinTime(this.apis.recommendSong),
 			method: 'post',
 			data: {
 				limit
@@ -57,7 +56,7 @@ export default {
 	*/
 	topSinger(limit = 28) {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.topSinger),
+			url: UTILS.joinTime(this.apis.topSinger),
 			method: 'post',
 			data: {
 				limit

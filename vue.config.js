@@ -1,5 +1,6 @@
-const baseURL = process.env.VUE_APP_BASE_URL;
-const path = require("path");
+const baseURL = process.env.VUE_APP_BASE_URL
+const webpack = require('webpack')
+const path = require("path")
 
 module.exports = {
 	publicPath: './',
@@ -32,6 +33,13 @@ module.exports = {
 				},
 			}
 		},
+		plugins: [
+			new webpack.ProvidePlugin({
+        UTILS: [path.resolve(__dirname, './src/utils/Utils.js'), 'default'],
+				TOAST: [path.resolve(__dirname, './src/utils/Toast.js'), 'default'],
+				LOADING: [path.resolve(__dirname, './src/utils/Loading.js'), 'default']
+      })
+		]
 	}
 };
 // 导入全局less

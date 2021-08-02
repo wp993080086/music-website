@@ -1,5 +1,4 @@
 import fetch from '../fetch'
-import timeStamp from '../../utils/public'
 
 export default {
 	apis: {
@@ -12,7 +11,7 @@ export default {
 	*/
 	search(keywords) {
 		return fetch({
-			url: timeStamp.joinTime(this.apis.get_search),
+			url: UTILS.joinTime(this.apis.get_search),
 			method: 'post',
 			data: {
 				keywords

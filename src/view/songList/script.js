@@ -20,7 +20,7 @@ export default {
 		// 播放数转成万为单位
 		playCount() {
 			return (num) => {
-				const count = this.$fn.tranNumber(num, 0)
+				const count = UTILS.tranNumber(num, 0)
 				return count
 			}
 		}

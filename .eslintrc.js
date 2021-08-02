@@ -9,6 +9,11 @@ module.exports = {
     node: true,
     es6: true,
   },
+  "globals":{
+    "UTILS": true,
+    "TOAST": true,
+    "LOADING": true
+  },
   extends: ['plugin:vue/recommended', 'eslint:recommended'],
   rules: {
     "vue/max-attributes-per-line": [2, {

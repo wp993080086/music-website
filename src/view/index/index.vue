@@ -153,13 +153,13 @@ export default {
 		// 播放数转成万为单位
 		playCount() {
 			return (num) => {
-				const count = this.$fn.tranNumber(num, 0)
+				const count = UTILS.tranNumber(num, 0)
 				return count
 			}
 		}
 	},
 	async created() {
-		await this.$fn.sleep()
+		await UTILS.sleep()
 		this.getBanner()
 		this.getRecommendSongList()
 		this.getRecommendSong()
@@ -198,6 +198,7 @@ export default {
 				if (res.code === 200) {
 					this.recommendSongList = res.result
 					this.skeletonC = false
+					this.setOneSong()
 				}
 			} catch (error) {
 				console.warn(error)
@@ -231,11 +232,11 @@ export default {
 		},
 		// 去歌单详情
 		toSongListDetails(id) {
-			this.$info.info(id)
+			TOAST.info(id)
 		},
 		// 去歌手详情
 		toSingerDetails(id) {
-			this.$info.info(id)
+			TOAST.info(id)
 		},
 		// 播放
 		async handlePlay(id, name, img, singer) {
@@ -245,6 +246,19 @@ export default {
 				name,
 				img,
 				singer,
+				path: res[0].url
+			}
+			this.$store.commit('setSongInfo', param)
+		},
+		// 把第一首放入播放列表
+		async setOneSong() {
+			const list = this.recommendSongList[0]
+			const res = await this.getSongUrl(list.id)
+			const param = {
+				id: list.id,
+				name: list.name,
+				img: list.picUrl,
+				singer: list.song.album.artists[0].name,
 				path: res[0].url
 			}
 			this.$store.commit('setSongInfo', param)

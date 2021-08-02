@@ -99,10 +99,10 @@ export default {
 		},
 		// 登陆
 		async login() {
-			this.$info.loading()
+			LOADING.show()
 			try {
 				const res = await HTTP.phoneLogin(this.user)
-				this.$info.loading(false)
+				LOADING.hide()
 				if (res.code === 200) {
 					this.cookie = res.cookie
 					this.token = res.token
@@ -111,10 +111,10 @@ export default {
 					this.$store.commit('setUserMsg', this.userMsg)
 					this.handleLoginSucceed()
 				} else {
-					this.$info.alert(res.msg)
+					TOAST.alert(res.msg)
 				}
 			} catch (error) {
-				this.$info.loading(false)
+				LOADING.hide()
 				console.error(error)
 			}
 		},
@@ -210,9 +210,9 @@ export default {
 		},
 		// 登陆成功
 		async handleLoginSucceed() {
-			this.$info.info('登陆成功，即将跳转', 1)
+			TOAST.success('登陆成功，即将跳转')
 			this.$store.commit('setCookie', this.cookie)
-			await this.$fn.sleep(2000)
+			await UTILS.sleep(2000)
 			this.$router.push({
 				path: 'Index'
 			})
