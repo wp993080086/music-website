@@ -157,10 +157,14 @@ export default {
 		},
 		// 暂停
 		handlePause() {
-			this.$nextTick(() => {
-				this.$refs.audio.pause()
-				this.isPlay = false
-			})
+			try {
+				this.$nextTick(() => {
+					this.$refs.audio.pause()
+					this.isPlay = false
+				})
+			} catch (error) {
+				console.warn(error)
+			}
 		},
 		// 改变播放模式
 		handlePlaySort() {},
@@ -171,18 +175,30 @@ export default {
 		},
 		// 同步播放进度
 		handleUpdateTime() {
-			// 播放条长度
-			this.levelLength = (this.$refs.audio.currentTime / this.$refs.audio.duration) * 100
-			// 当前时长
-			this.newLength = UTILS.formatSecondTime(this.$refs.audio.currentTime)
+			try {
+				// 播放条长度
+				this.levelLength = (this.$refs.audio.currentTime / this.$refs.audio.duration) * 100
+				// 当前时长
+				this.newLength = UTILS.formatSecondTime(this.$refs.audio.currentTime)
+			} catch (error) {
+				console.warn(error)
+			}
 		},
 		// 修改音量
 		handleVolume(e) {
-			this.$refs.audio.volume = e / 100
+			try {
+				this.$refs.audio.volume = e / 100
+			} catch (error) {
+				console.warn(error)
+			}
 		},
 		// 修改播放进度
 		handleMovePlay(e) {
-			this.$refs.audio.currentTime = (this.levelLength / 100) * this.$refs.audio.duration
+			try {
+				this.$refs.audio.currentTime = (this.levelLength / 100) * this.$refs.audio.duration
+			} catch (error) {
+				console.warn(error)
+			}
 		}
 	}
 }

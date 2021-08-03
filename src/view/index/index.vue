@@ -24,7 +24,7 @@
 					:key="index + item.id"
 					class="song_item pr"
 				>
-					<img :src="item.picUrl" alt="歌单封面" class="br2" @click="toSongListDetails(item.id)">
+					<img :src="item.picUrl + '?param=160y160'" alt="歌单封面" class="br2" @click="toSongListDetails(item.id)">
 					<div class="shadow pa flex flex_s_b flex_a_c br2">
 						<div class="shadow_left omit">
 							<i class="el-icon-service" />
@@ -65,7 +65,7 @@
 				>
 					<div class="item_index flex_c">{{ index + 1 }}</div>
 					<div class="item_img ofh br2">
-						<img :src="item.picUrl">
+						<img :src="item.picUrl + '?param=50y50'">
 					</div>
 					<div class="song_name flex_c omit">
 						<p class="omit">{{ item.name }}</p>
@@ -107,7 +107,7 @@
 					class="singer_item flex flex_a_c flex_d_y"
 				>
 					<div class="singer_photograph br50 ofh">
-						<img :src="item.picUrl" @click="toSingerDetails(item.id)">
+						<img :src="item.picUrl + '?param=300y300'" @click="toSingerDetails(item.id)">
 					</div>
 					<div class="singer_name flex_c">
 						<p>{{ item.name }}</p>

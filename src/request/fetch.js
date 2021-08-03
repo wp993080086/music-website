@@ -12,8 +12,8 @@ const RequestInfo = {
 	showLoading() {
 		try {
 			if (RequestInfo.count === 0) {
-				console.log('开启计时器')
 				RequestInfo.times = setTimeout(() => {
+					console.log('开启计时器')
 					LOADING.show()
 					clearTimeout(RequestInfo.times)
 					RequestInfo.times = null
@@ -32,6 +32,7 @@ const RequestInfo = {
 				LOADING.hide()
 				RequestInfo.times && clearTimeout(RequestInfo.times)
 				RequestInfo.times = null
+				console.log('关闭计时器')
 			}
 		} catch (error) {
 			console.warn(error)
