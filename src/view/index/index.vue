@@ -128,6 +128,7 @@ import HTTP from '../../request/api/indexApi'
 import Banner from '../../components/banner'
 import Title from './component/titleLine'
 import myPlayer from '../../components/player'
+import { mapMutations } from 'vuex'
 
 export default {
 	name: 'Index',
@@ -167,6 +168,10 @@ export default {
 	},
 	mounted() {},
 	methods: {
+		...mapMutations([
+			'setSongInfo',
+			'setSongList'
+		]),
 		// 获取banner图
 		async getBanner() {
 			try {
@@ -248,9 +253,10 @@ export default {
 				singer,
 				path: res[0].url
 			}
-			this.$store.commit('setSongInfo', param)
+			this.setSongInfo(param)
+			this.setSongList(param)
 		},
-		// 把第一首放入播放列表
+		// 把第一首放入正在播放列表
 		async setOneSong() {
 			const list = this.recommendSongList[0]
 			const res = await this.getSongUrl(list.id)
@@ -261,7 +267,7 @@ export default {
 				singer: list.song.album.artists[0].name,
 				path: res[0].url
 			}
-			this.$store.commit('setSongInfo', param)
+			this.setSongInfo(param)
 		}
 	}
 }

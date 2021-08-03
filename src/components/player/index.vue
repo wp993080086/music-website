@@ -1,87 +1,90 @@
 <template>
-	<div id="player" class="pf flex z99">
-		<!-- 封面 -->
-		<div class="song_img flex_c">
-			<div class="song_img_box br50 ofh">
-				<img :src="songInfo.img">
+	<div id="player" :class="['pf','z99', isShowPlay ? '':'hide_hook']">
+		<div class="play_content flex ofh">
+			<!-- 封面 -->
+			<div class="song_img flex_c">
+				<div class="song_img_box br50 ofh">
+					<img :src="songInfo.img">
+				</div>
 			</div>
-		</div>
-		<!-- 歌名 -->
-		<div class="song_name flex flex_d_y">
-			<div class="song_name_txt flex_c omit">
-				<p class="omit">{{ songInfo.name }}</p>
+			<!-- 歌名 -->
+			<div class="song_name flex flex_d_y">
+				<div class="song_name_txt flex_c omit">
+					<p class="omit">{{ songInfo.name }}</p>
+				</div>
+				<div class="song_singer flex_c">{{ songInfo.singer }}</div>
 			</div>
-			<div class="song_singer flex_c">{{ songInfo.singer }}</div>
-		</div>
-		<!-- 操作 -->
-		<div class="operation flex flex_a_c flex_s_a">
-			<i class="last el-icon-d-arrow-left h_hand" title="上一首" @click="handleLast" />
-			<template v-if="!isPlay">
-				<i class="pause el-icon-video-play h_hand" title="播放" @click="handlePlay" />
-			</template>
-			<template v-else>
-				<i class="play el-icon-video-pause h_hand" title="暂停" @click="handlePause" />
-			</template>
-			<i class="next el-icon-d-arrow-right h_hand" title="下一首" @click="handleNext" />
-		</div>
-		<!-- 进度 -->
-		<div class="progress flex_c">
-			<div class="progress_slider">
-				<el-slider v-model="levelLength" :show-tooltip="false" @change="handleMovePlay" />
+			<!-- 操作 -->
+			<div class="operation flex flex_a_c flex_s_a">
+				<i class="last el-icon-d-arrow-left h_hand" title="上一首" @click="handleLast" />
+				<template v-if="!isPlay">
+					<i class="pause el-icon-video-play h_hand" title="播放" @click="handlePlay" />
+				</template>
+				<template v-else>
+					<i class="play el-icon-video-pause h_hand" title="暂停" @click="handlePause" />
+				</template>
+				<i class="next el-icon-d-arrow-right h_hand" title="下一首" @click="handleNext" />
 			</div>
-			<div class="progress_time flex_c">
-				<div class="start">{{ newLength }}</div>
-				<div class="line" />
-				<div class="end">{{ songLength }}</div>
+			<!-- 进度 -->
+			<div class="progress flex_c">
+				<div class="progress_slider">
+					<el-slider v-model="levelLength" :show-tooltip="false" @change="handleMovePlay" />
+				</div>
+				<div class="progress_time flex_c">
+					<div class="start">{{ newLength }}</div>
+					<div class="line" />
+					<div class="end">{{ songLength }}</div>
+				</div>
 			</div>
-		</div>
-		<!-- 音量 -->
-		<div class="progress_voice flex_c">
-			<div class="voice_icon flex_c">
-				<i class="el-icon-bell" />
+			<!-- 音量 -->
+			<div class="progress_voice flex_c">
+				<div class="voice_icon flex_c">
+					<i class="el-icon-bell" />
+				</div>
+				<div class="voice">
+					<el-slider v-model="levelVoice" :step="10" @change="handleVolume" />
+				</div>
 			</div>
-			<div class="voice">
-				<el-slider v-model="levelVoice" :step="10" @change="handleVolume" />
+			<!-- 顺序 -->
+			<div class="sort flex_c">
+				<i class="next el-icon-sort h_hand" @click="handlePlaySort" />
 			</div>
-		</div>
-		<!-- 顺序 -->
-		<div class="sort flex_c">
-			<i class="next el-icon-sort h_hand" @click="handlePlaySort" />
-		</div>
-		<!-- 歌单 -->
-		<div class="list flex_c">
-			<el-popover
-				placement="top-start"
-				:offset="120"
-				width="240"
-				trigger="click"
-			>
-				<div class="song_list">
-					<div class="song_list_title flex flex_a_c">
-						<img src="../../assets/icon/pdd.png">
-						<span>歌单</span>
-					</div>
-					<div class="song_list_box">
-						<div
-							class="song_list_item flex_c h_hand"
-						>
-							<span>{{ songInfo.singer + ' - ' + songInfo.name }}</span>
-							<i class="list_play el-icon-video-play" />
+			<!-- 歌单 -->
+			<div class="list flex_c">
+				<el-popover
+					placement="top-start"
+					:offset="120"
+					width="240"
+					trigger="click"
+				>
+					<div class="song_list">
+						<div class="song_list_title flex flex_a_c">
+							<img src="../../assets/icon/pdd.png">
+							<span>歌单</span>
+						</div>
+						<div class="song_list_box">
+							<div
+								class="song_list_item flex_c h_hand"
+							>
+								<span>{{ songInfo.singer + ' - ' + songInfo.name }}</span>
+								<i class="list_play el-icon-video-play" />
+							</div>
 						</div>
 					</div>
-				</div>
-				<i slot="reference" class="el-icon-s-operation h_hand" />
-			</el-popover>
+					<i slot="reference" class="el-icon-s-operation h_hand" />
+				</el-popover>
+			</div>
+			<!-- 播放器 -->
+			<audio
+				v-if="songInfo.path"
+				ref="audio"
+				:src="songInfo.path"
+				@canplay="HandleAudioReady"
+				@timeupdate="handleUpdateTime"
+				@ended="handelPlayEnd"
+			/>
 		</div>
-		<!-- 播放器 -->
-		<audio
-			v-if="songInfo.path"
-			ref="audio"
-			:src="songInfo.path"
-			@canplay="HandleAudioReady"
-			@timeupdate="handleUpdateTime"
-			@ended="handelPlayEnd"
-		/>
+		<div :class="['hook', 'h_hand']" @click="setPlayState" />
 	</div>
 </template>
 
@@ -102,7 +105,8 @@ export default {
 	computed: {
 		...mapState([
 			'songInfo',
-			'songList'
+			'songList',
+			'isShowPlay'
 		])
 	},
 	watch: {
@@ -116,7 +120,7 @@ export default {
 						return item.id === newVal.id
 					})
 					if (!bool) {
-						this.handleSongListPush(newVal)
+						this.setSongList(newVal)
 					}
 				}
 			}
@@ -126,9 +130,10 @@ export default {
 	mounted() {},
 	updated() {},
 	methods: {
-		...mapMutations({
-			handleSongListPush: 'setSongList'
-		}),
+		...mapMutations([
+			'setSongList',
+			'setPlayState'
+		]),
 		// 准备好
 		HandleAudioReady() {
 			console.log('准备好了')

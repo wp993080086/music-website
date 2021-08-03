@@ -1,5 +1,5 @@
 <template>
-	<div id="footer" class="flex_c">
+	<div id="footer" :class="['flex_c', isShowPlay ? 'pd61':'']">
 		<div class="footer_box flex">
 			<div
 				v-for="(item, index) in infoQRcode"
@@ -33,10 +33,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
 	name: 'Footer',
-	components: {},
-	props: [],
 	data() {
 		this.infoQRcode = [
 			{
@@ -89,11 +89,11 @@ export default {
 		]
 		return {}
 	},
-	watch: {},
-	created() {},
-	mounted() {},
-	updated() {},
-	methods: {}
+	computed: {
+		...mapState([
+			'isShowPlay'
+		])
+	}
 }
 </script>
 
@@ -122,5 +122,8 @@ export default {
 			}
 		}
 	}
+}
+.pd61{
+	padding-bottom: 61px;
 }
 </style>
