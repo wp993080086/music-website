@@ -19,25 +19,11 @@
 				</div>
 			</template>
 			<template>
-				<div
+				<song-list
 					v-for="(item, index) in SongList"
 					:key="index + item.id"
-					class="song_item pr"
-				>
-					<img :src="item.picUrl + '?param=160y160'" alt="歌单封面" class="br2" @click="toSongListDetails(item.id)">
-					<div class="shadow pa flex flex_s_b flex_a_c br2">
-						<div class="shadow_left omit">
-							<i class="el-icon-service" />
-							<span>{{ playCount(item.playCount) }}</span>
-						</div>
-						<div class="shadow_rignt">
-							<i class="fr el-icon-video-play" title="播放" />
-						</div>
-					</div>
-					<div class="introduce omit2">
-						{{ item.name }}
-					</div>
-				</div>
+					:list="item"
+				/>
 			</template>
 		</el-skeleton>
 		<Title title="推荐歌曲" type="1" @handleToMore="toMore" />
@@ -128,6 +114,7 @@ import HTTP from '../../request/api/indexApi'
 import Banner from '../../components/banner'
 import Title from './component/titleLine'
 import myPlayer from '../../components/player'
+import songList from '../../components/songList'
 import { mapMutations } from 'vuex'
 
 export default {
@@ -135,7 +122,8 @@ export default {
 	components: {
 		Banner,
 		Title,
-		myPlayer
+		myPlayer,
+		songList
 	},
 	mixins: [mixin],
 	data() {
@@ -150,15 +138,7 @@ export default {
 			skeletonD: true
 		}
 	},
-	computed: {
-		// 播放数转成万为单位
-		playCount() {
-			return (num) => {
-				const count = UTILS.tranNumber(num, 0)
-				return count
-			}
-		}
-	},
+	computed: {},
 	async created() {
 		await UTILS.sleep()
 		this.getBanner()
@@ -234,10 +214,6 @@ export default {
 				console.log('2')
 				break
 			}
-		},
-		// 去歌单详情
-		toSongListDetails(id) {
-			TOAST.info(id)
 		},
 		// 去歌手详情
 		toSingerDetails(id) {
