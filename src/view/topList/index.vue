@@ -18,10 +18,52 @@
 				</div>
 			</div>
 			<div class="right fr">
-				<div class="head">
+				<div class="head flex_c">
 					<div class="head_logo">
-						<!-- <img :src="item.coverImgUrl + '?param=240y240'" :alt="item.name"> -->
+						<img :src="listInfo.coverImgUrl + '?param=150y150'" :alt="listInfo.name">
 					</div>
+					<div class="head_info">
+						<h2 class="info_title">{{ listInfo.name }}</h2>
+						<div class="info_hint">{{ listInfo.description }}</div>
+						<div class="info_data flex">
+							<div class="info flex_c">评论：{{ listInfo.commentCount }}</div>
+							<div class="info flex_c">分享：{{ listInfo.shareCount }}</div>
+							<div class="info flex_c">订阅：{{ listInfo.subscribedCount }}</div>
+						</div>
+					</div>
+				</div>
+				<div class="song_list_hint flex flex_s_b">
+					<p>歌曲列表</p>
+					<span>播放：1000000000000000次</span>
+				</div>
+				<div class="song_list">
+					<el-table
+						:data="songList"
+						stripe
+						style="width: 100%"
+					>
+						<el-table-column
+							type="index"
+							width="50"
+						>
+						</el-table-column>
+						<el-table-column
+							prop="name"
+							label="歌名"
+						>
+						</el-table-column>
+						<el-table-column
+							prop="singer"
+							label="时长"
+							width="100"
+						>
+						</el-table-column>
+						<el-table-column
+							prop="singer"
+							label="歌手"
+						>
+						</el-table-column>
+					</el-table>
 				</div>
 			</div>
 		</div>
@@ -37,7 +79,9 @@ export default {
 		return {
 			topList: [],
 			nowIndex: 0,
-			listId: ''
+			listId: '',
+			listInfo: {},
+			songList: []
 		}
 	},
 	watch: {
@@ -70,7 +114,20 @@ export default {
 		async getSongListDetail() {
 			try {
 				const res = await HTTP.getSongListDetail(this.listId)
-				console.log(res)
+				this.listInfo = res.playlist
+				const songList = res.playlist.tracks
+				const list = []
+				songList.forEach(item => {
+					const obj = {
+						name: item.al.name,
+						id: item.al.id,
+						picUrl: item.al.picUrl,
+						singer: item.ar[0].name,
+						singerId: item.ar[0].id
+					}
+					list.push(obj)
+				})
+				this.songList = list
 			} catch (error) {
 				console.warn(error)
 			}

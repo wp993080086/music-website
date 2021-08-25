@@ -13,11 +13,11 @@ const RequestInfo = {
 		try {
 			if (RequestInfo.count === 0) {
 				RequestInfo.times = setTimeout(() => {
-					console.log('开启计时器')
+					console.log('等待时间超过500ms，开启Loading')
 					LOADING.show()
 					clearTimeout(RequestInfo.times)
 					RequestInfo.times = null
-				}, 300)
+				}, 500)
 			}
 			RequestInfo.count++
 		} catch (error) {

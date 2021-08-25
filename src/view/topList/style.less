@@ -50,7 +50,44 @@
       width: 700px;
       .head{
         width: 100%;
-        height: 240px;
+        height: 200px;
+        .head_logo{
+          width: 150px;
+          height: 150px;
+        }
+        .head_info{
+          width: calc(100% - 200px);
+          height: 150px;
+          margin-left: 50px;
+          .info_title{
+            padding: 20px 0;
+          }
+          .info_hint{
+            padding-bottom: 20px;
+          }
+          .info_data{
+            width: 100%;
+            height: 40px;
+            .info{
+              height: 40px;
+              margin-right: 20px;
+            }
+          }
+        }
+      }
+      .song_list_hint{
+        width: 660px;
+        height: 30px;
+        line-height: 30px;
+        p{
+          font-size: 20px;
+          font-weight: 600;
+        }
+      }
+      .song_list{
+        width: 660px;
+        box-sizing: border-box;
+        border-top: 2px solid #409EFF;
       }
     }
   }

@@ -14,7 +14,7 @@ export default {
     try {
       timeout = setTimeout(() => {
         loading = Loading.service(Object.assign({
-          fullscreen: true,
+          fullscreen: false,
           body: true,
           lock: true
         }, options))
