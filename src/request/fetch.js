@@ -17,7 +17,7 @@ const RequestInfo = {
 					LOADING.show()
 					clearTimeout(RequestInfo.times)
 					RequestInfo.times = null
-				}, 200)
+				}, 300)
 			}
 			RequestInfo.count++
 		} catch (error) {
@@ -32,7 +32,6 @@ const RequestInfo = {
 				LOADING.hide()
 				RequestInfo.times && clearTimeout(RequestInfo.times)
 				RequestInfo.times = null
-				console.log('关闭计时器')
 			}
 		} catch (error) {
 			console.warn(error)

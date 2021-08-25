@@ -4,7 +4,7 @@
 			<!-- 封面 -->
 			<div class="song_img flex_c">
 				<div class="song_img_box br50 ofh">
-					<img :src="songInfo.img">
+					<img :src="songInfo.img" :class="isPlay ? 'img_animate' : ''">
 				</div>
 			</div>
 			<!-- 歌名 -->

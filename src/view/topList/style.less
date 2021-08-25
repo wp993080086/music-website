@@ -1,0 +1,57 @@
+#top_list{
+  width: 100%;
+  .content{
+    width: 1000px;
+    background-color: #ffffff;
+    border-top: 1px solid #cccccc;
+    box-sizing: border-box;
+    .left{
+      width: 260px;
+      padding: 20px 0;
+      box-sizing: border-box;
+      border-right: 1px solid #cccccc;
+      .ranking{
+        width: 100%;
+        box-sizing: border-box;
+        padding: 20px 0px;
+        .ranking_item{
+          width: 100%;
+          height: 60px;
+          box-sizing: border-box;
+          padding: 10px 0px 10px 20px;
+          transition: ease .5s;
+          &:hover{
+            background-color: #ECF5FF;
+          }
+          .item_logo{
+            width: 40px;
+            height: 100%;
+            margin-right: 20px;
+            img{
+              width: 100%;
+              height: 100%;
+              transition: ease .5s;
+              &:hover{
+                transform: scale(1.1);
+              }
+            }
+          }
+          .item_hint{
+            width: calc(100% - 60px);
+            height: 100%;
+          }
+        }
+        .shadow{
+          background-color: #ECF5FF;
+        }
+      }
+    }
+    .right{
+      width: 700px;
+      .head{
+        width: 100%;
+        height: 240px;
+      }
+    }
+  }
+}

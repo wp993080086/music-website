@@ -1,6 +1,6 @@
 <template>
 	<div id="search" class="pf z9">
-		<div class="close pa flex_c" title="关闭" @click="handleClose">
+		<div class="close pa flex_c h_hand" title="关闭" @click="handleClose">
 			<i class="el-icon-close" />
 		</div>
 		<div class="search_box pa ofh">

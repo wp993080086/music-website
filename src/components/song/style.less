@@ -1,0 +1,45 @@
+.singer_item{
+  width: 580px;
+  height: 70px;
+  flex-shrink: 0;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  box-shadow: 3px 3px 3px #f1f1f1;
+  transition: ease .5s;
+  &:hover{
+    box-shadow: 3px 3px 3px #cccccc;
+  }
+  div{
+    flex-shrink: 0;
+  }
+  .item_index{
+    width: 50px;
+    height: 50px;
+  }
+  .item_img{
+    width: 50px;
+    height: 50px;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .song_name{
+    width: 300px;
+    box-sizing: border-box;
+    padding: 0 5px;
+  }
+  .singer_name{
+    width: 100px;
+    font-weight: bold;
+  }
+  .item_play{
+    width: 80px;
+    font-size: 32px;
+    transition: 0.5s ease;
+    &:hover{
+      color: #409EFF;
+      transform: scale(1.2)
+    }
+  }
+}

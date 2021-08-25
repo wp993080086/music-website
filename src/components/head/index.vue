@@ -1,7 +1,7 @@
 <template>
 	<div id="head" class="pr flex">
 		<!-- logo -->
-		<div class="logo pr">
+		<div class="logo pr h_hand">
 			<img class="pa z1" :src="logo" alt="logo">
 			<span>鹏多多</span>
 		</div>
@@ -10,8 +10,8 @@
 			<div
 				v-for="(item, index) in tabs"
 				:key="index"
-				class="item flex_c"
-				@click="handleTabs(index)"
+				class="item flex_c h_hand"
+				@click="handleTabs(index, item.path)"
 			>
 				<span>{{ item.title }}</span>
 			</div>
@@ -29,7 +29,7 @@
 				</transition>
 			</div>
 			<!-- 设置 -->
-			<div class="setting flex_c">
+			<div class="setting flex_c h_hand">
 				<el-dropdown>
 					<span class="el-dropdown-link">
 						<span>鹏多多iii</span>
@@ -58,12 +58,12 @@ export default {
 		this.tabs = [
 			{
 				title: '推荐',
-				path: 'Recommend',
+				path: 'Index',
 				index: 0
 			},
 			{
 				title: '排行榜',
-				path: 'RankingList',
+				path: 'TopList',
 				index: 1
 			},
 			{
@@ -95,9 +95,13 @@ export default {
 	updated() {},
 	methods: {
 		// 切换tabs
-		handleTabs(index) {
-			console.log(index)
+		handleTabs(index, path) {
 			this.nowIndex = index
+			const nowPath = this.$route.path.split('/')[1].toLowerCase()
+			if (path.toLowerCase() === nowPath) return
+			this.$router.push({
+				name: path
+			})
 		},
 		// 开关搜索框
 		toggleSearch(e) {

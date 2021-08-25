@@ -47,25 +47,8 @@
 				<div
 					v-for="(item, index) in recommendSongList"
 					:key="index + item.id"
-					class="singer_item flex flex_a_c br4"
 				>
-					<div class="item_index flex_c">{{ index + 1 }}</div>
-					<div class="item_img ofh br2">
-						<img :src="item.picUrl + '?param=50y50'">
-					</div>
-					<div class="song_name flex_c omit">
-						<p class="omit">{{ item.name }}</p>
-					</div>
-					<div class="singer_name flex_c">
-						<span>{{ item.song.album.artists[0].name }}</span>
-					</div>
-					<div class="item_play flex_c">
-						<i
-							class="el-icon-video-play"
-							title="播放"
-							@click="handlePlay(item.id, item.name, item.picUrl, item.song.album.artists[0].name)"
-						/>
-					</div>
+					<song :song-info="item" :index="index" />
 				</div>
 			</template>
 		</el-skeleton>
@@ -90,21 +73,11 @@
 				<div
 					v-for="(item, index) in singerList"
 					:key="index + item.picId"
-					class="singer_item flex flex_a_c flex_d_y"
 				>
-					<div class="singer_photograph br50 ofh">
-						<img :src="item.picUrl + '?param=300y300'" @click="toSingerDetails(item.id)">
-					</div>
-					<div class="singer_name flex_c">
-						<p>{{ item.name }}</p>
-					</div>
-					<div class="singer_hint flex_c">
-						<p>收录单曲：{{ item.musicSize }}首</p>
-					</div>
+					<singer :singer-info="item" />
 				</div>
 			</template>
 		</el-skeleton>
-		<my-player />
 	</div>
 </template>
 
@@ -113,8 +86,9 @@ import mixin from '../../mixins/path'
 import HTTP from '../../request/api/indexApi'
 import Banner from '../../components/banner'
 import Title from './component/titleLine'
-import myPlayer from '../../components/player'
 import songList from '../../components/songList'
+import song from '../../components/song'
+import singer from '../../components/singer'
 import { mapMutations } from 'vuex'
 
 export default {
@@ -122,8 +96,9 @@ export default {
 	components: {
 		Banner,
 		Title,
-		myPlayer,
-		songList
+		songList,
+		song,
+		singer
 	},
 	mixins: [mixin],
 	data() {
@@ -214,23 +189,6 @@ export default {
 				console.log('2')
 				break
 			}
-		},
-		// 去歌手详情
-		toSingerDetails(id) {
-			TOAST.info(id)
-		},
-		// 播放
-		async handlePlay(id, name, img, singer) {
-			const res = await this.getSongUrl(id)
-			const param = {
-				id,
-				name,
-				img,
-				singer,
-				path: res[0].url
-			}
-			this.setSongInfo(param)
-			this.setSongList(param)
 		},
 		// 把第一首放入正在播放列表
 		async setOneSong() {

@@ -1,9 +1,14 @@
 <template>
 	<div v-cloak id="app">
+		<!-- 导航栏 -->
 		<Head v-if="showNav" />
+		<!-- 视图 -->
 		<transition name="fade" mode="out-in">
 			<router-view />
 		</transition>
+		<!-- 播放器 -->
+		<Player />
+		<!-- 页脚 -->
 		<Footer v-if="showNav" />
 	</div>
 </template>
@@ -11,12 +16,14 @@
 <script>
 import Head from './components/head'
 import Footer from './components/footer'
+import Player from './components/player'
 
 export default {
 	name: 'App',
 	components: {
 		Head,
-		Footer
+		Footer,
+		Player
 	},
 	data() {
 		return {

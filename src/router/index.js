@@ -8,15 +8,6 @@ const routes = [
 		redirect: '/index'
 	},
 	{
-		path: '/index',
-		name: 'Index',
-		component: () => import(/* webpackChunkName: "index" */ '@/view/index'),
-		mate: {
-			title: '首页',
-			auth: false
-		}
-	},
-	{
 		path: '/login',
 		name: 'Login',
 		component: () => import(/* webpackChunkName: "login" */ '@/view/login'),
@@ -35,9 +26,27 @@ const routes = [
 		}
 	},
 	{
+		path: '/index',
+		name: 'Index',
+		component: () => import(/* webpackChunkName: "index" */ '@/view/index'),
+		mate: {
+			title: '首页',
+			auth: false
+		}
+	},
+	{
 		path: '/songlist',
 		name: 'SongList',
 		component: () => import(/* webpackChunkName: "songList" */ '@/view/songList'),
+		meta: {
+			title: '排行榜',
+			auth: false
+		}
+	},
+	{
+		path: '/topList',
+		name: 'TopList',
+		component: () => import(/* webpackChunkName: "topList" */ '@/view/topList'),
 		meta: {
 			title: '歌单',
 			auth: false

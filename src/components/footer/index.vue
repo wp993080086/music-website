@@ -4,7 +4,7 @@
 			<div
 				v-for="(item, index) in infoQRcode"
 				:key="index + item.title"
-				class="item flex_c"
+				class="item flex_c h_hand"
 			>
 				<el-popover
 					placement="top"
@@ -21,7 +21,7 @@
 			<div
 				v-for="(item, index) in info"
 				:key="index + item.url"
-				class="item flex_c"
+				class="item flex_c h_hand"
 			>
 				<a :href="item.url" target="_blank">
 					<img :src="item.path" class="info" alt="QQ QRcode">
@@ -110,7 +110,6 @@ export default {
 		.item{
 			width: 100px;
 			height: 100%;
-			cursor: pointer;
 			.QRcode{
 				width: 150px;
 				height: 150px;
