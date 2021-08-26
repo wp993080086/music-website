@@ -13,7 +13,9 @@ import {
 	CarouselItem,
 	Skeleton,
 	SkeletonItem,
-	Slider
+	Slider,
+	Table,
+	TableColumn
 } from 'element-ui'
 
 Vue.use(Button)
@@ -30,3 +32,5 @@ Vue.use(CarouselItem)
 Vue.use(Skeleton)
 Vue.use(SkeletonItem)
 Vue.use(Slider)
+Vue.use(Table)
+Vue.use(TableColumn)

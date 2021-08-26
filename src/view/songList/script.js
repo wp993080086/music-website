@@ -1,18 +1,22 @@
 import HTTP from '@/request/api/songListApi'
+import songList from '../../components/songList'
 
 export default {
 	name: 'SongList',
+	components: {
+		songList
+	},
 	data() {
 		return {
 			skeleton: true,
 			menuList: [
-				'流行',
-				'古风',
-				'说唱',
-				'演唱会',
-				'动感'
+				'华语',
+				'欧美',
+				'民谣',
+				'爵士',
+				'电子'
 			],
-			songType: '流行',
+			songType: '华语',
 			SongList: []
 		}
 	},
@@ -35,7 +39,11 @@ export default {
 				const res = await HTTP.highqualitySongList(25, this.songType)
 				if (res.code === 200) {
 					this.skeleton = false
-					this.SongList = res.playlists
+					this.SongList = res.playlists.map(item => {
+						item.picUrl = item.coverImgUrl
+						return item
+					})
+					console.log(this.SongList)
 				}
 			} catch (error) {
 				console.warn(error)

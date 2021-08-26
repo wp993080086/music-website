@@ -49,7 +49,7 @@ function addStyleResource(rule) {
 	.options({
 		patterns: [
 			
-			path.resolve(__dirname, './src/assets/css/globalStyle.less')
+			path.resolve(__dirname, './src/assets/css/globalColor.less')
 		],
 	})
 }

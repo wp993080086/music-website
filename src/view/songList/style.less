@@ -14,12 +14,13 @@
           width: 100%;
           height: 100%;
           border-bottom: 1px solid #cccccc;
+          transition: ease .5s;
           &:hover{
-            opacity: 0.7;
+            background-color: #ECF5FF;
           }
         }
         .active{
-          color: rgb(172, 41, 41) !important;
+          color: @red !important;
           font-weight: bold;
         }
       }
@@ -36,53 +37,6 @@
         box-sizing: border-box;
         flex-wrap: wrap;
         justify-content: space-around;
-      }
-      .song_item{
-        width: 200px;
-        height: 240px;
-        box-sizing: border-box;
-        padding: 20px;
-        img{
-          width: 100%;
-          height: 160px;
-          cursor: pointer;
-        }
-        .shadow{
-          width: calc(100% - 40px);
-          height: 30px;
-          padding: 0 5px;
-          box-sizing: border-box;
-          background-color: rgba(0, 0, 0, .5);
-          left: 20px;
-          bottom: 60px;
-          color: #cccccc;
-          .shadow_left{
-            width: calc(100% - 50px);
-            i{
-              margin-right: 3px;
-            }
-          }
-          .shadow_rignt{
-            width: 50px;
-            font-size: 18px;
-            i{
-              cursor: pointer;
-              &:hover{
-                color: #ffffff;
-              }
-            }
-          }
-        }
-        .introduce{
-          width: 100%;
-          height: 40px;
-          line-height: 20px;
-          font-size: 14px;
-          cursor: pointer;
-          &:hover{
-            text-decoration: underline;
-          }
-        }
       }
     }
   }

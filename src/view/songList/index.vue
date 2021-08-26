@@ -32,25 +32,11 @@
 					</div>
 				</template>
 				<template>
-					<div
+					<song-list
 						v-for="(item, index) in SongList"
 						:key="index + item.id"
-						class="song_item pr"
-					>
-						<img :src="item.coverImgUrl" alt="歌单封面" class="br2" @click="toSongListDetails(item.id)">
-						<div class="shadow pa flex flex_s_b flex_a_c br2">
-							<div class="shadow_left omit">
-								<i class="el-icon-service" />
-								<span>{{ playCount(item.playCount) }}</span>
-							</div>
-							<div class="shadow_rignt">
-								<i class="fr el-icon-video-play" title="播放" />
-							</div>
-						</div>
-						<div class="introduce omit2">
-							{{ item.name }}
-						</div>
-					</div>
+						:list="item"
+					/>
 				</template>
 			</el-skeleton>
 		</div>

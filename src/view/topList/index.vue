@@ -1,7 +1,7 @@
 <template>
 	<div id="top_list" class="flex_c">
-		<div class="content">
-			<div class="left fl">
+		<div class="content flex flex_s_b">
+			<div class="left">
 				<h1 class="text_c">音乐排行榜</h1>
 				<div class="ranking">
 					<div
@@ -17,7 +17,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="right fr">
+			<div class="right">
 				<div class="head flex_c">
 					<div class="head_logo">
 						<img :src="listInfo.coverImgUrl + '?param=150y150'" :alt="listInfo.name">
@@ -34,7 +34,7 @@
 				</div>
 				<div class="song_list_hint flex flex_s_b">
 					<p>歌曲列表</p>
-					<span>播放：1000000000000000次</span>
+					<span>累计播放：{{ listInfo.playCount }}次</span>
 				</div>
 				<div class="song_list">
 					<el-table
@@ -45,24 +45,20 @@
 						<el-table-column
 							type="index"
 							width="50"
-						>
-						</el-table-column>
+						/>
 						<el-table-column
 							prop="name"
 							label="歌名"
-						>
-						</el-table-column>
+						/>
 						<el-table-column
-							prop="singer"
+							prop="duration"
 							label="时长"
 							width="100"
-						>
-						</el-table-column>
+						/>
 						<el-table-column
 							prop="singer"
 							label="歌手"
-						>
-						</el-table-column>
+						/>
 					</el-table>
 				</div>
 			</div>
@@ -87,7 +83,6 @@ export default {
 	watch: {
 		listId: {
 			handler(newVal, oldVal) {
-				console.log(newVal, oldVal)
 				if (newVal && newVal !== oldVal) {
 					this.getSongListDetail()
 				}
@@ -123,7 +118,8 @@ export default {
 						id: item.al.id,
 						picUrl: item.al.picUrl,
 						singer: item.ar[0].name,
-						singerId: item.ar[0].id
+						singerId: item.ar[0].id,
+						duration: UTILS.formatTime(item.dt)
 					}
 					list.push(obj)
 				})
