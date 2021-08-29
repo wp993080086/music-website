@@ -28,7 +28,7 @@
 		</el-skeleton>
 		<Title title="推荐歌曲" type="1" @handleToMore="toMore" />
 		<!-- 推荐歌曲 -->
-		<el-skeleton animated :loading="skeletonC" :rows="5" class="recommend_list flex flex_s_b">
+		<el-skeleton animated :loading="skeletonC" :rows="5" class="recommend_list flex flex_s_b flex_w_w">
 			<template slot="template">
 				<div class="w1200 flex flex_w_w flex_s_b">
 					<div
@@ -54,7 +54,7 @@
 		</el-skeleton>
 		<Title title="推荐歌手" type="2" @handleToMore="toMore" />
 		<!-- 推荐歌手 -->
-		<el-skeleton animated :loading="skeletonD" class="singer_list flex">
+		<el-skeleton animated :loading="skeletonD" class="singer_list flex flex_w_w">
 			<template slot="template">
 				<div class="w1200 flex flex_w_w flex_s_b">
 					<div

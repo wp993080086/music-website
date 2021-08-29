@@ -89,10 +89,16 @@ export default {
 			isSearch: false
 		}
 	},
-	watch: {},
-	created() {},
-	mounted() {},
-	updated() {},
+	watch: {
+		'$route'(to, from) {
+			const name = to.name
+			this.tabs.forEach(item => {
+				if (item.path === name) {
+					this.nowIndex = item.index
+				}
+			})
+		}
+	},
 	methods: {
 		// 切换tabs
 		handleTabs(index, path) {

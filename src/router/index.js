@@ -51,6 +51,15 @@ const routes = [
 			title: '歌单',
 			auth: false
 		}
+	},
+	{
+		path: '/singer',
+		name: 'Singer',
+		component: () => import(/* webpackChunkName: "singer" */ '@/view/singer'),
+		meta: {
+			title: '歌手',
+			auth: false
+		}
 	}
 ]
 
