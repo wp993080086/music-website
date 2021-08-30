@@ -44,6 +44,16 @@ const routes = [
 		}
 	},
 	{
+		path: '/songListDatails:id',
+		name: 'SongListDatails',
+		component: () => import(/* webpackChunkName: "songListDatails" */ '@/view/songListDatails'),
+		props: true,
+		meta: {
+			title: '歌单详情',
+			auth: false
+		}
+	},
+	{
 		path: '/topList',
 		name: 'TopList',
 		component: () => import(/* webpackChunkName: "topList" */ '@/view/topList'),
@@ -62,11 +72,31 @@ const routes = [
 		}
 	},
 	{
+		path: '/singerDetails:id',
+		name: 'SingerDetails',
+		component: () => import(/* webpackChunkName: "singerDetails" */ '@/view/singerDetails'),
+		props: true,
+		meta: {
+			title: '歌手详情',
+			auth: false
+		}
+	},
+	{
 		path: '/mv',
 		name: 'Mv',
 		component: () => import(/* webpackChunkName: "mv" */ '@/view/mv'),
 		meta: {
 			title: 'MV',
+			auth: false
+		}
+	},
+	{
+		path: '/mvDatails:id',
+		name: 'MvDatails',
+		component: () => import(/* webpackChunkName: "mvDatails" */ '@/view/mvDatails'),
+		props: true,
+		meta: {
+			title: 'MV详情',
 			auth: false
 		}
 	}
