@@ -1,4 +1,4 @@
-.song_item{
+.song_list_components{
   width: 200px;
   height: 240px;
   box-sizing: border-box;
@@ -6,13 +6,23 @@
   .img_box{
     width: 100%;
     height: 160px;
-    img{
+    & /deep/ img{
       width: 100%;
       height: 100%;
       transition: ease .5s;
       &:hover{
         transform: scale(1.2);
       }
+    }
+    & /deep/ .el-image{
+      width: 100%;
+      height: 100%;
+    }
+    & /deep/ .image-slot{
+      width: 100%;
+      height: 100%;
+      font-size: 30px;
+      color: #409EFF;
     }
   }
   .shadow{

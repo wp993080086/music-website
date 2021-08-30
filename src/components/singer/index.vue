@@ -1,9 +1,13 @@
 <template>
 	<div
-		class="singer_item flex flex_a_c flex_d_y"
+		class="singer_components flex flex_a_c flex_d_y"
 	>
 		<div class="singer_photograph h_hand br50 ofh">
-			<img :src="singerInfo.picUrl + '?param=300y300'" @click="toSingerDetails(singerInfo.id)">
+			<el-image :src="singerInfo.picUrl + '?param=300y300'" @click="toSingerDetails(singerInfo.id)">
+				<div slot="placeholder" class="image-slot flex_c">
+					<i class="el-icon-loading" />
+				</div>
+			</el-image>
 		</div>
 		<div class="singer_name flex_c">
 			<p>{{ singerInfo.name }}</p>
@@ -18,7 +22,7 @@
 import mixin from '../../mixins/path'
 
 export default {
-	name: 'SongList',
+	name: 'SongComponents',
 	mixins: [mixin],
 	props: {
 		singerInfo: {

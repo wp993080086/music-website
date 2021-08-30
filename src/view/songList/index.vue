@@ -16,7 +16,7 @@
 					</div>
 				</div>
 			</div>
-			<el-skeleton animated :loading="skeleton" class="song_list_main flex">
+			<el-skeleton animated :loading="skeleton" class="song_list_main flex flex_w_w">
 				<template slot="template">
 					<div class="w1200 flex flex_w_w flex_s_b">
 						<div

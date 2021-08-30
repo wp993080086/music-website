@@ -36,6 +36,11 @@ export default {
 	},
 	watch: {
 		$route(to, from) {
+			if (to.meta.title) {
+				document.title = to.meta.title
+			} else {
+				document.title = '推荐音乐'
+			}
 			if (this.special.includes(to.name)) {
 				this.showNav = false
 			} else {

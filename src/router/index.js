@@ -39,7 +39,7 @@ const routes = [
 		name: 'SongList',
 		component: () => import(/* webpackChunkName: "songList" */ '@/view/songList'),
 		meta: {
-			title: '排行榜',
+			title: '歌单',
 			auth: false
 		}
 	},
@@ -48,7 +48,7 @@ const routes = [
 		name: 'TopList',
 		component: () => import(/* webpackChunkName: "topList" */ '@/view/topList'),
 		meta: {
-			title: '歌单',
+			title: '排行榜',
 			auth: false
 		}
 	},
@@ -58,6 +58,15 @@ const routes = [
 		component: () => import(/* webpackChunkName: "singer" */ '@/view/singer'),
 		meta: {
 			title: '歌手',
+			auth: false
+		}
+	},
+	{
+		path: '/mv',
+		name: 'Mv',
+		component: () => import(/* webpackChunkName: "mv" */ '@/view/mv'),
+		meta: {
+			title: 'MV',
 			auth: false
 		}
 	}

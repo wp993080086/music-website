@@ -1,5 +1,5 @@
 <template>
-	<div class="singer_item flex flex_a_c br4 h_hand">
+	<div class="singer_components flex flex_a_c br4 h_hand">
 		<div class="item_index flex_c">{{ index + 1 }}</div>
 		<div class="item_img ofh br2">
 			<img :src="songInfo.picUrl + '?param=50y50'">
@@ -25,7 +25,7 @@ import mixin from '../../mixins/path'
 import { mapMutations } from 'vuex'
 
 export default {
-	name: 'SongList',
+	name: 'SongComponents',
 	mixins: [mixin],
 	props: {
 		songInfo: {

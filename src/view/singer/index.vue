@@ -5,7 +5,7 @@
 			<div
 				v-for="(item, index) in areaList"
 				:key="index + item.area"
-				:class="['area_item', 'flex_c', 'br8', singerArea === item.value ? 'red' : '']"
+				:class="['area_item', 'flex_c', 'br8', 'h_hand', singerArea === item.value ? 'red' : '']"
 				@click="handleChangeArea(item.value)"
 			>
 				<span>{{ item.area }}</span>
@@ -16,7 +16,7 @@
 			<div
 				v-for="(item, index) in typeList"
 				:key="index + item.type"
-				:class="['type_item', 'flex_c', 'br8', singerType === item.value ? 'red' : '']"
+				:class="['type_item', 'flex_c', 'br8', 'h_hand', singerType === item.value ? 'red' : '']"
 				@click="handleChangeType(item.value)"
 			>
 				<span>{{ item.type }}</span>
@@ -25,7 +25,7 @@
 		<!-- 首字母 -->
 		<div class="initial flex flex_w_w">
 			<div
-				:class="['initial_item2', 'flex_c', 'br8', singerInitial === -1 ? 'red' : '']"
+				:class="['initial_item2', 'flex_c', 'br8', 'h_hand', singerInitial === -1 ? 'red' : '']"
 				@click="handleChangeInitial(-1)"
 			>
 				热门
@@ -33,13 +33,13 @@
 			<div
 				v-for="(item, index) in initialList"
 				:key="index + item"
-				:class="['initial_item', 'flex_c', 'br50', singerInitial === item ? 'red' : '']"
+				:class="['initial_item', 'flex_c', 'br50', 'h_hand', singerInitial === item ? 'red' : '']"
 				@click="handleChangeInitial(item)"
 			>
 				<span>{{ big(item) }}</span>
 			</div>
 			<div
-				:class="['initial_item2', 'flex_c', 'br8', singerInitial === 0 ? 'red' : '']"
+				:class="['initial_item2', 'flex_c', 'br8', 'h_hand', singerInitial === 0 ? 'red' : '']"
 				@click="handleChangeInitial(0)"
 			>
 				其他

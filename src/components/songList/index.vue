@@ -1,7 +1,11 @@
 <template>
-	<div class="song_item pr">
+	<div class="song_list_components pr">
 		<div class="img_box ofh">
-			<img :src="list.picUrl + '?param=160y160'" alt="歌单封面" class="h_hand br2" @click="toSongListDetails(list.id)">
+			<el-image :src="list.picUrl + '?param=160y160'" alt="歌单封面" class="h_hand br2" @click="toSongListDetails(list.id)">
+				<div slot="placeholder" class="image-slot flex_c">
+					<i class="el-icon-loading" />
+				</div>
+			</el-image>
 		</div>
 		<div class="shadow pa flex flex_s_b flex_a_c br2">
 			<div class="shadow_left omit">
@@ -20,7 +24,7 @@
 
 <script>
 export default {
-	name: 'SongList',
+	name: 'SongListComponents',
 	props: {
 		list: {
 			type: Object,
