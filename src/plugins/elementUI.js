@@ -14,7 +14,9 @@ import {
 	Slider,
 	Table,
 	TableColumn,
-	Image
+	Image,
+	Form,
+	FormItem
 } from 'element-ui'
 
 Vue.use(Button)
@@ -32,3 +34,5 @@ Vue.use(Slider)
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Image)
+Vue.use(Form)
+Vue.use(FormItem)
