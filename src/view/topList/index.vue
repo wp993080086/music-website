@@ -11,7 +11,11 @@
 						@click="handleChangeSongList(item.id, index)"
 					>
 						<div class="item_logo ofh br4">
-							<img :src="item.coverImgUrl + '?param=40y40'" :alt="item.name">
+							<el-image :src="item.coverImgUrl + '?param=40y40'" :alt="item.name">
+								<div slot="placeholder" class="image-slot flex_c">
+									<i class="el-icon-loading" />
+								</div>
+							</el-image>
 						</div>
 						<div class="item_hint flex flex_a_c">{{ item.updateFrequency }}</div>
 					</div>
@@ -20,7 +24,11 @@
 			<div class="right">
 				<div class="head flex_c">
 					<div class="head_logo">
-						<img :src="listInfo.coverImgUrl + '?param=150y150'" :alt="listInfo.name">
+						<el-image :src="listInfo.coverImgUrl + '?param=150y150'" :alt="listInfo.name">
+							<div slot="placeholder" class="image-slot flex_c">
+								<i class="el-icon-loading" />
+							</div>
+						</el-image>
 					</div>
 					<div class="head_info">
 						<h2 class="info_title">{{ listInfo.name }}</h2>

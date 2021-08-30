@@ -27,13 +27,23 @@
             width: 40px;
             height: 100%;
             margin-right: 20px;
-            img{
+            & /deep/ img{
               width: 100%;
               height: 100%;
               transition: ease .5s;
               &:hover{
                 transform: scale(1.1);
               }
+            }
+            & /deep/ .el-image{
+              width: 100%;
+              height: 100%;
+            }
+            & /deep/ .image-slot{
+              width: 100%;
+              height: 100%;
+              font-size: 30px;
+              color: #409EFF;
             }
           }
           .item_hint{
@@ -55,6 +65,24 @@
         .head_logo{
           width: 150px;
           height: 150px;
+          & /deep/ img{
+            width: 100%;
+            height: 100%;
+            transition: ease .5s;
+            &:hover{
+              transform: scale(1.1);
+            }
+          }
+          & /deep/ .el-image{
+            width: 100%;
+            height: 100%;
+          }
+          & /deep/ .image-slot{
+            width: 100%;
+            height: 100%;
+            font-size: 30px;
+            color: #409EFF;
+          }
         }
         .head_info{
           width: calc(100% - 200px);
