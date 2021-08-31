@@ -46,8 +46,12 @@ export default {
 	},
 	methods: {
 		// 去歌单详情
-		toSongListDetails(id) {
-			TOAST.info(id)
+		toSongListDetails(v) {
+			const id = v + ''
+			this.$router.push({
+				name: 'SongListDatails',
+				params: { id }
+			})
 		}
 	}
 }

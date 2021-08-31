@@ -40,5 +40,66 @@ export default {
 			},
 			notLoad: true
 		})
+	},
+	/**
+	* 获取歌单评论
+	* @param {String} id 歌单id
+	* @param {Number} limit 数量
+	* @param {Number} offset 第几页
+	* @param {Number} before 分页参数 取上一页最后一项的time获取下一页数据(获取超过5000条评论的时候需要用到)
+	*/
+	songListComment(param) {
+		return fetch({
+			url: UTILS.joinTime(this.apis.songListComment),
+			method: 'post',
+			data: {
+				...param
+			},
+			notLoad: true
+		})
+	},
+	/**
+	* 相关歌单推荐
+	* @param {String} id 歌单id
+	*/
+	songListRelated(id) {
+		return fetch({
+			url: UTILS.joinTime(this.apis.songListRelated),
+			method: 'post',
+			data: {
+				id
+			},
+			notLoad: true
+		})
+	},
+	/**
+	* 歌单收藏者
+	* @param {String} id 歌单id
+	* @param {String} limit 每页数量
+	* @param {String} offset 分页
+	*/
+	songListSubscribers(param) {
+		return fetch({
+			url: UTILS.joinTime(this.apis.songListSubscribers),
+			method: 'post',
+			data: {
+				...param
+			},
+			notLoad: true
+		})
+	},
+	/**
+	* 获取歌曲详情
+	* @param {String} id 音乐id 多个用,隔开
+	*/
+	songDatails(id) {
+		return fetch({
+			url: UTILS.joinTime(this.apis.songDatails),
+			method: 'post',
+			data: {
+				id
+			},
+			notLoad: true
+		})
 	}
 }

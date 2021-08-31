@@ -1,3 +1,5 @@
+import HTTP from '../../request/api/songListApi'
+
 export default {
 	name: 'SongListDatails',
 	components: {},
@@ -9,7 +11,7 @@ export default {
 	},
 	data() {
 		return {
-			skeleton: true
+			songListInfo: {} // 歌单详情
 		}
 	},
 	computed: {
@@ -21,6 +23,14 @@ export default {
 			}
 		}
 	},
-	mounted() {},
-	methods: {}
+	mounted() {
+		this.getSongListDetail()
+	},
+	methods: {
+		// 获取歌单详情
+		async getSongListDetail() {
+			const res = await HTTP.songListDetail(this.id)
+			this.songListInfo = res
+		}
+	}
 }
