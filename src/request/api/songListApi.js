@@ -48,12 +48,14 @@ export default {
 	* @param {Number} offset 第几页
 	* @param {Number} before 分页参数 取上一页最后一项的time获取下一页数据(获取超过5000条评论的时候需要用到)
 	*/
-	songListComment(param) {
+	songListComment(id, limit = 20, offset = 0) {
 		return fetch({
 			url: UTILS.joinTime(this.apis.songListComment),
 			method: 'post',
 			data: {
-				...param
+				id,
+				limit,
+				offset
 			},
 			notLoad: true
 		})
@@ -78,12 +80,14 @@ export default {
 	* @param {String} limit 每页数量
 	* @param {String} offset 分页
 	*/
-	songListSubscribers(param) {
+	songListSubscribers(id, limit = 30, offset = 0) {
 		return fetch({
 			url: UTILS.joinTime(this.apis.songListSubscribers),
 			method: 'post',
 			data: {
-				...param
+				id,
+				limit,
+				offset
 			},
 			notLoad: true
 		})
