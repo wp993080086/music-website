@@ -94,14 +94,14 @@ export default {
 	},
 	/**
 	* 获取歌曲详情
-	* @param {String} id 音乐id 多个用,隔开
+	* @param {String} ids 音乐id 多个用,隔开
 	*/
-	songDatails(id) {
+	songDatails(ids) {
 		return fetch({
 			url: UTILS.joinTime(this.apis.songDatails),
 			method: 'post',
 			data: {
-				id
+				ids
 			},
 			notLoad: true
 		})

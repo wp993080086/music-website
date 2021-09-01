@@ -15,7 +15,7 @@ export default {
 			commentList: {}, // 歌单评论
 			relatedList: {}, // 相关歌单推荐
 			subscribersList: {}, // 歌单收藏者
-			songId: '', // 歌曲ID
+			songId: '', // 歌曲ID 多个用,分开
 			songDetailsList: [] // 歌曲详情
 		}
 	},
@@ -30,12 +30,24 @@ export default {
 	},
 	mounted() {
 		this.getSongListDetail()
+		// this.getSongListComment()
+		// this.getSongListRelated()
+		// this.getSongListSubscribers()
 	},
 	methods: {
 		// 获取歌单详情
 		async getSongListDetail() {
 			const res = await HTTP.songListDetail(this.id)
-			this.songListInfo = res
+			this.detailsList = res.playlist
+			const id = []
+			for (const index in this.detailsList.trackIds) {
+				id.push(this.detailsList.trackIds[index].id)
+				if (index >= 99) {
+					break
+				}
+			}
+			this.songId = id.join(',')
+			this.getSongDatails()
 		},
 		// 获取歌单评论
 		async getSongListComment() {
@@ -55,7 +67,20 @@ export default {
 		// 获取歌曲详情
 		async getSongDatails() {
 			const res = await HTTP.songDatails(this.songId)
-			this.songDetailsList = res
+			const songList = res.songs
+			const list = []
+			songList.forEach(item => {
+				const obj = {
+					name: item.name,
+					id: item.id,
+					singer: item.ar[0].name,
+					singerId: item.ar[0].id,
+					duration: UTILS.formatTime(item.dt),
+					dvd: item.al.name
+				}
+				list.push(obj)
+			})
+			this.songDetailsList = list
 		}
 	}
 }
