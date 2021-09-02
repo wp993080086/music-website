@@ -5,7 +5,6 @@ export default {
 		highqualitySongList: '/top/playlist/highquality', // 获取精品歌单
 		songListDetail: '/playlist/detail', // 获取歌单详情
 		songListComment: '/comment/playlist', // 歌单评论
-		songListRelated: '/related/playlist', // 相关歌单推荐
 		songListSubscribers: '/playlist/subscribers', // 歌单收藏者
 		songDatails: '/song/detail' // 获取歌曲详情
 	},
@@ -61,26 +60,12 @@ export default {
 		})
 	},
 	/**
-	* 相关歌单推荐
-	* @param {String} id 歌单id
-	*/
-	songListRelated(id) {
-		return fetch({
-			url: UTILS.joinTime(this.apis.songListRelated),
-			method: 'post',
-			data: {
-				id
-			},
-			notLoad: true
-		})
-	},
-	/**
 	* 歌单收藏者
 	* @param {String} id 歌单id
 	* @param {String} limit 每页数量
 	* @param {String} offset 分页
 	*/
-	songListSubscribers(id, limit = 30, offset = 0) {
+	songListSubscribers(id, limit = 28, offset = 0) {
 		return fetch({
 			url: UTILS.joinTime(this.apis.songListSubscribers),
 			method: 'post',

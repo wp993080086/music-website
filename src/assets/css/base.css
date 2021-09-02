@@ -184,3 +184,11 @@
 .h_hand {
     cursor: pointer;
 }
+
+/* 盒子浮动阴影效果 */
+.p_box{
+    transition: ease .5s;
+}
+.p_box:hover{
+    box-shadow: 0 0 10px #cccccc;
+}

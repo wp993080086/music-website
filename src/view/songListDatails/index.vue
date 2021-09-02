@@ -1,7 +1,7 @@
 <template>
 	<div id="Song_list_datails">
 		<div class="main flex flex_s_b">
-			<div class="left">
+			<div class="left p_box br4">
 				<div class="left_head flex flex_s_b">
 					<div class="song_list_img">
 						<img :src="detailsList.coverImgUrl + '?param=150y150'" alt="封面" class="br8">
@@ -44,7 +44,49 @@
 					</el-table>
 				</div>
 			</div>
-			<div class="right">2</div>
+			<div class="right">
+				<div class="right_like p_box br4">
+					<div class="title flex flex_a_c">
+						<i class="el-icon-medal" />
+						<span>喜欢歌单的人</span>
+					</div>
+					<div class="like_box flex flex_w_w flex_s_b">
+						<div
+							v-for="(item, index) in subscribersList"
+							:key="index = item.userId"
+							class="like_item"
+						>
+							<img
+								:src="item.avatarUrl + '?param=40y40'"
+								:alt="item.nickname"
+								class="br4 h_hand"
+								:title="item.nickname"
+							>
+						</div>
+					</div>
+				</div>
+				<div class="right_comment p_box br4">
+					<div class="title flex flex_a_c">
+						<i class="el-icon-edit" />
+						<span>歌单评论</span>
+					</div>
+					<div class="comment_box flex flex_w_w flex_s_b">
+						<div
+							v-for="(item, index) in songListComment"
+							:key="index = item.time"
+							class="comment_item flex flex_s_b"
+						>
+							<div class="left_info">
+								<img :src="item.user.avatarUrl + '?param=40y40'" alt="info" :title="item.user.nickname" class="br4">
+							</div>
+							<div class="right_info">
+								<p class="nickname">{{ item.user.nickname }}</p>
+								<p class="text">{{ item.content }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>

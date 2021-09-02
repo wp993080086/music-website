@@ -35,6 +35,15 @@ const routes = [
 		}
 	},
 	{
+		path: '/topList',
+		name: 'TopList',
+		component: () => import(/* webpackChunkName: "topList" */ '@/view/topList'),
+		meta: {
+			title: '排行榜',
+			auth: false
+		}
+	},
+	{
 		path: '/songlist',
 		name: 'SongList',
 		component: () => import(/* webpackChunkName: "songList" */ '@/view/songList'),
@@ -50,15 +59,6 @@ const routes = [
 		props: true,
 		meta: {
 			title: '歌单详情',
-			auth: false
-		}
-	},
-	{
-		path: '/topList',
-		name: 'TopList',
-		component: () => import(/* webpackChunkName: "topList" */ '@/view/topList'),
-		meta: {
-			title: '排行榜',
 			auth: false
 		}
 	},

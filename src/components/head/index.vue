@@ -82,6 +82,16 @@ export default {
 				index: 4
 			}
 		]
+		this.menuIndex = [
+			{ name: 'Index', index: 0 },
+			{ name: 'TopList', index: 1 },
+			{ name: 'SongList', index: 2 },
+			{ name: 'SongListDatails', index: 2 },
+			{ name: 'Singer', index: 3 },
+			{ name: 'SingerDetails', index: 3 },
+			{ name: 'Mv', index: 4 },
+			{ name: 'MvDatails', index: 4 }
+		]
 		return {
 			logo: require('../../assets/icon/pdd.png'),
 			nowIndex: 0,
@@ -92,11 +102,10 @@ export default {
 	watch: {
 		'$route'(to, from) {
 			const name = to.name
-			this.tabs.forEach(item => {
-				if (item.path === name) {
-					this.nowIndex = item.index
-				}
+			const path = this.menuIndex.find(item => {
+				return name === item.name
 			})
+			this.nowIndex = path.index
 		}
 	},
 	methods: {
