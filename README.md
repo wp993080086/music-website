@@ -16,7 +16,7 @@ npm run build
 npm run all
 
 # 目录结构
-```
+```JavaScript
 │  .env.development
 │  .env.production
 │  .env.test => .env环境文件
