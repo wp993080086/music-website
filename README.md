@@ -19,47 +19,47 @@ npm run all
 ```
 │  .env.development
 │  .env.production
-│  .env.test      环境文件
-│  .eslintignore
-│  .eslintrc.js    eslint配置
-│  .gitignore     git省略文件
+│  .env.test => .env环境文件
+│  .eslintignore => eslint忽略配置
+│  .eslintrc.js => eslint配置
+│  .gitignore => git忽略配置
 │  babel.config.js
 │  package-lock.json
 │  package.json
-│  README.md       说明文件
-│  vue.config.js    脚手架配置
-├─node_modules      依赖
-├─public      根文件
+│  README.md => 说明文件
+│  vue.config.js => 脚手架配置
+├─node_modules => 依赖
+├─public
 └─src
-    │  App.vue      根文件
-    │  main.js      根文件
+    │  App.vue => 根容器
+    │  main.js => 根文件
     │  
     ├─assets
-    │  ├─css      公共样式
-    │  │      base.css      全局通用样式
-    │  │      globalColor.less      全局颜色
-    │  │      init.css      初始化
-    │  ├─icon     字体图标
+    │  ├─css => 公共样式
+    │  │      base.css => 基础样式
+    │  │      globalColor.less => 全局颜色
+    │  │      init.css => 初始化
+    │  ├─icon => 字体图标
     │  │      
-    │  └─image      图片
+    │  └─image => 图片
     │      │  
     │      └─info 
     │              
-    ├─components      公共组件
+    ├─components => 公共组件
     │          
     ├─mixins
-    │      path.js      常用方法
+    │      path.js => 常用方法
     │      
     ├─plugins
-    │      elementUI.js   局部引入elementUi
-    │      snowflake.js   雪花插件
+    │      elementUI.js => 局部引入elementUi
+    │      snowflake.js => 雪花插件
     │      
     ├─request
-    │  │  fetch.js - axios封装
-    │  └─api    接口文件
-    ├─store     vueX
-    ├─utils     工具类
-    └─view      页面
+    │  │  fetch.js => axios封装
+    │  └─api => 接口定义
+    ├─store => vueX
+    ├─utils => 工具类
+    └─view => 页面
 ```
 # 已有功能
 
