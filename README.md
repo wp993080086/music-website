@@ -1,22 +1,23 @@
 # pdd-music PC浏览器版的音乐网站
 
-## 安装
-npm install
+- 安装：npm install
+- 运行：npm run serve
+- 测试环境打包：npm run test
+- 正式环境打包：npm run build
+- 同时打包正式环境&&测试环境：npm run all
 
-## 运行
-npm run serve
+# 已有功能
 
-## 测试环境打包
-npm run test
-
-## 正式环境打包
-npm run build
-
-## 同时打包正式环境&&测试环境
-npm run all
+- 网易云APP扫码登陆 & 网易云账号登录
+- 注册
+- 骨架屏
+- 音乐播放器
+- 歌单 & 详情
+- 歌手 & 详情
+- MV & 详情
 
 # 目录结构
-```
+```javascript
 │  .env.development
 │  .env.production
 │  .env.test => .env环境文件
@@ -61,12 +62,3 @@ npm run all
     ├─utils => 工具类
     └─view => 页面
 ```
-# 已有功能
-
-- 网易云APP扫码登陆 & 网易云账号登录
-- 注册
-- 骨架屏
-- 音乐播放器
-- 歌单 & 详情
-- 歌手 & 详情
-- MV & 详情
