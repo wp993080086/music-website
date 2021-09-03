@@ -2,7 +2,10 @@ import fetch from '../fetch'
 
 export default {
 	apis: {
-		singerList: '/artist/list' // 歌手分类列表
+		singerList: '/artist/list', // 歌手分类列表
+		singerSong: '/artists', // 获取歌手单曲
+		singerInfo: '/artist/desc', // 获取歌手描述
+		singerMv: '/artist/mv' // 获取歌手MV
 	},
 	/**
 	* 歌手分类列表
@@ -18,6 +21,48 @@ export default {
 			method: 'post',
 			data: {
 				...param
+			},
+			notLoad: true
+		})
+	},
+	/**
+	* 获取歌手单曲
+	* @param {String} id 歌手id
+	*/
+	singerSong(id) {
+		return fetch({
+			url: UTILS.joinTime(this.apis.singerSong),
+			method: 'post',
+			data: {
+				id
+			},
+			notLoad: true
+		})
+	},
+	/**
+	* 获取歌手描述
+	* @param {String} id 歌手id
+	*/
+	singerInfo(id) {
+		return fetch({
+			url: UTILS.joinTime(this.apis.singerInfo),
+			method: 'post',
+			data: {
+				id
+			},
+			notLoad: true
+		})
+	},
+	/**
+	* 获取歌手MV
+	* @param {String} id 歌手id
+	*/
+	singerMv(id) {
+		return fetch({
+			url: UTILS.joinTime(this.apis.singerMv),
+			method: 'post',
+			data: {
+				id
 			},
 			notLoad: true
 		})

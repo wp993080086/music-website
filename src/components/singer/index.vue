@@ -41,8 +41,12 @@ export default {
 	computed: {},
 	methods: {
 		// 去歌手详情
-		toSingerDetails(id) {
-			TOAST.info(id)
+		toSingerDetails(v) {
+			const id = v + ''
+			this.$router.push({
+				name: 'SingerDetails',
+				params: { id }
+			})
 		}
 	}
 }

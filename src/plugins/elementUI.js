@@ -16,7 +16,9 @@ import {
 	TableColumn,
 	Image,
 	Form,
-	FormItem
+	FormItem,
+	Tabs,
+	TabPane
 } from 'element-ui'
 
 Vue.use(Button)
@@ -36,3 +38,5 @@ Vue.use(TableColumn)
 Vue.use(Image)
 Vue.use(Form)
 Vue.use(FormItem)
+Vue.use(Tabs)
+Vue.use(TabPane)

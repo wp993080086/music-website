@@ -1,6 +1,11 @@
+import HTTP from '../../request/api/singerApi'
+import mvBox from '../../components/mv'
+
 export default {
 	name: 'SingerDetails',
-	components: {},
+	components: {
+		mvBox
+	},
 	props: {
 		id: {
 			type: String,
@@ -9,7 +14,16 @@ export default {
 	},
 	data() {
 		return {
-			skeleton: true
+			info: {},
+			songList: [],
+			infoList: [],
+			mvList: [],
+			activeMenu: 'song',
+			menuList: [
+				{ name: 'song', label: '单曲' },
+				{ name: 'mv', label: 'MV' },
+				{ name: 'presentation', label: '介绍' }
+			]
 		}
 	},
 	computed: {
@@ -21,6 +35,40 @@ export default {
 			}
 		}
 	},
-	mounted() {},
-	methods: {}
+	mounted() {
+		this.getSingerAllData()
+	},
+	methods: {
+		// 获取歌手 单曲 + 信息 + MV
+		async getSingerAllData() {
+			const allRes =  await Promise.allSettled([
+				HTTP.singerSong(this.id),
+				HTTP.singerInfo(this.id),
+				HTTP.singerMv(this.id)
+			])
+			this.info = allRes[0].value.artist
+			const songList = allRes[0].value.hotSongs
+			const list = []
+			songList.forEach(item => {
+				const obj = {
+					name: item.name,
+					id: item.id,
+					singer: item.ar[0].name,
+					singerId: item.ar[0].id,
+					duration: UTILS.formatTime(item.dt),
+					dvd: item.al.name
+				}
+				list.push(obj)
+			})
+			this.songList = list
+			this.infoList = allRes[1].value
+			this.mvList = allRes[2].value.mvs.map(item => {
+				item.cover = item.imgurl
+				return item
+			})
+			console.log(this.infoList)
+		},
+		// 切换菜单
+		handleChengeMenu(e, event) {}
+	}
 }

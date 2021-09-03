@@ -1,7 +1,7 @@
 <template>
-	<div class="mv_components flex flex_d_y flex_s_b br8 ofh">
+	<div class="mv_components flex flex_d_y flex_s_b br8 ofh" :style="{ width: w + 'px' }">
 		<div class="mv_main ofh pr h_hand" @click="handleToMvDetails">
-			<el-image :src="mvInfo.cover + '?param=280y150'" :lazy="true">
+			<el-image :src="mvInfo.cover + '?param='+ w +'y150'" :lazy="true">
 				<div slot="placeholder" class="image-slot flex_c">
 					<i class="el-icon-loading" />
 				</div>
@@ -31,6 +31,10 @@ export default {
 		mvInfo: {
 			type: Object,
 			default: () => {}
+		},
+		w: {
+			type: Number,
+			default: 280
 		}
 	},
 	data() {
