@@ -1,6 +1,6 @@
 <template>
 	<div class="mv_components flex flex_d_y flex_s_b br8 ofh" :style="{ width: w + 'px' }">
-		<div class="mv_main ofh pr h_hand" @click="handleToMvDetails">
+		<div class="mv_main ofh pr h_hand" @click="toMvDetails(mvInfo.id)">
 			<el-image :src="mvInfo.cover + '?param='+ w +'y150'" :lazy="true">
 				<div slot="placeholder" class="image-slot flex_c">
 					<i class="el-icon-loading" />
@@ -41,6 +41,7 @@ export default {
 		return {}
 	},
 	computed: {
+		// 转换时间
 		time() {
 			return (ms) => {
 				return UTILS.formatTime(ms)
@@ -48,8 +49,12 @@ export default {
 		}
 	},
 	methods: {
-		handleToMvDetails() {
-			TOAST.info(this.mvInfo.id)
+		toMvDetails(v) {
+			const id = v + ''
+			this.$router.push({
+				name: 'MvDetails',
+				query: { id }
+			})
 		}
 	}
 }

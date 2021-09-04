@@ -39,7 +39,7 @@ export default {
 		this.getSingerAllData()
 	},
 	methods: {
-		// 获取歌手 单曲 + 信息 + MV
+		// 获取歌手 单曲+信息+MV
 		async getSingerAllData() {
 			const allRes =  await Promise.allSettled([
 				HTTP.singerSong(this.id),
@@ -66,7 +66,6 @@ export default {
 				item.cover = item.imgurl
 				return item
 			})
-			console.log(this.infoList)
 		},
 		// 切换菜单
 		handleChengeMenu(e, event) {}

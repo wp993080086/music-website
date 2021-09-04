@@ -49,7 +49,7 @@ export default {
 		toSongListDetails(v) {
 			const id = v + ''
 			this.$router.push({
-				name: 'SongListDatails',
+				name: 'SongListDetails',
 				params: { id }
 			})
 		}

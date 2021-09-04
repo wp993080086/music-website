@@ -18,7 +18,8 @@ import {
 	Form,
 	FormItem,
 	Tabs,
-	TabPane
+	TabPane,
+	Tag
 } from 'element-ui'
 
 Vue.use(Button)
@@ -40,3 +41,4 @@ Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Tabs)
 Vue.use(TabPane)
+Vue.use(Tag)

@@ -86,11 +86,11 @@ export default {
 			{ name: 'Index', index: 0 },
 			{ name: 'TopList', index: 1 },
 			{ name: 'SongList', index: 2 },
-			{ name: 'SongListDatails', index: 2 },
+			{ name: 'SongListDetails', index: 2 },
 			{ name: 'Singer', index: 3 },
 			{ name: 'SingerDetails', index: 3 },
 			{ name: 'Mv', index: 4 },
-			{ name: 'MvDatails', index: 4 }
+			{ name: 'MvDetails', index: 4 }
 		]
 		return {
 			logo: require('../../assets/icon/pdd.png'),

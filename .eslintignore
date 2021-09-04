@@ -1,5 +1,3 @@
 node_modules/**/*.*
 static/**/*.*
 src/assets
-src/plugins
-src/utils

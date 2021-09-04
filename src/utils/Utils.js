@@ -10,22 +10,18 @@ const publicFunction = {
 	* @param {Number} point 需要保留的小数位数
 	*/
 	tranNumber(num, point) {
-		let numStr = num.toString()
+		const numStr = num.toString()
 		// 十万以内直接返回
 		if (numStr.length < 6) {
 			return numStr
-		}
-		// 大于8位数是亿
-		else if (numStr.length > 8) {
-			let decimal = numStr.substring(
+		} else if (numStr.length > 8) { // 大于8位数是亿
+			const decimal = numStr.substring(
 				numStr.length - 8,
 				numStr.length - 8 + point
 			)
 			return parseFloat(parseInt(num / 100000000) + '.' + decimal) + '亿'
-		}
-		//大于6位数是十万 (以10W分割 10W以下全部显示)
-		else if (numStr.length > 5) {
-			let decimal = numStr.substring(
+		} else if (numStr.length > 5) { // 大于6位数是十万 (以10W分割 10W以下全部显示)
+			const decimal = numStr.substring(
 				numStr.length - 4,
 				numStr.length - 4 + point
 			)
@@ -36,69 +32,69 @@ const publicFunction = {
 	* 格式化时间毫秒转分秒
 	* @param {Number} time 时间
 	*/
-  formatTime(time) {
-    time = ~~time
-    let formatTime
-    if (time < 10) {
-      formatTime = '00:0' + time
-    } else if (time < 60) {
-      formatTime = '00:' + time
-    } else {
-      var m = ~~parseInt((time % (1000 * 60 * 60)) / (1000 * 60))
-      if (m < 10) {
-        m = '0' + m
-      }
-      var s = ~~parseInt((time % (1000 * 60)) / 1000)
-      if (s < 10) {
-        s = '0' + s
-      }
-      formatTime = m + ':' + s
-    }
-    return formatTime
-  },
+	formatTime(time) {
+		time = ~~time
+		let formatTime
+		if (time < 10) {
+			formatTime = '00:0' + time
+		} else if (time < 60) {
+			formatTime = '00:' + time
+		} else {
+			var m = ~~parseInt((time % (1000 * 60 * 60)) / (1000 * 60))
+			if (m < 10) {
+				m = '0' + m
+			}
+			var s = ~~parseInt((time % (1000 * 60)) / 1000)
+			if (s < 10) {
+				s = '0' + s
+			}
+			formatTime = m + ':' + s
+		}
+		return formatTime
+	},
 	/**
 	* 秒转00:00
 	* @param {Number} Seconds 秒
 	*/
-  formatSecondTime(Seconds) {
+	formatSecondTime(Seconds) {
 		const m = Number.parseInt(Seconds / 60)
 		let s = Number.parseInt(Seconds % 60)
 		s < 10 ? s = `0${s}` : s
 		return `0${m}:${s}`
-  },
+	},
 	/**
 	* 时间戳转换成几分钟前，几小时前，几天前
 	* @param {Number} timestamp 时间戳
 	*/
-  formatMsgTime(timestamp) {
-    let result = ''
-    const minute = 1000 * 60
-    const hour = minute * 60
-    const day = hour * 24
-    const month = day * 30
-    const now = new Date().getTime()
-    const diffValue = now - timestamp
-    if (diffValue < 0) return
-    const monthC = diffValue / month
-    const weekC = diffValue / (7 * day)
-    const dayC = diffValue / day
-    const hourC = diffValue / hour
-    const minC = diffValue / minute
-    if (monthC >= 1) {
-      result = '' + parseInt(monthC) + '月前'
-    } else if (weekC >= 1) {
-      result = '' + parseInt(weekC) + '周前'
-    } else if (dayC >= 1) {
-      result = '' + parseInt(dayC) + '天前'
-    } else if (hourC >= 1) {
-      result = '' + parseInt(hourC) + '小时前'
-    } else if (minC >= 1) {
-      result = '' + parseInt(minC) + '分钟前'
-    } else {
-      result = '刚刚'
-    }
-    return result
-  },
+	formatMsgTime(timestamp) {
+		let result = ''
+		const minute = 1000 * 60
+		const hour = minute * 60
+		const day = hour * 24
+		const month = day * 30
+		const now = new Date().getTime()
+		const diffValue = now - timestamp
+		if (diffValue < 0) return
+		const monthC = diffValue / month
+		const weekC = diffValue / (7 * day)
+		const dayC = diffValue / day
+		const hourC = diffValue / hour
+		const minC = diffValue / minute
+		if (monthC >= 1) {
+			result = '' + parseInt(monthC) + '个月前'
+		} else if (weekC >= 1) {
+			result = '' + parseInt(weekC) + '周前'
+		} else if (dayC >= 1) {
+			result = '' + parseInt(dayC) + '天前'
+		} else if (hourC >= 1) {
+			result = '' + parseInt(hourC) + '小时前'
+		} else if (minC >= 1) {
+			result = '' + parseInt(minC) + '分钟前'
+		} else {
+			result = '刚刚'
+		}
+		return result
+	},
 	/**
 	* 休眠
 	* @param {Number} time 休眠时间
@@ -111,40 +107,40 @@ const publicFunction = {
 		})
 	},
 	/**
-  * 去除首尾空格或内部全部空格
-  * @param {String} value 字符串
-  * @param {Boolean} all 全部空格
-  */
+	* 去除首尾空格或内部全部空格
+	* @param {String} value 字符串
+	* @param {Boolean} all 全部空格
+	*/
 	trim(value, all = false) {
-    let reg = /(^\s*)|(\s*$)/g
-    if (all) {
-      reg = /\s/g
-    }
-    return value.replace(reg, '')
-  },
+		let reg = /(^\s*)|(\s*$)/g
+		if (all) {
+			reg = /\s/g
+		}
+		return value.replace(reg, '')
+	},
 	/**
-  * 下载文件
-  * @param {string} url 文件地址
-  */
+	* 下载文件
+	* @param {string} url 文件地址
+	*/
 	downloadFile(url) {
-    let aaa = document.createElement('a')
-    aaa.setAttribute('id', 'download')
-    aaa.setAttribute('href', url)
-    aaa.style.display = 'none'
-    document.body.appendChild(aaa)
-    aaa.click()
-    document.body.removeChild(document.getElementById('download'))
-  },
+		const aaa = document.createElement('a')
+		aaa.setAttribute('id', 'download')
+		aaa.setAttribute('href', url)
+		aaa.style.display = 'none'
+		document.body.appendChild(aaa)
+		aaa.click()
+		document.body.removeChild(document.getElementById('download'))
+	},
 	/**
-  * 对象深拷贝
-  * @param {Object} obj 目标对象
-  */
+	* 对象深拷贝
+	* @param {Object} obj 目标对象
+	*/
 	deepClone(obj) {
 		let target
 		if (typeof obj === 'object') {
 			target = Array.isArray(obj) ? [] : {}
-			for (let key in obj) {
-				if (obj.hasOwnProperty(key)) {
+			for (const key in obj) {
+				if (Object.prototype.hasOwnProperty.call(obj, key)) {
 					if (typeof obj[key] !== 'object') {
 						target[key] = obj[key]
 					} else {
@@ -158,28 +154,28 @@ const publicFunction = {
 		return target
 	},
 	/**
-  * 返回数据类型
-  * @param  {all} value 任意值 返回数据类型 比如 returnType(false) 返回 'Boolean'
-  */
+	* 返回数据类型
+	* @param  {all} value 任意值 返回数据类型 比如 returnType(false) 返回 'Boolean'
+	*/
 	returnType(value) {
-		if(!Number.isNaN) {
+		if (!Number.isNaN) {
 			Number.isNaN = function(val) {
-				return( typeof(val) === "number" && window.isNaN(val))
+				return (typeof (val) === 'number' && window.isNaN(val))
 			}
 		}
 		let type
-		if(typeof(value) === "number" && isNaN(value)) {
+		if (typeof (value) === 'number' && isNaN(value)) {
 			type = 'NaN'
 		} else {
-			let info = Object.prototype.toString.call(value)
+			const info = Object.prototype.toString.call(value)
 			type = info.split(' ')[1].split(']')[0]
 		}
 		return type
 	},
 	/**
-  * 身份证号验证
-  * @param  {String} value 身份证号 正确返回true
-  */
+	* 身份证号验证
+	* @param  {String} value 身份证号 正确返回true
+	*/
 	identityCardVerify(value) {
 		const CITY = {
 			11: '北京',
@@ -243,8 +239,8 @@ const publicFunction = {
 				wi = FACTOR[i]
 				sum += ai * wi
 			}
-			let last = PARITY[sum % 11]
-			if (last != value[17]) {
+			const last = PARITY[sum % 11]
+			if (last !== value[17]) {
 				info = '请输入真实准确的身份证号码'
 				return info
 			}
@@ -252,9 +248,9 @@ const publicFunction = {
 		return info
 	},
 	/**
-  * 手机号验证
-  * @param  {String} value 手机号
-  */
+	* 手机号验证
+	* @param  {String} value 手机号
+	*/
 	mobileVerify(value) {
 		let info = true
 		if (!value) {
@@ -269,9 +265,9 @@ const publicFunction = {
 		return info
 	},
 	/**
-  * 邮箱验证
-  * @param  {String} value 邮箱
-  */
+	* 邮箱验证
+	* @param  {String} value 邮箱
+	*/
 	mailboxVerify(value) {
 		let info = true
 		if (!value) {
@@ -286,9 +282,9 @@ const publicFunction = {
 		return info
 	},
 	/**
-  * 昵称验证
-  * @param  {String} value 昵称
-  */
+	* 昵称验证
+	* @param  {String} value 昵称
+	*/
 	nickNameVerify(value) {
 		let info = true
 		if (!value) {
@@ -303,9 +299,9 @@ const publicFunction = {
 		return info
 	},
 	/**
-  * 仅限纯数字验证
-  * @param  {String} value 内容
-  */
+	* 仅限纯数字验证
+	* @param  {String} value 内容
+	*/
 	numberVerify(value) {
 		let info = true
 		if (!value) {
@@ -320,9 +316,9 @@ const publicFunction = {
 		return info
 	},
 	/**
-  * 仅限数字或字母验证
-  * @param  {String} value 内容
-  */
+	* 仅限数字或字母验证
+	* @param  {String} value 内容
+	*/
 	numberOrLetterVerify(value) {
 		let info = true
 		if (!value) {
@@ -337,9 +333,9 @@ const publicFunction = {
 		return info
 	},
 	/**
-  * 仅限汉字或字母验证
-  * @param  {String} value 内容
-  */
+	* 仅限汉字或字母验证
+	* @param  {String} value 内容
+	*/
 	 chineseOrLetterVerify(value) {
 		let info = true
 		if (!value) {
@@ -354,9 +350,9 @@ const publicFunction = {
 		return info
 	},
 	/**
-  * 仅限汉字或字母或数字验证
-  * @param  {String} value 内容
-  */
+	* 仅限汉字或字母或数字验证
+	* @param  {String} value 内容
+	*/
 	chineseOrLetterOrNumberVerify(value) {
 		let info = true
 		if (!value) {
@@ -371,9 +367,9 @@ const publicFunction = {
 		return info
 	},
 	/**
-  * 不允许标点和数字验证
-  * @param  {String} value 内容
-  */
+	* 不允许标点和数字验证
+	* @param  {String} value 内容
+	*/
 	notNumPointVerify(value) {
 		let info = true
 		if (!value) {
@@ -392,92 +388,70 @@ const publicFunction = {
 	* @param {string} text 文本值
 	*/
 	copyByClick(text) {
-    try {
-      let input = document.createElement('input')
-      document.body.appendChild(input)
-      input.value = text
-      input.select()
-      document.execCommand('copy') // 执行浏览器复制命令
-      document.body.removeChild(input)
-    } catch (e) {
-      console.log(e)
-    }
-  },
+		try {
+			const input = document.createElement('input')
+			document.body.appendChild(input)
+			input.value = text
+			input.select()
+			document.execCommand('copy') // 执行浏览器复制命令
+			document.body.removeChild(input)
+		} catch (e) {
+			console.log(e)
+		}
+	},
 	/**
-  * 检查对象字段是否为空或者null
-  * @param {Array} text 数组 需要检查的字段数组
-  * @param {Object} obj 对象 需要检查的对象
-  */
+	* 检查对象字段是否为空或者null
+	* @param {Array} text 数组 需要检查的字段数组
+	* @param {Object} obj 对象 需要检查的对象
+	*/
 	checkParaIsNullOrEmpty(paraArr, obj) { // 检测对象某个值是否为空
-    return paraArr.every((key) => {
-      return ![undefined, null, ''].includes(obj[key])
-    })
-  },
-  /**
-  * 复制对象中指定key值
-  * @param {Array} text 数组 需要复制的key值数组
-  * @param {Object} obj 对象
-  * @param {boolean} bool 值为数组是否取第一个值
-  */
-  copyObjKeys(paraArr, obj, bool = true) {
-    const res = {}
-    paraArr.map(item => {
-      if (Object.prototype.toString.call(obj[item]) == '[object Array]' && obj[item].length > 0 && bool) {
-        res[item] = obj[item][0]
-      } else {
-        res[item] = obj[item]
-      }
-    })
-    return res
-  },
-  /**
-  * 找出两个对象中指定字段相等且值不为空的元素
-  * @param {Object} OriginalObj 对象
-  * @param {Object} obj 对象
-  * @param {Array} fields  字段数组
-  */
-  compareObj(OriginalObj, obj, fields) {
-    const res = []
-    fields.map((key) => {
-      if (![undefined, null, ''].includes(OriginalObj[key])) {
-        if (OriginalObj[key] == obj[key]) {
-          res.push(key)
-        }
-      }
-    })
-    return res
-  },
+		return paraArr.every((key) => {
+			return ![undefined, null, ''].includes(obj[key])
+		})
+	},
 	/**
-  * 根据属性值查找key
-  * @param {Object} obj
-  * @param {String} value
-  * @param {Function} compare
-  */
+	* 复制对象中指定key值
+	* @param {Array} text 数组 需要复制的key值数组
+	* @param {Object} obj 对象
+	* @param {boolean} bool 值为数组是否取第一个值
+	*/
+	copyObjKeys(paraArr, obj, bool = true) {
+		const res = {}
+		paraArr.map(item => {
+			if (Object.prototype.toString.call(obj[item]) === '[object Array]' && obj[item].length > 0 && bool) {
+				res[item] = obj[item][0]
+			} else {
+				res[item] = obj[item]
+			}
+		})
+		return res
+	},
+	/**
+	* 找出两个对象中指定字段相等且值不为空的元素
+	* @param {Object} OriginalObj 对象
+	* @param {Object} obj 对象
+	* @param {Array} fields  字段数组
+	*/
+	compareObj(OriginalObj, obj, fields) {
+		const res = []
+		fields.map((key) => {
+			if (![undefined, null, ''].includes(OriginalObj[key])) {
+				if (OriginalObj[key] === obj[key]) {
+					res.push(key)
+				}
+			}
+		})
+		return res
+	},
+	/**
+	* 根据属性值查找key
+	* @param {Object} obj
+	* @param {String} value
+	* @param {Function} compare
+	*/
 	findKey(obj, value, compare = (a, b) => a === b) {
-    return Object.keys(obj).find(k => compare(obj[k], value))
-  },
-	/**
-  * 遍历一棵树，对所有结点做处理，子节点属性为children
-  * @param {Object} tree
-  * @param {Function} fn
-  */
-	travTree(tree, fn = function () { }, childrenName = 'children') {
-    function trav(node, parent) {
-      fn(node, parent)
-      if (node[childrenName] && node[childrenName].length > 0) {
-        for (let item of node[childrenName]) {
-          trav(item, node)
-        }
-      }
-    }
-    if (_.isArray(tree)) {
-      for (let item of tree) {
-        trav(item, null)
-      }
-    } else {
-      trav(tree, null)
-    }
-  }
+		return Object.keys(obj).find(k => compare(obj[k], value))
+	}
 }
 
 export default publicFunction
