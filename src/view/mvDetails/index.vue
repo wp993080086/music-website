@@ -2,14 +2,7 @@
 	<div id="mv_details" class="flex flex_s_b">
 		<div class="left">
 			<div class="play p_box br4">
-				<div class="play_main">
-					<video-player
-						ref="videoPlayer"
-						class="video-player vjs-custom-skin"
-						:playsinline="true"
-						:options="playerOptions"
-					/>
-				</div>
+				<div id="play_main" />
 				<div class="play_info">
 					<div class="mv_title">
 						<el-tag size="mini" type="danger">MV</el-tag>
