@@ -1,8 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
 
-const baseURL = process.env.VUE_APP_BASE_URL
-
 axios.defaults.withCredentials = true
 
 const RequestInfo = {
@@ -42,8 +40,7 @@ const RequestInfo = {
 // axios实例
 const instance = axios.create({
 	timeout: 10 * 1000,
-	headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-	baseURL
+	headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 })
 
 // 请求拦截器
@@ -55,6 +52,7 @@ instance.interceptors.request.use(
 		if (!config.notLoad) {
 			RequestInfo.showLoading()
 		}
+		console.log(config)
 		return config
 	},
 	error => {
