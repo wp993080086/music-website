@@ -52,7 +52,6 @@ instance.interceptors.request.use(
 		if (!config.notLoad) {
 			RequestInfo.showLoading()
 		}
-		console.log(config)
 		return config
 	},
 	error => {
