@@ -1,5 +1,5 @@
 <template>
-	<div id="index">
+	<div id="index" class="index">
 		<Banner :banner-list="bannerList" :skeleton="skeletonA" />
 		<Title title="推荐歌单" type="0" @handleToMore="toMore" />
 		<!-- 推荐歌单 -->
@@ -202,6 +202,7 @@ export default {
 				path: res[0].url
 			}
 			this.setSongInfo(param)
+			this.setSongList(param)
 		}
 	}
 }

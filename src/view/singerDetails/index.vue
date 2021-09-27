@@ -9,9 +9,9 @@
 			</div>
 			<div class="singer_laber flex flex_d_y flex_a_c">
 				<div class="laber_emoji flex flex_s_b">
-					<div class="flex_c"><i class="el-icon-money" /></div>
-					<div class="flex_c"><i class="el-icon-money" /></div>
-					<div class="flex_c"><i class="el-icon-money" /></div>
+					<div class="flex_c"><i class="iconfont pdd-music" /></div>
+					<div class="flex_c"><i class="iconfont pdd-p_mv" /></div>
+					<div class="flex_c"><i class="iconfont pdd-gp" /></div>
 				</div>
 				<div class="laber_txt flex flex_s_b">
 					<div class="flex_c"><span>{{ info.musicSize }}</span></div>

@@ -49,16 +49,20 @@ export default {
 		]),
 		// 播放
 		async handlePlay(songInfo) {
-			const res = await this.getSongUrl(songInfo.id)
-			const param = {
-				id: songInfo.id,
-				name: songInfo.name,
-				img: songInfo.picUrl,
-				singer: songInfo.song.album.artists[0].name,
-				path: res[0].url
+			try {
+				const res = await this.getSongUrl(songInfo.id)
+				const param = {
+					id: songInfo.id,
+					name: songInfo.name,
+					img: songInfo.picUrl,
+					singer: songInfo.song.album.artists[0].name,
+					path: res[0].url
+				}
+				this.setSongInfo(param)
+				this.setSongList(param)
+			} catch (error) {
+				console.warn(error)
 			}
-			this.setSongInfo(param)
-			this.setSongList(param)
 		}
 	}
 }

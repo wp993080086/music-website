@@ -451,6 +451,13 @@ const publicFunction = {
 	*/
 	findKey(obj, value, compare = (a, b) => a === b) {
 		return Object.keys(obj).find(k => compare(obj[k], value))
+	},
+	/**
+	* 获取随机数
+	* @param {Number} Limit
+	*/
+	getRandom(Limit = 10) {
+		return Math.round(Math.random() * Limit)
 	}
 }
 

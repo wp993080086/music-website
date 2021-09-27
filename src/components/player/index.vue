@@ -16,14 +16,14 @@
 			</div>
 			<!-- 操作 -->
 			<div class="operation flex flex_a_c flex_s_a">
-				<i class="last el-icon-d-arrow-left h_hand" title="上一首" @click="handleLast" />
+				<i class="last iconfont pdd-up h_hand" title="上一首" @click="handleLast" />
 				<template v-if="!isPlay">
 					<i class="pause el-icon-video-play h_hand" title="播放" @click="handlePlay" />
 				</template>
 				<template v-else>
 					<i class="play el-icon-video-pause h_hand" title="暂停" @click="handlePause" />
 				</template>
-				<i class="next el-icon-d-arrow-right h_hand" title="下一首" @click="handleNext" />
+				<i class="iconfont pdd-down next h_hand" title="下一首" @click="handleNext" />
 			</div>
 			<!-- 进度 -->
 			<div class="progress flex_c">
@@ -47,7 +47,10 @@
 			</div>
 			<!-- 顺序 -->
 			<div class="sort flex_c">
-				<i class="next el-icon-sort h_hand" @click="handlePlaySort" />
+				<i v-if="playType == 0" class="iconfont pdd-for_p next h_hand" @click="handlePlaySort(0)" />
+				<i v-else-if="playType == 1" class="iconfont pdd-for next h_hand" @click="handlePlaySort(1)" />
+				<i v-else-if="playType == 2" class="iconfont pdd-line next h_hand" @click="handlePlaySort(2)" />
+				<i v-else class="iconfont pdd-sort next h_hand" @click="handlePlaySort(3)" />
 			</div>
 			<!-- 歌单 -->
 			<div class="list flex_c">
@@ -64,10 +67,16 @@
 						</div>
 						<div class="song_list_box">
 							<div
-								class="song_list_item flex_c h_hand"
+								v-for="(item, index) in songList"
+								:key="index"
+								:class="['song_list_item', 'flex_c', 'h_hand', songInfo.id === item.id ? 'active': '']"
 							>
-								<span>{{ songInfo.singer + ' - ' + songInfo.name }}</span>
-								<i class="list_play el-icon-video-play" />
+								<div class="song_list_name omit text_c">
+									<span>{{ item.singer + ' - ' + item.name }}</span>
+								</div>
+								<div class="song_list_icon flex_c">
+									<i class="list_play el-icon-video-play" @click="handleListClick(index)" />
+								</div>
 							</div>
 						</div>
 					</div>
@@ -84,7 +93,10 @@
 				@ended="handelPlayEnd"
 			/>
 		</div>
-		<div :class="['hook', 'h_hand']" @click="setPlayState" />
+		<div :class="['hook', 'h_hand', 'flex_c', 'ofh']" @click="setPlayState">
+			<i v-if="!isShowPlay" class="iconfont pdd-sq" />
+			<i v-else class="iconfont pdd-zk" />
+		</div>
 	</div>
 </template>
 
@@ -99,7 +111,8 @@ export default {
 			levelLength: 0, // 播放长度
 			levelVoice: 100, // 音量
 			newLength: '00:00', // 当前时长
-			songLength: '00:00' // 总时长
+			songLength: '00:00', // 总时长
+			playType: 2 // 播放模式 0随机 1循环 2单曲循环 3列表循环
 		}
 	},
 	computed: {
@@ -127,12 +140,20 @@ export default {
 		}
 	},
 	created() {},
-	mounted() {},
+	mounted() {
+		// 如果有缓存就替换
+		if (sessionStorage.getItem('songList')) {
+			const param = sessionStorage.getItem('songList')
+			this.handleReplaceSongList(JSON.parse(param))
+		}
+	},
 	updated() {},
 	methods: {
 		...mapMutations([
 			'setSongList',
-			'setPlayState'
+			'setPlayState',
+			'setSongInfo',
+			'handleReplaceSongList'
 		]),
 		// 准备好
 		HandleAudioReady() {
@@ -145,9 +166,55 @@ export default {
 			}
 		},
 		// 上一首
-		handleLast() {},
+		handleLast() {
+			const index = this.songList.findIndex(item => {
+				return item.id === this.songInfo.id
+			})
+			let before = index - 1
+			if (before === -1) {
+				before = this.songList.length - 1
+			}
+			const param = UTILS.deepClone(this.songList[before])
+			this.setSongInfo(param)
+		},
 		// 下一首
-		handleNext() {},
+		handleNext() {
+			// 当前的歌曲播放模式
+			const type = this.playType
+			// 当前的歌曲索引
+			const index = this.songList.findIndex(item => {
+				return item.id === this.songInfo.id
+			})
+			// 索引上限
+			const Limit = this.songList.length - 1
+			// 下一首的索引
+			let after = 0
+			// 判断逻辑
+			switch (type) {
+			case 0:
+				console.log('随机')
+				after = UTILS.getRandom(this.songList.length - 1)
+				if (after <= 0) after = 0
+				break
+			case 1:
+				console.log('循环播放')
+				after = index + 1
+				if (after > Limit) after = 0
+				break
+			case 2:
+				console.log('单曲循环')
+				after = index + 1
+				if (after > Limit) after = 0
+				break
+			case 3:
+				console.log('顺序播放')
+				after = index + 1
+				if (after > Limit) after = 0
+				break
+			}
+			const param = UTILS.deepClone(this.songList[after])
+			this.setSongInfo(param)
+		},
 		// 播放
 		handlePlay() {
 			this.$nextTick(() => {
@@ -167,7 +234,26 @@ export default {
 			}
 		},
 		// 改变播放模式
-		handlePlaySort() {},
+		handlePlaySort(type) {
+			switch (type) {
+			case 0:
+				this.playType = 1
+				console.log('循环')
+				break
+			case 1:
+				this.playType = 2
+				console.log('单曲循环')
+				break
+			case 2:
+				this.playType = 3
+				console.log('列表循环')
+				break
+			case 3:
+				this.playType = 0
+				console.log('随机')
+				break
+			}
+		},
 		// 播放完毕
 		handelPlayEnd() {
 			TOAST.info('播放完毕')
@@ -199,6 +285,11 @@ export default {
 			} catch (error) {
 				console.warn(error)
 			}
+		},
+		// 播放列表播放
+		handleListClick(index) {
+			const param = UTILS.deepClone(this.songList[index])
+			this.setSongInfo(param)
 		}
 	}
 }

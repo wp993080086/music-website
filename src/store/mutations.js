@@ -15,7 +15,14 @@ export default {
 	setPlayState(state) {
 		state.isShowPlay = !state.isShowPlay
 	},
-	// 设置歌曲信息
+	/**
+	* 设置歌曲信息
+	* @param {Number} id id
+	* @param {Number} name 歌名
+	* @param {Number} img 图片
+	* @param {Number} singer 歌手
+	* @param {Number} path 路径
+	*/
 	setSongInfo(state, param) {
 		state.songInfo = param
 	},
@@ -25,5 +32,10 @@ export default {
 			return item.id === param.id
 		})
 		if (!bool) state.songList.push(param)
+		sessionStorage.setItem('songList', JSON.stringify(state.songList))
+	},
+	// 如果有缓存就替换
+	handleReplaceSongList(state, param) {
+		state.songList = param
 	}
 }

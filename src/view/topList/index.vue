@@ -45,28 +45,16 @@
 					<span>累计播放：{{ listInfo.playCount }}次</span>
 				</div>
 				<div class="song_list">
-					<el-table
-						:data="songList"
-						stripe
-						style="width: 100%"
-					>
-						<el-table-column
-							type="index"
-							width="50"
-						/>
-						<el-table-column
-							prop="name"
-							label="歌名"
-						/>
-						<el-table-column
-							prop="duration"
-							label="时长"
-							width="100"
-						/>
-						<el-table-column
-							prop="singer"
-							label="歌手"
-						/>
+					<el-table :data="songList" stripe style="width: 100%" :header-cell-style="{ background:'#D9ECFF' }">
+						<el-table-column type="index" width="50" />
+						<el-table-column prop="name" label="歌名" />
+						<el-table-column prop="duration" label="时长" width="100" />
+						<el-table-column prop="singer" label="歌手" />
+						<el-table-column prop="singer" label="播放" width="50">
+							<template slot-scope="scope">
+								<i class="play_icon h_hand el-icon-video-play" title="播放" @click="handlePlay(scope.row)" />
+							</template>
+						</el-table-column>
 					</el-table>
 				</div>
 			</div>
@@ -75,10 +63,13 @@
 </template>
 
 <script>
+import mixin from '../../mixins/path'
 import HTTP from '../../request/api/topListApi'
+import { mapMutations } from 'vuex'
 
 export default {
 	name: 'TopList',
+	mixins: [mixin],
 	data() {
 		return {
 			topList: [],
@@ -102,6 +93,10 @@ export default {
 	},
 	mounted() {},
 	methods: {
+		...mapMutations([
+			'setSongInfo',
+			'setSongList'
+		]),
 		// 获取所有歌单
 		async getTopList() {
 			try {
@@ -140,6 +135,24 @@ export default {
 		handleChangeSongList(id, index) {
 			this.listId = id
 			this.nowIndex = index
+		},
+		// 播放
+		async handlePlay(data) {
+			try {
+				const res = await this.getSongUrl(data.id)
+				const param = {
+					id: data.id,
+					name: data.name,
+					img: data.picUrl,
+					singer: data.singer,
+					path: res[0].url
+				}
+				console.log(param)
+				this.setSongInfo(param)
+				this.setSongList(param)
+			} catch (error) {
+				console.warn(error)
+			}
 		}
 	}
 }
