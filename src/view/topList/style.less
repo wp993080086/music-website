@@ -59,7 +59,7 @@
     .right{
       width: 700px;
       box-sizing: border-box;
-      .head{
+      & .head{
         width: 100%;
         height: 200px;
         .head_logo{
@@ -80,8 +80,9 @@
           & /deep/ .image-slot{
             width: 100%;
             height: 100%;
-            font-size: 30px;
+            font-size: 40px;
             color: #409EFF;
+            background-color: #F5F7FA;
           }
         }
         .head_info{
@@ -93,6 +94,9 @@
           }
           .info_hint{
             padding-bottom: 20px;
+            padding-right: 20px;
+            line-height: 20px;
+            box-sizing: border-box;
           }
           .info_data{
             width: 100%;
@@ -129,5 +133,18 @@
         }
       }
     }
+  }
+  // 骨架屏
+  .w260{
+    width: 260px;
+    height: 600px;
+  }
+  .w700{
+    width: 700px;
+    height: 200px;
+  }
+  .w700_2{
+    width: 700px;
+    height: 500px;
   }
 }

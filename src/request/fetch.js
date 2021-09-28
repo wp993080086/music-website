@@ -62,7 +62,6 @@ instance.interceptors.request.use(
 // 响应拦截器
 instance.interceptors.response.use(
 	res => {
-		// console.log(res.data)
 		RequestInfo.hideLoading()
 		return res.data
 	},
