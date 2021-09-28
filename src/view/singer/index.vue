@@ -45,14 +45,28 @@
 				其他
 			</div>
 		</div>
-		<div class="main flex flex_w_w flex_s_b">
-			<div
-				v-for="(item, index) in singerList"
-				:key="index + item.picId"
-			>
-				<singer :singer-info="item" />
-			</div>
-		</div>
+		<!-- 歌手 -->
+		<el-skeleton animated :loading="skeletonLoading" class="main flex flex_w_w flex_s_b">
+			<template slot="template">
+				<div class="w1200 flex flex_w_w flex_s_b">
+					<div
+						v-for="item of 28"
+						:key="item"
+						style="width: 160px; height: 220px; margin-bottom: 20px"
+					>
+						<el-skeleton-item variant="circle" style="width: 160px; height: 220px;" />
+					</div>
+				</div>
+			</template>
+			<template>
+				<div
+					v-for="(item, index) in singerList"
+					:key="index + item.picId"
+				>
+					<singer :singer-info="item" />
+				</div>
+			</template>
+		</el-skeleton>
 	</div>
 </template>
 

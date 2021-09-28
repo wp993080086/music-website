@@ -7,7 +7,7 @@
 			<router-view />
 		</transition>
 		<!-- 播放器 -->
-		<Player />
+		<Player v-if="showNav" />
 		<!-- 页脚 -->
 		<Footer v-if="showNav" />
 	</div>

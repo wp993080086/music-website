@@ -25,13 +25,16 @@ export default {
 				{ type: '乐队', value: 3 }
 			],
 			initialList: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'l', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
-			singerList: [] // 歌手列表
+			singerList: [], // 歌手列表
+			skeletonLoading: true
 		}
 	},
 	components: {
 		singer
 	},
-	mounted() {
+	async mounted() {
+		this.skeletonLoading = true
+		await UTILS.sleep()
 		this.getSingerList()
 	},
 	computed: {
@@ -53,6 +56,7 @@ export default {
 			}
 			const res = await HTTP.singerList(param)
 			this.singerList = res.artists
+			this.skeletonLoading = false
 		},
 		// 修改类型
 		handleChangeType(v) {
