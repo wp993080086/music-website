@@ -34,11 +34,27 @@
 			</div>
 		</div>
 		<!-- MV列表 -->
-		<div class="main flex flex_w_w flex_s_b">
-			<div v-for="(item, index) in mvList" :key="index + item.artistId">
-				<mv-box :mv-info="item" />
-			</div>
-		</div>
+		<el-skeleton animated :loading="skeletonLoading" class="main flex flex_w_w flex_s_b">
+			<template slot="template">
+				<div class="w1200 flex flex_w_w flex_s_b">
+					<div
+						v-for="item of 8"
+						:key="item"
+						style="width: 280px; height: 250px; margin-bottom: 20px"
+					>
+						<el-skeleton-item
+							variant="rect"
+							style="width: 280px; height: 250px;"
+						/>
+					</div>
+				</div>
+			</template>
+			<template>
+				<div v-for="(item, index) in mvList" :key="index + item.artistId">
+					<mv-box :mv-info="item" />
+				</div>
+			</template>
+		</el-skeleton>
 	</div>
 </template>
 

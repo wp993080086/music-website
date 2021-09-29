@@ -30,17 +30,20 @@ export default {
 				{ hot: '最热', value: '最热' },
 				{ hot: '最新', value: '最新' }
 			],
-			mvList: [] // MV列表
+			mvList: [], // MV列表
+			skeletonLoading: true
 		}
 	},
 	components: {
 		mvBox
 	},
-	mounted() {
+	async mounted() {
+		this.skeletonLoading = true
+		await UTILS.sleep()
 		this.getMvList()
 	},
 	methods: {
-		// 获取歌手列表
+		// 获取mv列表
 		async getMvList() {
 			const param = {
 				type: this.mvType,
@@ -51,6 +54,7 @@ export default {
 			}
 			const res = await HTTP.mvList(param)
 			this.mvList = res.data
+			this.skeletonLoading = false
 		},
 		// 修改类型
 		handleChangeType(v) {
