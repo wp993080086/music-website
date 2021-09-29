@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import mixin from '../../mixins/path'
+import mixin from '../../mixins/index'
 import HTTP from '../../request/api/indexApi'
 import Banner from '../../components/banner'
 import Title from './component/titleLine'

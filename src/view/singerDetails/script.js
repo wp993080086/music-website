@@ -66,8 +66,6 @@ export default {
 				item.cover = item.imgurl
 				return item
 			})
-		},
-		// 切换菜单
-		handleChengeMenu(e, event) {}
+		}
 	}
 }

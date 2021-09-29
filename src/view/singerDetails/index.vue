@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div class="singer_song p_box br4">
-			<el-tabs v-model="activeMenu" @tab-click="handleChengeMenu">
+			<el-tabs v-model="activeMenu">
 				<el-tab-pane
 					v-for="(menu, index) in menuList"
 					:key="menu.name + index"

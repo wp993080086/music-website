@@ -1,4 +1,4 @@
-import HTTP from '../request/api/pathApi'
+import HTTP from '../request/api/mixinsApi'
 
 export default {
 	methods: {
@@ -8,7 +8,6 @@ export default {
 		*/
 		async getSongUrl(songId) {
 			try {
-				await UTILS.sleep(500)
 				const res = await HTTP.getSongUrl(songId)
 				if (res.code === 200) {
 					return Promise.resolve(res.data)
@@ -25,9 +24,39 @@ export default {
 		*/
 		async getCheckMusic(songId) {
 			try {
-				await UTILS.sleep(500)
 				const res = await HTTP.getCheckMusic(songId)
 				if (res.code === 200) {
+					return Promise.resolve(res.data)
+				} else {
+					return false
+				}
+			} catch (error) {
+				console.warn(error)
+			}
+		},
+		/**
+		* 登录状态
+		*/
+		async getLoginType() {
+			try {
+				const res = await HTTP.getLogin()
+				if (res.data.code === 200) {
+					return Promise.resolve(res.data)
+				} else {
+					return false
+				}
+			} catch (error) {
+				console.warn(error)
+			}
+		},
+		/**
+		* 获取用户详情
+		* @param {String} uid id
+		*/
+		async getUserDetails(uid) {
+			try {
+				const res = await HTTP.getUserDetails(uid)
+				if (res.data.code === 200) {
 					return Promise.resolve(res.data)
 				} else {
 					return false

@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import mixin from '../../mixins/path'
+import mixin from '../../mixins/index'
 
 export default {
 	name: 'SongComponents',

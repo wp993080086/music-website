@@ -43,7 +43,14 @@ export default {
 		// 选中
 		handleSelect(e) {
 			this.onKey = e
-			console.log(this.onKey)
+			const id = e.id + ''
+			this.handleClose()
+			if (e.id) {
+				this.$router.push({
+					name: 'SearchDetails',
+					params: { id }
+				})
+			}
 		},
 		// 搜索
 		async handleSearch(keywords, cb) {

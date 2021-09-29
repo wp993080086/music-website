@@ -98,6 +98,16 @@ const routes = [
 			title: 'MV详情',
 			auth: false
 		}
+	},
+	{
+		path: '/searchDetails:id',
+		name: 'SearchDetails',
+		component: () => import(/* webpackChunkName: "SearchDetails" */ '@/view/searchDetails'),
+		props: true,
+		meta: {
+			title: '搜索详情',
+			auth: false
+		}
 	}
 ]
 

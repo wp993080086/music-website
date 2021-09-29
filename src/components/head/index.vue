@@ -30,14 +30,19 @@
 			</div>
 			<!-- 设置 -->
 			<div class="setting flex_c h_hand">
-				<el-dropdown>
-					<span class="el-dropdown-link">
-						<span>鹏多多iii</span>
+				<el-dropdown @command="handleDownClick">
+					<span class="el-dropdown-link omit">
+						<span>{{ userMsg.nickname || '暂未登录' }}</span>
 						<i class="el-icon-arrow-down el-icon--right" />
 					</span>
 					<el-dropdown-menu slot="dropdown">
-						<el-dropdown-item>注销</el-dropdown-item>
-						<el-dropdown-item>设置</el-dropdown-item>
+						<template v-if="userMsg.nickname">
+							<el-dropdown-item command="2">注销</el-dropdown-item>
+							<el-dropdown-item command="1">登出</el-dropdown-item>
+						</template>
+						<template v-else>
+							<el-dropdown-item command="0">去登录</el-dropdown-item>
+						</template>
 					</el-dropdown-menu>
 				</el-dropdown>
 			</div>
@@ -47,13 +52,13 @@
 
 <script>
 import Search from '../search'
+import { mapState } from 'vuex'
 
 export default {
 	name: 'Head',
 	components: {
 		Search
 	},
-	props: [],
 	data() {
 		this.tabs = [
 			{
@@ -90,7 +95,8 @@ export default {
 			{ name: 'Singer', index: 3 },
 			{ name: 'SingerDetails', index: 3 },
 			{ name: 'Mv', index: 4 },
-			{ name: 'MvDetails', index: 4 }
+			{ name: 'MvDetails', index: 4 },
+			{ name: 'SearchDetails', index: 0 }
 		]
 		return {
 			logo: require('../../assets/icon/pdd.png'),
@@ -98,6 +104,11 @@ export default {
 			state: '',
 			isSearch: false
 		}
+	},
+	computed: {
+		...mapState([
+			'userMsg'
+		])
 	},
 	watch: {
 		'$route'(to, from) {
@@ -121,6 +132,31 @@ export default {
 		// 开关搜索框
 		toggleSearch(e) {
 			this.isSearch = e
+		},
+		// 下拉菜单选项
+		handleDownClick(e) {
+			switch (e) {
+			case '0':
+				this.$router.push({
+					name: 'Login'
+				})
+				break
+			case '1':
+				TOAST.confirm('确认登出吗？')
+					.then(() => {
+						this.$store.commit('clearUserMsg', {})
+						document.cookie = ''
+						this.$router.push({
+							name: 'Login'
+						})
+					})
+					.catch(() => {})
+				break
+			case '2':
+				this.$store.commit('clearUserMsg', {})
+				document.cookie = ''
+				TOAST.success('注销成功')
+			}
 		}
 	}
 }

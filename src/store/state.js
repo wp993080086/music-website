@@ -1,7 +1,7 @@
 export default {
 	cookie: null,
 	token: null,
-	userMsg: null,
+	userMsg: {},
 	isShowPlay: false,
 	songList: [],
 	songInfo: {}

@@ -105,6 +105,7 @@ export default {
 				LOADING.hide()
 				if (res.code === 200) {
 					this.cookie = res.cookie
+					document.cookie = res.cookie
 					this.token = res.token
 					this.userMsg = res.profile
 					this.$store.commit('setToken', this.token)
@@ -212,7 +213,7 @@ export default {
 		async handleLoginSucceed() {
 			TOAST.success('登陆成功，即将跳转')
 			this.$store.commit('setCookie', this.cookie)
-			await UTILS.sleep(2000)
+			await UTILS.sleep()
 			this.$router.push({
 				path: 'Index'
 			})

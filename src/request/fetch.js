@@ -68,6 +68,7 @@ instance.interceptors.response.use(
 	error => {
 		// 请求失败
 		RequestInfo.hideLoading()
+		console.log(error)
 		try {
 			const errorResponse = error.response
 			const status = (errorResponse.status || 0) * 1
@@ -79,7 +80,7 @@ instance.interceptors.response.use(
 				TOAST.error('接口不存在')
 				break
 			default:
-				TOAST.error(errorResponse.data.message, 3)
+				TOAST.error(errorResponse.data.message)
 			}
 			return Promise.reject(errorResponse)
 		}	catch (e) {

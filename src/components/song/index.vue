@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import mixin from '../../mixins/path'
+import mixin from '../../mixins/index'
 import { mapMutations } from 'vuex'
 
 export default {

@@ -2,7 +2,7 @@ import HTTP from '../../request/api/mvApi'
 import DPlayer from 'dplayer'
 
 export default {
-	name: 'MvDatails',
+	name: 'MvDetails',
 	data() {
 		return {
 			id: '',

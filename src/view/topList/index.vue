@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import mixin from '../../mixins/path'
+import mixin from '../../mixins/index'
 import HTTP from '../../request/api/topListApi'
 import { mapMutations } from 'vuex'
 

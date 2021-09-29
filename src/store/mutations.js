@@ -3,6 +3,10 @@ export default {
 	setUserMsg(state, val) {
 		state.userMsg = val
 	},
+	// 清除用户信息
+	clearUserMsg(state, val) {
+		state.userMsg = val
+	},
 	// 设置Cookie
 	setCookie(state, val) {
 		state.cookie = val
