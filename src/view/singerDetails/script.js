@@ -1,8 +1,11 @@
 import HTTP from '../../request/api/singerApi'
 import mvBox from '../../components/mv'
+import mixin from '../../mixins/index'
+import { mapMutations } from 'vuex'
 
 export default {
 	name: 'SingerDetails',
+	mixins: [mixin],
 	components: {
 		mvBox
 	},
@@ -39,6 +42,10 @@ export default {
 		this.getSingerAllData()
 	},
 	methods: {
+		...mapMutations([
+			'setSongInfo',
+			'setSongList'
+		]),
 		// 获取歌手 单曲+信息+MV
 		async getSingerAllData() {
 			const allRes =  await Promise.allSettled([
@@ -66,6 +73,27 @@ export default {
 				item.cover = item.imgurl
 				return item
 			})
+		},
+		// 播放
+		async handlePlay(data) {
+			try {
+				const res = await this.getSongUrl(data.id)
+				if (!res[0].url || res[0].url === null) {
+					TOAST.error('暂无版权')
+					return
+				}
+				const param = {
+					id: data.id,
+					name: data.name,
+					img: data.picUrl,
+					singer: data.singer,
+					path: res[0].url
+				}
+				this.setSongInfo(param)
+				this.setSongList(param)
+			} catch (error) {
+				console.warn(error)
+			}
 		}
 	}
 }

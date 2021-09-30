@@ -2,20 +2,28 @@ import fetch from '../fetch'
 
 export default {
 	apis: {
-		get_search: `search`, // 搜索音乐
-		songDatails: '/song/detail' // 获取歌曲详情
+		getSearch: '/cloudsearch', // 搜索音乐
+		songDatails: '/song/detail', // 获取歌曲详情
+		similarSong: '/simi/song', // 获取相似音乐
+		lyric: '/lyric', // 获取歌词
+		songComment: '/comment/music' // 歌曲评论
 	},
 	/**
 	* 搜索音乐
 	* @param {String} keywords 搜索条件
+	* @param {String} limit 返回数量
+	* @param {String} type 搜索类型 默认 1 定义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合
 	*/
-	search(keywords) {
+	search(keywords, type, limit = 30) {
 		return fetch({
-			url: UTILS.joinTime(this.apis.get_search),
+			url: UTILS.joinTime(this.apis.getSearch),
 			method: 'post',
 			data: {
-				keywords
-			}
+				keywords,
+				type,
+				limit
+			},
+			notLoad: true
 		})
 	},
 	/**
@@ -28,6 +36,50 @@ export default {
 			method: 'post',
 			data: {
 				ids
+			},
+			notLoad: true
+		})
+	},
+	/**
+	* 获取相似音乐
+	* @param {String} id 音乐id
+	*/
+	getSimilarSong(id) {
+		return fetch({
+			url: UTILS.joinTime(this.apis.similarSong),
+			method: 'post',
+			data: {
+				id
+			},
+			notLoad: true
+		})
+	},
+	/**
+	* 获取歌词
+	* @param {String} id 歌曲id
+	*/
+	getLyric(id) {
+		return fetch({
+			url: UTILS.joinTime(this.apis.lyric),
+			method: 'post',
+			data: {
+				id
+			},
+			notLoad: true
+		})
+	},
+	/**
+	* 歌曲评论
+	* @param {String} id 音乐id
+	* @param {String} limit 每页数量
+	* @param {String} offset 分页
+	*/
+	getSongComment(param) {
+		return fetch({
+			url: UTILS.joinTime(this.apis.songComment),
+			method: 'post',
+			data: {
+				...param
 			},
 			notLoad: true
 		})

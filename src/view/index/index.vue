@@ -178,17 +178,19 @@ export default {
 		},
 		// 去更多
 		toMore(type) {
+			let path = ''
 			switch (type) {
 			case 	'0':
-				console.log('0')
+				path = 'SongList'
 				break
 			case 	'1':
-				console.log('1')
+				path = 'TopList'
 				break
 			case 	'2':
-				console.log('2')
+				path = 'Singer'
 				break
 			}
+			this.$router.push({ name: path })
 		},
 		// 把第一首放入正在播放列表
 		async setOneSong() {

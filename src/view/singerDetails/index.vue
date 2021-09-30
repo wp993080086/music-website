@@ -35,6 +35,11 @@
 							<el-table-column prop="singer" label="歌手" />
 							<el-table-column prop="dvd" label="专辑" show-overflow-tooltip />
 							<el-table-column prop="duration" label="时长" width="100" />
+							<el-table-column prop="operation" label="操作" width="80">
+								<template slot-scope="scope">
+									<i class="play_icon h_hand el-icon-video-play" @click="handlePlay(scope.row)" />
+								</template>
+							</el-table-column>
 						</el-table>
 					</template>
 					<template v-else-if="activeMenu === 'mv'">

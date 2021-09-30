@@ -100,7 +100,7 @@ const routes = [
 		}
 	},
 	{
-		path: '/searchDetails:id',
+		path: '/searchDetails:keyword',
 		name: 'SearchDetails',
 		component: () => import(/* webpackChunkName: "SearchDetails" */ '@/view/searchDetails'),
 		props: true,
@@ -113,7 +113,21 @@ const routes = [
 
 const router = new VueRouter({
 	mode: 'hash',
-	routes
+	routes,
+	// 按左上角返回时滚动位置还原
+	scrollBehavior(to, from, savedPosition) {
+		if (savedPosition) {
+			setTimeout(() => {
+				window.scrollTo({
+					left: savedPosition.x,
+					top: savedPosition.y,
+					behavior: 'smooth'
+				})
+			}, 500)
+		} else {
+			return { x: 0, y: 0 }
+		}
+	}
 })
 
 export default router

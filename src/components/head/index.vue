@@ -22,11 +22,10 @@
 		<!-- 右侧 -->
 		<div class="right flex">
 			<!-- 搜索 -->
-			<div class="search" @click.self="toggleSearch(true)">
-				<span v-if="!isSearch" class="hint" @click.self="toggleSearch(true)">搜索歌名/歌手</span>
-				<transition name="scale" mode="out-in">
-					<Search v-if="isSearch" @handleClose="toggleSearch" />
-				</transition>
+			<div class="search flex_c">
+				<el-input v-model.trim="searchValue" placeholder="请搜索关键词" clearable @keyup.enter.native="handleSearchClick()">
+					<el-button slot="append" icon="el-icon-search" @click="handleSearchClick" />
+				</el-input>
 			</div>
 			<!-- 设置 -->
 			<div class="setting flex_c h_hand">
@@ -51,14 +50,10 @@
 </template>
 
 <script>
-import Search from '../search'
 import { mapState } from 'vuex'
 
 export default {
 	name: 'Head',
-	components: {
-		Search
-	},
 	data() {
 		this.tabs = [
 			{
@@ -102,7 +97,7 @@ export default {
 			logo: require('../../assets/icon/pdd.png'),
 			nowIndex: 0,
 			state: '',
-			isSearch: false
+			searchValue: ''
 		}
 	},
 	computed: {
@@ -129,9 +124,13 @@ export default {
 				name: path
 			})
 		},
-		// 开关搜索框
-		toggleSearch(e) {
-			this.isSearch = e
+		// 开始搜索
+		handleSearchClick() {
+			const keyword = this.searchValue
+			this.$router.push({
+				name: 'SearchDetails',
+				params: { keyword }
+			})
 		},
 		// 下拉菜单选项
 		handleDownClick(e) {
