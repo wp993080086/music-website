@@ -1,7 +1,10 @@
 import HTTP from '../../request/api/songListApi'
+import mixin from '../../mixins/index'
+import { mapMutations } from 'vuex'
 
 export default {
 	name: 'SongListDatails',
+	mixins: [mixin],
 	components: {},
 	props: {
 		id: {
@@ -33,6 +36,10 @@ export default {
 		this.getSongListComment()
 	},
 	methods: {
+		...mapMutations([
+			'setSongInfo',
+			'setSongList'
+		]),
 		// 获取歌单详情
 		async getSongListDetail() {
 			const res = await HTTP.songListDetail(this.id)
@@ -59,7 +66,8 @@ export default {
 					singer: item.ar[0].name,
 					singerId: item.ar[0].id,
 					duration: UTILS.formatTime(item.dt),
-					dvd: item.al.name
+					dvd: item.al.name,
+					picUrl: item.al.picUrl
 				}
 				list.push(obj)
 			})
@@ -75,6 +83,27 @@ export default {
 			const res = await HTTP.songListComment(this.id)
 			this.songListComment = res.hotComments
 			console.log(this.songListComment)
+		},
+		// 播放
+		async handlePlay(data) {
+			try {
+				const res = await this.getSongUrl(data.id)
+				if (!res[0].url || res[0].url === null) {
+					TOAST.error('暂无版权')
+					return
+				}
+				const param = {
+					id: data.id,
+					name: data.name,
+					img: data.picUrl,
+					singer: data.singer,
+					path: res[0].url
+				}
+				this.setSongInfo(param)
+				this.setSongList(param)
+			} catch (error) {
+				console.warn(error)
+			}
 		}
 	}
 }

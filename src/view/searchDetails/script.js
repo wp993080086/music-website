@@ -135,12 +135,14 @@ export default {
 		// 单曲数据处理
 		handleSong(res) {
 			this.song = res.result.songs.map(item => {
+				console.log(item)
 				return {
 					name: item.name,
 					id: item.id,
 					dvd: item.al.name,
 					duration: item.dt,
-					singer: item.ar[0].name
+					singer: item.ar[0].name,
+					picUrl: item.al.picUrl
 				}
 			})
 		},

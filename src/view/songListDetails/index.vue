@@ -31,16 +31,17 @@
 					</div>
 				</div>
 				<div class="left_table">
-					<el-table
-						:data="songDetailsList"
-						stripe
-						style="width: 100%"
-					>
+					<el-table :data="songDetailsList" stripe style="width: 100%">
 						<el-table-column type="index" width="50" />
 						<el-table-column prop="name" label="歌名" show-overflow-tooltip />
 						<el-table-column prop="singer" label="歌手" width="120" />
 						<el-table-column prop="dvd" label="专辑" show-overflow-tooltip />
 						<el-table-column prop="duration" label="时长" show-overflow-tooltip width="100" />
+						<el-table-column prop="operation" label="操作" width="50">
+							<template slot-scope="scope">
+								<i class="play_icon h_hand el-icon-video-play" title="播放" @click="handlePlay(scope.row)" />
+							</template>
+						</el-table-column>
 					</el-table>
 				</div>
 			</div>

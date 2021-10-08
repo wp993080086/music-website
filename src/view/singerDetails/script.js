@@ -63,7 +63,8 @@ export default {
 					singer: item.ar[0].name,
 					singerId: item.ar[0].id,
 					duration: UTILS.formatTime(item.dt),
-					dvd: item.al.name
+					dvd: item.al.name,
+					picUrl: item.al.picUrl
 				}
 				list.push(obj)
 			})
