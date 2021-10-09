@@ -8,7 +8,8 @@
     "serve-test": "vue-cli-service serve --mode test",
     "build": "vue-cli-service build",
     "test": "vue-cli-service build --mode test",
-    "all": "vue-cli-service build && vue-cli-service build --mode test"
+    "all": "vue-cli-service build && vue-cli-service build --mode test",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.20.0",

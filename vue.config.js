@@ -1,6 +1,6 @@
 const baseURL = process.env.VUE_APP_BASE_URL
 const webpack = require('webpack')
-const path = require("path")
+const path = require('path')
 
 module.exports = {
 	publicPath: './',
@@ -17,7 +17,7 @@ module.exports = {
 			open: false,
 			overlay: {
 				warning: true,
-				errors: true,
+				errors: true
 			},
 			host: 'localhost',
 			port: '9000',
@@ -26,30 +26,30 @@ module.exports = {
 				'/api': {
 					target: baseURL,
 					secure: false,
-					changeOrigin: true,//开启代理
+					changeOrigin: true, // 开启代理
 					pathRewrite: {
-						'^/api': '/',
-					},
-				},
+						'^/api': '/'
+					}
+				}
 			}
 		},
 		plugins: [
 			new webpack.ProvidePlugin({
-        UTILS: [path.resolve(__dirname, './src/utils/Utils.js'), 'default'],
+				UTILS: [path.resolve(__dirname, './src/utils/Utils.js'), 'default'],
 				TOAST: [path.resolve(__dirname, './src/utils/Toast.js'), 'default'],
 				LOADING: [path.resolve(__dirname, './src/utils/Loading.js'), 'default']
-      })
+			})
 		]
 	}
-};
+}
 // 导入全局less
 function addStyleResource(rule) {
 	rule.use('style-resource')
-	.loader('style-resources-loader')
-	.options({
-		patterns: [
-			
-			path.resolve(__dirname, './src/assets/css/globalColor.less')
-		],
-	})
+		.loader('style-resources-loader')
+		.options({
+			patterns: [
+
+				path.resolve(__dirname, './src/assets/css/globalColor.less')
+			]
+		})
 }

@@ -5,6 +5,7 @@
 - 测试环境打包：npm run test
 - 正式环境打包：npm run build
 - 同时打包正式环境&&测试环境：npm run all
+- 修复：npm run lint
 
 # 已有功能
 
@@ -14,7 +15,13 @@
 - 音乐播放器
 - 歌单 & 详情
 - 歌手 & 详情
-- MV & 详情
+- MV & 详情mv播放
+- 排行榜
+- 搜索
+
+# 进行中
+
+- 歌词页
 
 # 目录结构
 ```javascript
