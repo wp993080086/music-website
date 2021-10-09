@@ -6,7 +6,8 @@ export default {
 		songListDetail: '/playlist/detail', // 获取歌单详情
 		songListComment: '/comment/playlist', // 歌单评论
 		songListSubscribers: '/playlist/subscribers', // 歌单收藏者
-		songDatails: '/song/detail' // 获取歌曲详情
+		songDatails: '/song/detail', // 获取歌曲详情
+		all: '/playlist/catlist'
 	},
 	/**
 	* 获取精品歌单
@@ -88,6 +89,16 @@ export default {
 			data: {
 				ids
 			},
+			notLoad: true
+		})
+	},
+	/**
+	* 歌单分类
+	*/
+	getALLListType() {
+		return fetch({
+			url: UTILS.joinTime(this.apis.all),
+			method: 'post',
 			notLoad: true
 		})
 	}

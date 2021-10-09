@@ -2,7 +2,14 @@
 	<div id="singer_details">
 		<div class="singer_info">
 			<div class="singer_img flex_c">
-				<img :src="info.img1v1Url + '?param=200y200'" alt="歌手写真" class="br50">
+				<el-image style="width: 200px; height: 200px" :src="info.img1v1Url + '?param=200y200'">
+					<div slot="placeholder" class="image-slot flex_c br50">
+						<i class="el-icon-loading" />
+					</div>
+					<div slot="error" class="image-slot flex_c br50">
+						<i class="el-icon-loading" />
+					</div>
+				</el-image>
 			</div>
 			<div class="singer_name flex_c">
 				<p>{{ info.name }}</p>

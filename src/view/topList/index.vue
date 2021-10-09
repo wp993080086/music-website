@@ -29,7 +29,9 @@
 										</div>
 									</el-image>
 								</div>
-								<div class="item_hint flex flex_a_c">{{ item.updateFrequency }}</div>
+								<div class="item_hint flex flex_a_c">
+									<span>{{ item.name }}</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -165,7 +167,7 @@ export default {
 				songList.forEach(item => {
 					const obj = {
 						name: item.al.name,
-						id: item.al.id,
+						id: item.id,
 						picUrl: item.al.picUrl,
 						singer: item.ar[0].name,
 						singerId: item.ar[0].id,
@@ -183,6 +185,11 @@ export default {
 		handleChangeSongList(id, index) {
 			this.listId = id
 			this.nowIndex = index
+			window.scrollTo({
+				left: 0,
+				top: 0,
+				behavior: 'smooth'
+			})
 		},
 		// 播放
 		async handlePlay(data) {
@@ -201,6 +208,10 @@ export default {
 				}
 				this.setSongInfo(param)
 				this.setSongList(param)
+				const isShow = this.$store.state.isShowPlay
+				if (!isShow) {
+					this.$store.state.isShowPlay = true
+				}
 			} catch (error) {
 				console.warn(error)
 			}

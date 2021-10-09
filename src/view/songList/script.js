@@ -17,7 +17,9 @@ export default {
 				'电子'
 			],
 			songType: '华语',
-			SongList: []
+			typeList: [],
+			SongList: [],
+			visible: false
 		}
 	},
 	computed: {
@@ -31,6 +33,7 @@ export default {
 	},
 	mounted() {
 		this.getSongList()
+		this.getAllSongListType()
 	},
 	methods: {
 		// 获取歌单
@@ -43,7 +46,7 @@ export default {
 						item.picUrl = item.coverImgUrl
 						return item
 					})
-					console.log(this.SongList)
+					this.visible = false
 				}
 			} catch (error) {
 				console.warn(error)
@@ -54,6 +57,28 @@ export default {
 			if (!this.skeleton) {
 				this.songType = type
 				this.getSongList()
+			}
+		},
+		// 显示更多
+		handleShowAll() {
+			this.visible = !this.visible
+		},
+		// 歌单分类
+		async getAllSongListType() {
+			try {
+				const res = await HTTP.getALLListType()
+				if (res.code === 200) {
+					this.typeList = res.sub.map(item => {
+						return {
+							name: item.name,
+							category: item.category,
+							count: item.resourceCount
+						}
+					})
+					console.log(this.typeList)
+				}
+			} catch (error) {
+				console.warn(error)
 			}
 		}
 	}

@@ -205,6 +205,10 @@ export default {
 			}
 			this.setSongInfo(param)
 			this.setSongList(param)
+			const isShow = this.$store.state.isShowPlay
+			if (!isShow) {
+				this.$store.state.isShowPlay = true
+			}
 		}
 	}
 }
