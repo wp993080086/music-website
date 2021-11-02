@@ -1,6 +1,7 @@
 import HTTP from '@/request/api/loginApi'
 import QRCode from 'qrcodejs2'
 import SnowFlake from '@/plugins/snowflake'
+import { mapMutations } from 'vuex'
 
 export default {
 	name: 'Login',
@@ -45,6 +46,11 @@ export default {
 		this.codeTimer && clearInterval(this.codeTimer)
 	},
 	methods: {
+		...mapMutations([
+			'setCookie',
+			'setToken',
+			'setUserMsg'
+		]),
 		// 雪花
 		startSnow(src1, src2, num) {
 			const snowArr = []
@@ -108,8 +114,9 @@ export default {
 					document.cookie = res.cookie
 					this.token = res.token
 					this.userMsg = res.profile
-					this.$store.commit('setToken', this.token)
-					this.$store.commit('setUserMsg', this.userMsg)
+					this.setCookie(this.cookie)
+					this.setToken(this.token)
+					this.setUserMsg(this.userMsg)
 					this.handleLoginSucceed()
 				} else {
 					TOAST.alert(res.msg)

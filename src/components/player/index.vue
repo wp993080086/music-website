@@ -1,5 +1,5 @@
 <template>
-	<div id="player" :class="['pf','z99', isShowPlay ? '':'hide_hook']">
+	<div id="player" :class="['pf','z9999', isShowPlay ? '':'hide_hook']">
 		<div class="play_content flex ofh">
 			<!-- 封面 -->
 			<div class="song_img flex_c">
@@ -139,7 +139,6 @@ export default {
 			}
 		}
 	},
-	created() {},
 	mounted() {
 		// 如果有缓存就替换
 		if (sessionStorage.getItem('songList')) {
@@ -147,7 +146,6 @@ export default {
 			this.handleReplaceSongList(JSON.parse(param))
 		}
 	},
-	updated() {},
 	methods: {
 		...mapMutations([
 			'setSongList',
@@ -155,9 +153,8 @@ export default {
 			'setSongInfo',
 			'handleReplaceSongList'
 		]),
-		// 准备好
+		// Audio标签准备好了
 		HandleAudioReady() {
-			console.log('准备好了')
 			try {
 				const songLength = this.$refs.audio.duration
 				this.songLength = UTILS.formatSecondTime(songLength)
@@ -192,22 +189,21 @@ export default {
 			// 判断逻辑
 			switch (type) {
 			case 0:
-				console.log('随机')
+				// 随机
 				after = UTILS.getRandom(this.songList.length - 1)
 				if (after <= 0) after = 0
 				break
 			case 1:
-				console.log('循环播放')
+				// 循环播放
 				after = index + 1
 				if (after > Limit) after = 0
 				break
 			case 2:
-				console.log('单曲循环')
-				after = index + 1
-				if (after > Limit) after = 0
+				// 单曲循环
+				after = index
 				break
 			case 3:
-				console.log('顺序播放')
+				// 顺序播放
 				after = index + 1
 				if (after > Limit) after = 0
 				break
@@ -233,31 +229,34 @@ export default {
 				console.warn(error)
 			}
 		},
-		// 改变播放模式
+		/**
+		* 改变播放模式
+		* @param {Number} type 类型 playType 1=>列表循环 2=>单曲循环 3=>顺序播放 0=>随机播放
+		*/
 		handlePlaySort(type) {
 			switch (type) {
 			case 0:
 				this.playType = 1
-				console.log('循环')
+				TOAST.success('列表循环')
 				break
 			case 1:
 				this.playType = 2
-				console.log('单曲循环')
+				TOAST.success('单曲循环')
 				break
 			case 2:
 				this.playType = 3
-				console.log('列表循环')
+				TOAST.success('顺序播放')
 				break
 			case 3:
 				this.playType = 0
-				console.log('随机')
+				TOAST.success('随机播放')
 				break
 			}
 		},
 		// 播放完毕
 		handelPlayEnd() {
-			TOAST.info('播放完毕')
 			this.isPlay = false
+			this.handleNext()
 		},
 		// 同步播放进度
 		handleUpdateTime() {

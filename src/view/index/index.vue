@@ -89,7 +89,7 @@ import Title from './component/titleLine'
 import songList from '../../components/songList'
 import song from '../../components/song'
 import singer from '../../components/singer'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
 	name: 'Index',
@@ -113,15 +113,18 @@ export default {
 			skeletonD: true
 		}
 	},
-	computed: {},
-	async created() {
+	computed: {
+		...mapState([
+			'songList'
+		])
+	},
+	async mounted() {
 		await UTILS.sleep()
 		this.getBanner()
 		this.getRecommendSongList()
 		this.getRecommendSong()
 		this.getTopSinger()
 	},
-	mounted() {},
 	methods: {
 		...mapMutations([
 			'setSongInfo',
@@ -194,6 +197,7 @@ export default {
 		},
 		// 把第一首放入正在播放列表
 		async setOneSong() {
+			if (this.songList.length > 0) return
 			const list = this.recommendSongList[0]
 			const res = await this.getSongUrl(list.id)
 			const param = {

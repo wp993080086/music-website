@@ -75,7 +75,6 @@ export default {
 							count: item.resourceCount
 						}
 					})
-					console.log(this.typeList)
 				}
 			} catch (error) {
 				console.warn(error)

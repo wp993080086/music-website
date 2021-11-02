@@ -9,7 +9,7 @@
 		<!-- 播放器 -->
 		<Player v-if="showNav" />
 		<!-- 页脚 -->
-		<Footer v-if="showNav" />
+		<Footer v-if="showNav" :style="{opacity: opacityVal}" />
 	</div>
 </template>
 
@@ -17,6 +17,7 @@
 import Head from './components/head'
 import Footer from './components/footer'
 import Player from './components/player'
+import { mapMutations } from 'vuex'
 
 export default {
 	name: 'App',
@@ -31,7 +32,8 @@ export default {
 			special: [
 				'Login',
 				'Signin'
-			]
+			],
+			opacityVal: 0
 		}
 	},
 	watch: {
@@ -47,6 +49,23 @@ export default {
 				this.showNav = true
 			}
 		}
+	},
+	async mounted() {
+		const userCookie = sessionStorage.getItem('userCookie')
+		const userToken = sessionStorage.getItem('userToken')
+		const userMsg = sessionStorage.getItem('userMsg')
+		userCookie && this.setCookie(userCookie)
+		userToken && this.setToken(userToken)
+		userMsg && this.setUserMsg(JSON.parse(userMsg))
+		await UTILS.sleep(2000)
+		this.opacityVal = 1
+	},
+	methods: {
+		...mapMutations([
+			'setUserMsg',
+			'setCookie',
+			'setToken'
+		])
 	}
 }
 </script>

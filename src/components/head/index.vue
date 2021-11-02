@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
 	name: 'Head',
@@ -115,6 +115,9 @@ export default {
 		}
 	},
 	methods: {
+		...mapMutations([
+			'clearUserMsg'
+		]),
 		// 切换tabs
 		handleTabs(index, path) {
 			this.nowIndex = index
@@ -143,8 +146,7 @@ export default {
 			case '1':
 				TOAST.confirm('确认登出吗？')
 					.then(() => {
-						this.$store.commit('clearUserMsg', {})
-						document.cookie = ''
+						this.clearUserMsg()
 						this.$router.push({
 							name: 'Login'
 						})
@@ -152,8 +154,7 @@ export default {
 					.catch(() => {})
 				break
 			case '2':
-				this.$store.commit('clearUserMsg', {})
-				document.cookie = ''
+				this.clearUserMsg()
 				TOAST.success('注销成功')
 			}
 		}

@@ -48,7 +48,7 @@ export default {
 	* @param {Number} offset 第几页
 	* @param {Number} before 分页参数 取上一页最后一项的time获取下一页数据(获取超过5000条评论的时候需要用到)
 	*/
-	songListComment(id, limit = 20, offset = 0) {
+	songListComment(id, offset = 0, limit = 20) {
 		return fetch({
 			url: UTILS.joinTime(this.apis.songListComment),
 			method: 'post',

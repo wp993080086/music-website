@@ -166,7 +166,7 @@ export default {
 				const list = []
 				songList.forEach(item => {
 					const obj = {
-						name: item.al.name,
+						name: item.name,
 						id: item.id,
 						picUrl: item.al.picUrl,
 						singer: item.ar[0].name,

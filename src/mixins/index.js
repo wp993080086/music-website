@@ -64,6 +64,25 @@ export default {
 			} catch (error) {
 				console.warn(error)
 			}
+		},
+		/**
+		* 发送评论
+		* @param {String} content 评论内容
+		* @param {String} type 0: 歌曲 1: mv 2: 歌单
+		* @param {String} id id
+		* @param {String} t 1 发送, 2 回复
+		*/
+		async sendComment(id, type, content) {
+			try {
+				const res = await HTTP.sendComment(id, type, content)
+				if (res.code === 200) {
+					return Promise.resolve(res.comment)
+				} else {
+					return false
+				}
+			} catch (error) {
+				console.warn(error)
+			}
 		}
 	}
 }

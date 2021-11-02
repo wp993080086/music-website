@@ -1,6 +1,6 @@
 import HTTP from '../../request/api/songListApi'
 import mixin from '../../mixins/index'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
 	name: 'SongListDatails',
@@ -18,10 +18,17 @@ export default {
 			songListComment: {}, // 歌单评论
 			subscribersList: {}, // 歌单收藏者
 			songId: '', // 歌曲ID 多个用,分开
-			songDetailsList: [] // 歌曲详情
+			songDetailsList: [], // 歌曲详情
+			loadingLeft: true,
+			loadingLike: true,
+			loadingComment: true,
+			textarea: ''
 		}
 	},
 	computed: {
+		...mapState([
+			'userMsg'
+		]),
 		// 播放数转成万为单位
 		playCount() {
 			return (num) => {
@@ -72,17 +79,19 @@ export default {
 				list.push(obj)
 			})
 			this.songDetailsList = list
+			this.loadingLeft = false
 		},
 		// 歌单收藏者
 		async getSongListSubscribers() {
 			const res = await HTTP.songListSubscribers(this.id)
 			this.subscribersList = res.subscribers
+			this.loadingLike = false
 		},
 		// 获取歌单评论
 		async getSongListComment() {
 			const res = await HTTP.songListComment(this.id)
-			this.songListComment = res.hotComments
-			console.log(this.songListComment)
+			this.songListComment = res.comments
+			this.loadingComment = false
 		},
 		// 播放
 		async handlePlay(data) {
@@ -107,6 +116,23 @@ export default {
 				}
 			} catch (error) {
 				console.warn(error)
+			}
+		},
+		// 提交评论
+		async saveComment() {
+			if (this.textarea) {
+				const id = this.id
+				const type = 2
+				const content = this.textarea
+				const res = await this.sendComment(id, type, content)
+				if (res) {
+					TOAST.success('评论发送成功')
+					this.loadingComment = true
+					this.textarea = ''
+					this.getSongListComment()
+				}
+			} else {
+				TOAST.info('请先输入评论内容')
 			}
 		}
 	}

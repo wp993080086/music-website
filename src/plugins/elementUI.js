@@ -20,7 +20,8 @@ import {
 	Tabs,
 	TabPane,
 	Tag,
-	Empty
+	Empty,
+	Loading
 } from 'element-ui'
 
 Vue.use(Button)
@@ -44,3 +45,4 @@ Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Tag)
 Vue.use(Empty)
+Vue.use(Loading)
