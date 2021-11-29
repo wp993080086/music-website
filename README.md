@@ -1,4 +1,4 @@
-# pdd-music PC浏览器版的音乐网站
+# web-music PC浏览器版的音乐网站
 
 - 安装：npm install
 - 运行：npm run serve
