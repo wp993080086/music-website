@@ -10,7 +10,7 @@ const routes = [
 	{
 		path: '/login',
 		name: 'Login',
-		component: () => import(/* webpackChunkName: "login" */ '@/view/login'),
+		component: () => import(/* webpackChunkName: "login" */ '@/views/login'),
 		meta: {
 			title: '登录',
 			auth: false
@@ -19,7 +19,7 @@ const routes = [
 	{
 		path: '/signin',
 		name: 'Signin',
-		component: () => import(/* webpackChunkName: "signin" */ '@/view/signin'),
+		component: () => import(/* webpackChunkName: "signin" */ '@/views/signin'),
 		meta: {
 			title: '注册',
 			auth: false
@@ -28,7 +28,7 @@ const routes = [
 	{
 		path: '/index',
 		name: 'Index',
-		component: () => import(/* webpackChunkName: "index" */ '@/view/index'),
+		component: () => import(/* webpackChunkName: "index" */ '@/views/index'),
 		mate: {
 			title: '首页',
 			auth: false
@@ -37,7 +37,7 @@ const routes = [
 	{
 		path: '/topList',
 		name: 'TopList',
-		component: () => import(/* webpackChunkName: "topList" */ '@/view/topList'),
+		component: () => import(/* webpackChunkName: "topList" */ '@/views/topList'),
 		meta: {
 			title: '排行榜',
 			auth: false
@@ -46,7 +46,7 @@ const routes = [
 	{
 		path: '/songlist',
 		name: 'SongList',
-		component: () => import(/* webpackChunkName: "songList" */ '@/view/songList'),
+		component: () => import(/* webpackChunkName: "songList" */ '@/views/songList'),
 		meta: {
 			title: '歌单',
 			auth: false
@@ -55,7 +55,7 @@ const routes = [
 	{
 		path: '/songListDetails:id',
 		name: 'SongListDetails',
-		component: () => import(/* webpackChunkName: "songListDetails" */ '@/view/songListDetails'),
+		component: () => import(/* webpackChunkName: "songListDetails" */ '@/views/songListDetails'),
 		props: true,
 		meta: {
 			title: '歌单详情',
@@ -65,7 +65,7 @@ const routes = [
 	{
 		path: '/singer',
 		name: 'Singer',
-		component: () => import(/* webpackChunkName: "singer" */ '@/view/singer'),
+		component: () => import(/* webpackChunkName: "singer" */ '@/views/singer'),
 		meta: {
 			title: '歌手',
 			auth: false
@@ -74,7 +74,7 @@ const routes = [
 	{
 		path: '/singerDetails:id',
 		name: 'SingerDetails',
-		component: () => import(/* webpackChunkName: "singerDetails" */ '@/view/singerDetails'),
+		component: () => import(/* webpackChunkName: "singerDetails" */ '@/views/singerDetails'),
 		props: true,
 		meta: {
 			title: '歌手详情',
@@ -84,7 +84,7 @@ const routes = [
 	{
 		path: '/mv',
 		name: 'Mv',
-		component: () => import(/* webpackChunkName: "mv" */ '@/view/mv'),
+		component: () => import(/* webpackChunkName: "mv" */ '@/views/mv'),
 		meta: {
 			title: 'MV',
 			auth: false
@@ -93,7 +93,7 @@ const routes = [
 	{
 		path: '/mvDetails',
 		name: 'MvDetails',
-		component: () => import(/* webpackChunkName: "MvDetails" */ '@/view/mvDetails'),
+		component: () => import(/* webpackChunkName: "MvDetails" */ '@/views/mvDetails'),
 		meta: {
 			title: 'MV详情',
 			auth: false
@@ -102,7 +102,7 @@ const routes = [
 	{
 		path: '/searchDetails:keyword',
 		name: 'SearchDetails',
-		component: () => import(/* webpackChunkName: "SearchDetails" */ '@/view/searchDetails'),
+		component: () => import(/* webpackChunkName: "SearchDetails" */ '@/views/searchDetails'),
 		props: true,
 		meta: {
 			title: '搜索详情',

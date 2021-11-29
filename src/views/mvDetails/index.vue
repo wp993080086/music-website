@@ -9,14 +9,30 @@
 						<span class="title">{{ detailList.artistName }} - 《{{ detailList.name }}》</span>
 					</div>
 					<div class="info_group">
-						<span>发布时间：{{ detailList.publishTime }}</span>
-						<span>播放次数：{{ detailList.playCount }}</span>
-						<span>已有「{{ detailList.shareCount }}」人转发</span>
+						<span>发布时间：<span class="red">{{ detailList.publishTime }}</span></span>
+						<span>播放次数：<span class="red">{{ detailList.playCount }}</span></span>
+						<span>已有「<span class="red">{{ detailList.shareCount }}</span>」人转发</span>
 					</div>
 				</div>
 			</div>
 			<!-- 评论 -->
-			<div class="comment p_box br4">
+			<div v-loading="loadingComment" class="comment p_box br4">
+				<div class="comment_box">
+					<div class="textarea">
+						<el-input
+							v-model.trim="textarea"
+							type="textarea"
+							maxlength="100"
+							show-word-limit
+							resize="none"
+							:placeholder="cookie === null ? '请先登录再评论' : '请输入评论内容'"
+							:disabled="cookie === null"
+						/>
+					</div>
+					<div class="comment_btn flex">
+						<el-button type="primary" size="mini" :disabled="cookie === null" @click="saveComment">提交评论</el-button>
+					</div>
+				</div>
 				<div class="title_line">
 					<div class="module_line">
 						<div class="module_title pr flex flex_s_b">

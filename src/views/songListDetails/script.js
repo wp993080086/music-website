@@ -27,7 +27,7 @@ export default {
 	},
 	computed: {
 		...mapState([
-			'userMsg'
+			'cookie'
 		]),
 		// 播放数转成万为单位
 		playCount() {
@@ -129,6 +129,7 @@ export default {
 					TOAST.success('评论发送成功')
 					this.loadingComment = true
 					this.textarea = ''
+					await UTILS.sleep(2000)
 					this.getSongListComment()
 				}
 			} else {

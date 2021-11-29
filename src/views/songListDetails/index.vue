@@ -86,7 +86,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="comment_box">
+					<div class="comment_box2">
 						<div class="textarea">
 							<el-input
 								v-model.trim="textarea"
@@ -94,11 +94,12 @@
 								maxlength="100"
 								show-word-limit
 								resize="none"
-								placeholder="请输入评论内容"
+								:placeholder="cookie === null ? '请先登录再评论' : '请输入评论内容'"
+								:disabled="cookie === null"
 							/>
 						</div>
 						<div class="comment_btn flex">
-							<el-button type="primary" size="mini" @click="saveComment">提交评论</el-button>
+							<el-button type="primary" size="mini" :disabled="cookie === null" @click="saveComment">提交评论</el-button>
 						</div>
 					</div>
 				</div>

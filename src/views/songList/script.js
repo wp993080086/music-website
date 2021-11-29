@@ -16,7 +16,7 @@ export default {
 				'爵士',
 				'电子'
 			],
-			songType: '华语',
+			songType: '华语', // 当前类目
 			typeList: [],
 			SongList: [],
 			visible: false

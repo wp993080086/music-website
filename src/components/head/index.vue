@@ -36,6 +36,7 @@
 					</span>
 					<el-dropdown-menu slot="dropdown">
 						<template v-if="userMsg.nickname">
+							<el-dropdown-item command="3">查看信息</el-dropdown-item>
 							<el-dropdown-item command="2">注销</el-dropdown-item>
 							<el-dropdown-item command="1">登出</el-dropdown-item>
 						</template>
@@ -46,6 +47,17 @@
 				</el-dropdown>
 			</div>
 		</div>
+		<el-dialog title="用户信息" :visible.sync="isVisible" width="600px">
+			<div class="info_box flex">
+				<div class="portrait">
+					<img :src="userMsg.avatarUrl">
+				</div>
+				<div class="right_box">
+					<div class="nickname">昵称：{{ userMsg.nickname || '暂无名称' }}</div>
+					<div class="desc">个性签名：{{ userMsg.signature || '这个人很懒，没有个人签名~' }}</div>
+				</div>
+			</div>
+		</el-dialog>
 	</div>
 </template>
 
@@ -97,7 +109,8 @@ export default {
 			logo: require('../../assets/icon/pdd.png'),
 			nowIndex: 0,
 			state: '',
-			searchValue: ''
+			searchValue: '',
+			isVisible: false
 		}
 	},
 	computed: {
@@ -156,6 +169,10 @@ export default {
 			case '2':
 				this.clearUserMsg()
 				TOAST.success('注销成功')
+				break
+			case '3':
+				this.isVisible = true
+				break
 			}
 		}
 	}

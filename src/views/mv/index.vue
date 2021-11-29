@@ -55,6 +55,11 @@
 				</div>
 			</template>
 		</el-skeleton>
+		<!-- 翻页 -->
+		<div class="paging flex_c">
+			<el-button :disabled="pageIndex === 0" :loading="pagingLoading" type="primary" class="up" size="small" @click="handleUpPage">上一页</el-button>
+			<el-button :disabled="!isMore" :loading="pagingLoading" type="primary" class="down" size="small" @click="handleDownPage">下一页</el-button>
+		</div>
 	</div>
 </template>
 

@@ -31,7 +31,9 @@ export default {
 				{ hot: '最新', value: '最新' }
 			],
 			mvList: [], // MV列表
-			skeletonLoading: true
+			skeletonLoading: true,
+			isMore: false, // 是否还有更多
+			pagingLoading: false
 		}
 	},
 	components: {
@@ -54,7 +56,9 @@ export default {
 			}
 			const res = await HTTP.mvList(param)
 			this.mvList = res.data
+			this.isMore = res.hasMore
 			this.skeletonLoading = false
+			this.pagingLoading = false
 		},
 		// 修改类型
 		handleChangeType(v) {
@@ -75,6 +79,23 @@ export default {
 		handleChangeHot(v) {
 			if (this.mvHot !== v) {
 				this.mvHot = v
+				this.getMvList()
+			}
+		},
+		// 上一页
+		handleUpPage() {
+			this.pagingLoading = true
+			this.pageIndex -= this.pageSize
+			if (this.pageIndex <= 0) {
+				this.pageIndex = 0
+			}
+			this.getMvList()
+		},
+		// 下一页
+		handleDownPage() {
+			this.pagingLoading = true
+			if (this.isMore) {
+				this.pageIndex += this.pageSize
 				this.getMvList()
 			}
 		}

@@ -21,7 +21,8 @@ import {
 	TabPane,
 	Tag,
 	Empty,
-	Loading
+	Loading,
+	Dialog
 } from 'element-ui'
 
 Vue.use(Button)
@@ -46,3 +47,4 @@ Vue.use(TabPane)
 Vue.use(Tag)
 Vue.use(Empty)
 Vue.use(Loading)
+Vue.use(Dialog)

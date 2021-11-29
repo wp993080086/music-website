@@ -26,7 +26,9 @@ export default {
 			],
 			initialList: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'l', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
 			singerList: [], // 歌手列表
-			skeletonLoading: true
+			skeletonLoading: true,
+			isMore: false, // 是否还有更多
+			pagingLoading: false
 		}
 	},
 	components: {
@@ -56,7 +58,9 @@ export default {
 			}
 			const res = await HTTP.singerList(param)
 			this.singerList = res.artists
+			this.isMore = res.more
 			this.skeletonLoading = false
+			this.pagingLoading = false
 		},
 		// 修改类型
 		handleChangeType(v) {
@@ -76,6 +80,23 @@ export default {
 		handleChangeInitial(v) {
 			if (this.singerInitial !== v) {
 				this.singerInitial = v
+				this.getSingerList()
+			}
+		},
+		// 上一页
+		handleUpPage() {
+			this.pagingLoading = true
+			this.pageIndex -= 35
+			if (this.pageIndex <= 0) {
+				this.pageIndex = 0
+			}
+			this.getSingerList()
+		},
+		// 下一页
+		handleDownPage() {
+			this.pagingLoading = true
+			if (this.isMore) {
+				this.pageIndex += 35
 				this.getSingerList()
 			}
 		}

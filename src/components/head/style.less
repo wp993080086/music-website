@@ -77,6 +77,9 @@
       width: 120px;
     }
   }
+  & /deep/ .el-dialog__body{
+    padding: 10px 20px !important;
+  }
 }
 .subhead{
   font-size: 12px;
@@ -97,4 +100,32 @@
 .scale-leave-to {
   opacity: 1;
   transform: scale(1)
+}
+.info_box{
+  width: 100%;
+  .portrait{
+    width: 150px;
+    height: 150px;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .right_box{
+    flex: 1;
+    .nickname{
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      padding-left: 20px;
+      box-sizing: border-box;
+    }
+    .desc{
+      width: 100%;
+      height: calc(100% - 40px);
+      padding-top: 20px;
+      padding-left: 20px;
+      box-sizing: border-box;
+    }
+  }
 }

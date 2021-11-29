@@ -1,8 +1,11 @@
 import HTTP from '../../request/api/mvApi'
 import DPlayer from 'dplayer'
+import mixin from '../../mixins/index'
+import { mapState } from 'vuex'
 
 export default {
 	name: 'MvDetails',
+	mixins: [mixin],
 	data() {
 		return {
 			id: '',
@@ -10,10 +13,15 @@ export default {
 			detailList: {},
 			similarList: [],
 			commentList: [],
-			player: null
+			player: null,
+			loadingComment: true,
+			textarea: ''
 		}
 	},
 	computed: {
+		...mapState([
+			'cookie'
+		]),
 		// 转时间戳为几个月前
 		timeToDate() {
 			return (times) => {
@@ -64,6 +72,7 @@ export default {
 			}
 			const res = await HTTP.mvComment(param)
 			this.commentList = res.comments
+			this.loadingComment = false
 		},
 		// 点击相似MV
 		handleChangeURL(id) {
@@ -85,6 +94,24 @@ export default {
 				volume: '0.5',
 				logo: require('../../assets/icon/pdd.png')
 			})
+		},
+		// 提交评论
+		async saveComment() {
+			if (this.textarea) {
+				const id = this.id
+				const type = 1
+				const content = this.textarea
+				const res = await this.sendComment(id, type, content)
+				if (res) {
+					TOAST.success('评论发送成功')
+					this.loadingComment = true
+					this.textarea = ''
+					await UTILS.sleep(2000)
+					this.getMvComment()
+				}
+			} else {
+				TOAST.info('请先输入评论内容')
+			}
 		}
 	}
 }

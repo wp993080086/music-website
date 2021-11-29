@@ -26,7 +26,7 @@
 					<transition name="fade" mode="out-in" appear>
 						<div v-show="visible" class="hide_box pa z1 br4">
 							<div class="box">
-								<div v-for="item in typeList" :key="item.name" class="label_item h_hand br50">
+								<div v-for="item in typeList" :key="item.name" :class="['label_item', 'h_hand', 'br50', songType === item.name ? 'active':'']">
 									<span @click="handleChangeType(item.name)">{{ item.name }}</span>
 								</div>
 							</div>
