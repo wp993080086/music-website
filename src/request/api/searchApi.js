@@ -5,7 +5,6 @@ export default {
 		getSearch: '/cloudsearch', // 搜索音乐
 		songDatails: '/song/detail', // 获取歌曲详情
 		similarSong: '/simi/song', // 获取相似音乐
-		lyric: '/lyric', // 获取歌词
 		songComment: '/comment/music' // 歌曲评论
 	},
 	/**
@@ -47,20 +46,6 @@ export default {
 	getSimilarSong(id) {
 		return fetch({
 			url: UTILS.joinTime(this.apis.similarSong),
-			method: 'post',
-			data: {
-				id
-			},
-			notLoad: true
-		})
-	},
-	/**
-	* 获取歌词
-	* @param {String} id 歌曲id
-	*/
-	getLyric(id) {
-		return fetch({
-			url: UTILS.joinTime(this.apis.lyric),
 			method: 'post',
 			data: {
 				id

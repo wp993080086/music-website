@@ -6,6 +6,13 @@
   "description": "网易云网页版",
   "glyphs": [
     {
+      "icon_id": "13137519",
+      "name": "歌词未点击",
+      "font_class": "gc",
+      "unicode": "e727",
+      "unicode_decimal": 59175
+    },
+    {
       "icon_id": "444234",
       "name": "专辑，光盘",
       "font_class": "gp",

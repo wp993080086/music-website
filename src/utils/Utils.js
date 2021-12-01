@@ -458,6 +458,20 @@ const publicFunction = {
 	*/
 	getRandom(Limit = 10) {
 		return Math.round(Math.random() * Limit)
+	},
+	/**
+	* 生成uuid
+	* @param {String} label
+	*/
+	UUid(label = 'pdd') {
+		let Time = new Date().getTime()
+		const uuid = 'x_xx_xxx_xxxx_xxxxx'
+			.replace(/[xy]/g, (res) => {
+				const Random = (Time + Math.random() * 16) % 16 | 0
+				Time = Math.floor(Time / 16)
+				return (res === 'x' ? Random : (Random & 0x3 | 0x8)).toString(16)
+			})
+		return `${label}_${uuid}`
 	}
 }
 

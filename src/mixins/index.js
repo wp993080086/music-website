@@ -83,6 +83,22 @@ export default {
 			} catch (error) {
 				console.warn(error)
 			}
+		},
+		/**
+		* 获取歌词
+		* @param {String} id 音乐id
+		*/
+		async getLyric(id) {
+			try {
+				const res = await HTTP.getLyric(id)
+				if (res.code === 200) {
+					return Promise.resolve(res)
+				} else {
+					return false
+				}
+			} catch (error) {
+				console.warn(error)
+			}
 		}
 	}
 }

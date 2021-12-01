@@ -6,7 +6,8 @@ export default {
 		getCheckMusic: '/check/music', // 音乐是否可用
 		getLogin: '/login/status', // 登录状态
 		getUserDetails: '/user/detail', // 获取用户详情
-		comment: '/comment' // 评论
+		comment: '/comment', // 评论
+		lyric: '/lyric' // 获取歌词
 	},
 	/**
 	* 获取音乐url
@@ -73,6 +74,20 @@ export default {
 				content,
 				id
 			}
+		})
+	},
+	/**
+	* 获取歌词
+	* @param {String} id 歌曲id
+	*/
+	getLyric(id) {
+		return fetch({
+			url: UTILS.joinTime(this.apis.lyric),
+			method: 'post',
+			data: {
+				id
+			},
+			notLoad: true
 		})
 	}
 }

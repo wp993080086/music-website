@@ -52,12 +52,26 @@
 				<i v-else-if="playType == 2" class="iconfont pdd-line next h_hand" @click="handlePlaySort(2)" />
 				<i v-else class="iconfont pdd-sort next h_hand" @click="handlePlaySort(3)" />
 			</div>
+			<div class="lyric flex_c">
+				<template v-if="songInfo.id">
+					<el-popover
+						placement="top-start"
+						:offset="120"
+						width="300"
+						trigger="click"
+					>
+						<lyric :id="songInfo.id" :time="playTime" />
+						<i slot="reference" class="iconfont pdd-gc h_hand" style="font-size:24px;" />
+					</el-popover>
+				</template>
+			</div>
 			<!-- 歌单 -->
 			<div class="list flex_c">
 				<el-popover
 					placement="top-start"
 					:offset="120"
-					width="240"
+					width="300"
+					height="400"
 					trigger="click"
 				>
 					<div class="song_list">
@@ -102,9 +116,13 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
+import lyric from '../lyric'
 
 export default {
 	name: 'Player',
+	components: {
+		lyric
+	},
 	data() {
 		return {
 			isPlay: false, // 是否播放
@@ -112,7 +130,8 @@ export default {
 			levelVoice: 100, // 音量
 			newLength: '00:00', // 当前时长
 			songLength: '00:00', // 总时长
-			playType: 2 // 播放模式 0随机 1循环 2单曲循环 3列表循环
+			playType: 2, // 播放模式 0随机 1循环 2单曲循环 3列表循环
+			playTime: 0
 		}
 	},
 	computed: {
@@ -265,6 +284,7 @@ export default {
 				this.levelLength = (this.$refs.audio.currentTime / this.$refs.audio.duration) * 100
 				// 当前时长
 				this.newLength = UTILS.formatSecondTime(this.$refs.audio.currentTime)
+				this.playTime = this.$refs.audio.currentTime
 			} catch (error) {
 				console.warn(error)
 			}
