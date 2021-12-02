@@ -2,7 +2,7 @@
 	<div id="lyric">
 		<div class="lyric_box">
 			<template v-for="item in lyricObj">
-				<p :key="item.uid" :class="['lrc']">{{ item.lyric }}</p>
+				<p :key="item.uid" :class="['lrc', flags === item.uid ? 'flag_active': '']">{{ item.lyric }}</p>
 			</template>
 		</div>
 	</div>
@@ -30,10 +30,29 @@ export default {
 			lyricObj: []
 		}
 	},
-	computed: {},
+	computed: {
+		flags() {
+			const arr = []
+			this.lyricObj.forEach(item => {
+				if (this.time > item.time) {
+					arr.push(item.uid)
+				}
+			})
+			return arr[arr.length - 1]
+		}
+	},
 	watch: {
 		time(newVal, oldVal) {
-			console.log(newVal)
+			const box = document.getElementById('lyric')
+			const flag = document.getElementsByClassName('flag_active')[0]
+			box.scrollTo({
+				left: 0,
+				top: flag.offsetTop - 200,
+				behavior: 'smooth'
+			})
+		},
+		id(newVal, oldVal) {
+			this.handleInitLyric()
 		}
 	},
 	mounted() {
@@ -42,11 +61,9 @@ export default {
 	methods: {
 		// 获取歌词
 		async handleInitLyric() {
-			console.log(this.id)
 			const res = await this.getLyric(this.id)
 			if (res.code === 200) {
 				this.lrc = res.lrc
-				console.log(this.lrc)
 				if (this.lrc) {
 					this.formartLyric(this.lrc)
 				}
@@ -54,6 +71,7 @@ export default {
 		},
 		// 格式化歌词
 		formartLyric(lrc) {
+			this.lyricObj = []
 			const lrcReg = /^\[(\d{2}):(\d{2}.\d{2,})\]\s*(.+)$/
 			const lyricLis = lrc.lyric.split('\n')
 			lyricLis.forEach((item, index) => {
@@ -65,7 +83,6 @@ export default {
 			this.lyricObj.sort((a, b) => {
 				return a.t - b.t
 			})
-			console.log(this.lyricObj)
 		}
 	}
 }
@@ -77,15 +94,15 @@ export default {
 	height: 400px;
 	background-color: rgba(0, 0, 0, .6);
 	overflow-y: auto;
+	transition: ease .3s;
 	.lyric_box{
 		width: 100%;
 		height: auto;
-		padding: 20px 0;
+		padding: 200px 0;
 		text-align: center;
 		line-height: 30px;
 		color: #ffffff;
-		transition: ease .3s;
-		.active{
+		.flag_active{
 			color: #409eff;
 		}
 	}

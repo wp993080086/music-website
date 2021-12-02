@@ -60,7 +60,7 @@
 						width="300"
 						trigger="click"
 					>
-						<lyric :id="songInfo.id" :time="playTime" />
+						<lyric :id.sync="songInfo.id" :time="playTime" />
 						<i slot="reference" class="iconfont pdd-gc h_hand" style="font-size:24px;" />
 					</el-popover>
 				</template>
