@@ -1,8 +1,6 @@
-# Web-Music
+# Web-Music 一个流畅，简单好用的PC浏览器版音乐网站 ~
 
 > 感谢`binaryify`大佬的接口支持：`https://binaryify.github.io/NeteaseCloudMusicApi/#/`
-
-一个很流畅，简单好用的PC浏览器版的音乐网站 ~
 
 # 已有功能
 
@@ -30,7 +28,7 @@
 
 # 使用
 
-- Clone：https://github.com/pdd11997110103/web-Music.git
+- Clone该项目：https://github.com/pdd11997110103/web-Music.git
 - 安装：npm install
 - 运行：npm run serve
 - 测试环境打包：npm run test
@@ -40,11 +38,11 @@
 
 ## Server准备
 
-- 本地开发请`Clone`：https://binaryify.github.io/NeteaseCloudMusicApi/#/
+- 本地开发请下载`网易云Node Api`：https://binaryify.github.io/NeteaseCloudMusicApi/#/
 
-- `Clone`完成后，进入文件夹。`npm install`安装依赖，使用`node app.js`命令启动，并将`.env`文件里`VUE_APP_BASE_URL`字段修改为启动后的地址
+- 下载完成后，进入文件夹。`npm install`安装依赖，使用`node app.js`命令启动
 
-- `npm run serve` 重启该项目
+- 将根目录下`.env.dev`文件里`VUE_APP_BASE_URL`字段修改为启动后的地址`npm run serve`。并重启该项目
 
 - 详细文档地址：`https://neteasecloudmusicapi.vercel.app/#/?id=%e5%ae%89%e8%a3%85`
 
