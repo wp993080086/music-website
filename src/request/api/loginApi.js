@@ -7,7 +7,8 @@ export default {
 		get_qrcode: '/login/qr/create',
 		check_qrcode: '/login/qr/check',
 		signin: '/register/cellphone',
-		sendCaptcha: '/captcha/sent'
+		sendCaptcha: '/captcha/sent',
+		getInfo: '/user/account'
 	},
 	/**
 	* 手机号码登录
@@ -87,6 +88,15 @@ export default {
 			data: {
 				...param
 			}
+		})
+	},
+	/**
+	* 获取用户信息
+	*/
+	getInfo() {
+		return fetch({
+			url: UTILS.joinTime(this.apis.getInfo),
+			method: 'post'
 		})
 	}
 }

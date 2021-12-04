@@ -218,6 +218,10 @@ export default {
 		},
 		// 登录成功
 		async handleLoginSucceed() {
+			if (this.nowType) {
+				const info = await HTTP.getInfo()
+				this.setUserMsg(info.profile)
+			}
 			TOAST.success('登录成功，即将跳转')
 			this.$store.commit('setCookie', this.cookie)
 			await UTILS.sleep()
