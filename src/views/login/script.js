@@ -103,7 +103,7 @@ export default {
 				}
 			})
 		},
-		// 登陆
+		// 登录
 		async login() {
 			LOADING.show()
 			try {
@@ -216,13 +216,25 @@ export default {
 			}
 			this.getKey()
 		},
-		// 登陆成功
+		// 登录成功
 		async handleLoginSucceed() {
-			TOAST.success('登陆成功，即将跳转')
+			TOAST.success('登录成功，即将跳转')
 			this.$store.commit('setCookie', this.cookie)
 			await UTILS.sleep()
 			this.$router.push({
 				path: 'Index'
+			})
+		},
+		// 去注册
+		toSignin() {
+			this.$router.push({
+				name: 'Signin'
+			})
+		},
+		// 去首页
+		toHomePage() {
+			this.$router.push({
+				name: 'Index'
 			})
 		}
 	}

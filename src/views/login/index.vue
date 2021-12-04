@@ -23,7 +23,10 @@
 								/>
 							</el-form-item>
 							<el-form-item>
-								<el-button type="primary" class="login_btn" @click="submitForm">登陆</el-button>
+								<div class="flex flex_s_b">
+									<el-button type="primary" class="login_btn" @click="submitForm">登录</el-button>
+									<el-button type="primary" class="to_btn" @click="toHomePage">直接体验</el-button>
+								</div>
 							</el-form-item>
 						</el-form>
 					</div>
@@ -46,8 +49,9 @@
 				</template>
 				<div class="footer_btn">
 					<span @click="handleChangeType">
-						{{ !nowType ? '扫码登陆':'手机登陆' }}
+						{{ !nowType ? '扫码登录':'手机登录' }}
 					</span>
+					<span v-show="!nowType" class="fr" @click="toSignin">去注册</span>
 				</div>
 			</div>
 		</div>

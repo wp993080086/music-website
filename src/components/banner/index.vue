@@ -104,12 +104,12 @@ export default {
 			height: 30px;
 			border-top-left-radius: 8px;
 			line-height: 30px;
-			color: #ffffff;
+			color: @white;
 			right: 0;
 			bottom: 0;
 		}
 		.red{
-			background-color: #EB5651;
+			background-color: @red;
 		}
 		.blue{
 			background-color: skyblue;

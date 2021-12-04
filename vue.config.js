@@ -45,11 +45,10 @@ module.exports = {
 // 导入全局less
 function addStyleResource(rule) {
 	rule.use('style-resource')
-		.loader('style-resources-loader')
-		.options({
-			patterns: [
-
-				path.resolve(__dirname, './src/assets/css/globalColor.less')
-			]
-		})
+	.loader('style-resources-loader')
+	.options({
+		patterns: [
+			path.resolve(__dirname, './src/assets/css/globalColor.less')
+		],
+	})
 }

@@ -3,11 +3,11 @@
   height: 70px;
   flex-shrink: 0;
   margin-bottom: 20px;
-  background-color: #ffffff;
-  box-shadow: 3px 3px 3px #f1f1f1;
+  background-color: @white;
+  box-shadow: 3px 3px 3px @borderColor;
   transition: ease .5s;
   &:hover{
-    box-shadow: 3px 3px 3px #cccccc;
+    box-shadow: 3px 3px 3px @gray;
   }
   div{
     flex-shrink: 0;
@@ -38,7 +38,7 @@
     font-size: 32px;
     transition: 0.5s ease;
     &:hover{
-      color: #409EFF;
+      color: @blue;
       transform: scale(1.2)
     }
   }

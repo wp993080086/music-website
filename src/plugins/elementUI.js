@@ -22,7 +22,8 @@ import {
 	Tag,
 	Empty,
 	Loading,
-	Dialog
+	Dialog,
+	Backtop
 } from 'element-ui'
 
 Vue.use(Button)
@@ -48,3 +49,4 @@ Vue.use(Tag)
 Vue.use(Empty)
 Vue.use(Loading)
 Vue.use(Dialog)
+Vue.use(Backtop)

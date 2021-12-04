@@ -45,11 +45,13 @@ export default {
 		time(newVal, oldVal) {
 			const box = document.getElementById('lyric')
 			const flag = document.getElementsByClassName('flag_active')[0]
-			box.scrollTo({
-				left: 0,
-				top: flag.offsetTop - 200,
-				behavior: 'smooth'
-			})
+			if (box && flag) {
+				box.scrollTo({
+					left: 0,
+					top: flag.offsetTop - 200,
+					behavior: 'smooth'
+				})
+			}
 		},
 		id(newVal, oldVal) {
 			this.handleInitLyric()
@@ -92,7 +94,7 @@ export default {
 #lyric{
 	width: 300px;
 	height: 400px;
-	background-color: rgba(0, 0, 0, .6);
+	background-color: rgba(0, 0, 0, .75);
 	overflow-y: auto;
 	transition: ease .3s;
 	.lyric_box{
@@ -101,9 +103,9 @@ export default {
 		padding: 200px 0;
 		text-align: center;
 		line-height: 30px;
-		color: #ffffff;
+		color: @white;
 		.flag_active{
-			color: #409eff;
+			color: @blue;
 		}
 	}
 }

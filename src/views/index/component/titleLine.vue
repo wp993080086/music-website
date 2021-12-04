@@ -45,13 +45,13 @@ export default {
 		line-height: 40px;
 		margin: 20px auto;
 		.module_title{
-			color: #303133;
+			color: @low_black;
 			.hint{
 				font-weight: bold;
 				font-size: 20px;
 			}
 			.more{
-				color: #F56C6C;
+				color: @red;
 				font-size: 14px;
 				cursor: pointer;
 				&:hover{
@@ -64,7 +64,7 @@ export default {
 				position: absolute;
 				width: 100%;
 				height: 3px;
-				background-color: #409EFF;
+				background-color: @blue;
 				left: 0;
 				bottom: -3px;
 			}

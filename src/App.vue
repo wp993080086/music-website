@@ -1,5 +1,5 @@
 <template>
-	<div v-cloak id="app">
+	<div v-cloak id="app" class="app_box">
 		<!-- 导航栏 -->
 		<Head v-if="showNav" />
 		<!-- 视图 -->
@@ -10,6 +10,9 @@
 		<Player v-if="showNav" />
 		<!-- 页脚 -->
 		<Footer v-if="showNav" :style="{opacity: opacityVal}" />
+		<el-backtop target=".app_box" :bottom="100">
+			<i class="iconfont pdd-hj h_hand" style="font-size:24px;" title="回到顶部" />
+		</el-backtop>
 	</div>
 </template>
 
@@ -80,6 +83,9 @@ body,html,#app{
 	height: 100%;
 	min-width: 1200px;
 	background-color: #f9f9f9;
+}
+#app{
+	overflow-y: scroll;
 }
 ::-webkit-scrollbar {
 	width: 4px;

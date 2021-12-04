@@ -1,15 +1,22 @@
 # web-music PC浏览器版的音乐网站
 
-- 安装：npm install
-- 运行：npm run serve
-- 测试环境打包：npm run test
-- 正式环境打包：npm run build
-- 同时打包正式环境&&测试环境：npm run all
-- 修复：npm run lint
+一个很流畅简单好用的音乐网站 ~
+
+> 感谢`binaryify`大佬的：`https://binaryify.github.io/NeteaseCloudMusicApi/#/` 接口支持
+
+技术栈：
+
+- Vue => 2.6.11
+- Vue-Router => 3.4.7
+- Vuex => 3.5.1
+- Axios => 0.20.0
+- Element-Ui => 2.15.3
+- dplayer => 1.26.0
+- qrcodejs2 => 0.0.2
 
 # 已有功能
 
-- 网易云APP扫码登陆 & 网易云账号登录
+- 网易云APP扫码登录 & 网易云账号登录
 - 注册
 - 骨架屏
 - 音乐播放器
@@ -19,10 +26,17 @@
 - 排行榜
 - 搜索
 - 评论
+- 歌词
 
-# 进行中
+# 使用
 
-- 滚动歌词
+- Clone：https://github.com/pdd11997110103/web-Music.git
+- 安装：npm install
+- 运行：npm run serve
+- 测试环境打包：npm run test
+- 正式环境打包：npm run build
+- 同时打包正式环境 & 测试环境：npm run all
+- 修复：npm run lint
 
 # 目录结构
 ```javascript

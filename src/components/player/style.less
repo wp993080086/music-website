@@ -1,5 +1,5 @@
 #player{
-  background-color: #ffffff;
+  background-color: @white;
 	width: 100%;
 	min-width: 1200px;
 	padding: 0 20px;
@@ -7,7 +7,7 @@
 	height: 61px;
 	left: 0;
 	bottom: 0;
-	border-top: 1px solid #cccccc;
+	border-top: 1px solid @gray;
 	transition: 0.3s ease;
 	.play_content{
 		width: 100%;
@@ -42,7 +42,7 @@
 			.song_singer{
 				width: 100%;
 				height: 50%;
-				color: #cccccc;
+				color: @gray;
 			}
 		}
 		.operation{
@@ -72,7 +72,7 @@
 				.line{
 					width: 2px;
 					height: 20px;
-					background-color: #cccccc;
+					background-color: @gray;
 					margin: 0 6px;
 				}
 			}
@@ -116,14 +116,17 @@
 		}
 	}
 	.hook{
-		width: 20px;
-		height: 20px;
+		width: 50px;
+		height: 30px;
 		position: absolute;
-		top: -16px;
+		top: -30px;
 		right: 10px;
-		color: #000000;
+		color: @black;
+		background-color: rgba(0,0,0,.2);
+		border-top-left-radius: 15px;
+		border-top-right-radius: 15px;
 		.iconfont{
-			font-size: 20px;
+			font-size: 24px;
 		}
 	}
 }
@@ -137,7 +140,7 @@
 	.song_list_title{
 		width: 100%;
 		height: 40px;
-		border-bottom: 1px solid #000000;
+		border-bottom: 1px solid @black;
 		box-sizing: border-box;
 		font-size: 16px;
 		margin-bottom: 10px;
@@ -151,15 +154,15 @@
 		height: 240px;
 		overflow-y: auto;
 		.active{
-			color: #409eff;
+			color: @blue;
 		}
 		.song_list_item{
 			width: 100%;
 			height: 40px;
-			border-bottom: 1px solid #f1f1f1;
+			border-bottom: 1px solid @borderColor;
 			overflow-x: auto;
 			&:hover{
-				color: #409eff;
+				color: @blue;
 			}
 			.song_list_name{
 				width: 200px;

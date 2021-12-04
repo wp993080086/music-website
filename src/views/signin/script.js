@@ -104,6 +104,12 @@ export default {
 			this.$router.push({
 				path: 'Login'
 			})
+		},
+		// 去登录
+		toLogin() {
+			this.$router.push({
+				path: 'Login'
+			})
 		}
 	}
 }

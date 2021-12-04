@@ -47,10 +47,19 @@ export default {
 	},
 	// 添加歌曲列表
 	setSongList(state, param) {
+		// 是否已经添加过
 		const bool = state.songList.some((item) => {
 			return item.id === param.id
 		})
-		if (!bool) state.songList.push(param)
+		if (!bool) {
+			state.songList.push(param)
+		} else {
+			state.songList.forEach(item => {
+				if (item.id === param.id && item.path !== param.path) {
+					item.path = param.path
+				}
+			})
+		}
 		sessionStorage.setItem('songList', JSON.stringify(state.songList))
 	},
 	// 如果有缓存就用缓存

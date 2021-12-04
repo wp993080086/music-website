@@ -45,6 +45,7 @@
 						</el-form-item>
 					</el-form>
 				</div>
+				<p class="hint" @click="toLogin">返回登陆</p>
 			</div>
 		</div>
 	</div>

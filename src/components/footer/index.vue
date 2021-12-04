@@ -101,7 +101,7 @@ export default {
 #footer{
 	width: 100%;
 	height: 40px;
-	border-top: 1px solid #f1f1f1;
+	border-top: 1px solid @borderColor;
 	left: 0;
 	bottom: 0;
 	.footer_box{

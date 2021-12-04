@@ -55,13 +55,14 @@
 			<div class="lyric flex_c">
 				<template v-if="songInfo.id">
 					<el-popover
+						v-model="isLyric"
 						placement="top-start"
 						:offset="120"
 						width="300"
-						trigger="click"
+						trigger="manual"
 					>
 						<lyric :id.sync="songInfo.id" :time="playTime" />
-						<i slot="reference" class="iconfont pdd-gc h_hand" style="font-size:24px;" />
+						<i slot="reference" class="iconfont pdd-gc h_hand" style="font-size:24px;" @click="handleShowLyric" />
 					</el-popover>
 				</template>
 			</div>
@@ -100,6 +101,7 @@
 			<!-- 播放器 -->
 			<audio
 				v-if="songInfo.path"
+				id="my_audio"
 				ref="audio"
 				:src="songInfo.path"
 				@canplay="HandleAudioReady"
@@ -131,7 +133,8 @@ export default {
 			newLength: '00:00', // 当前时长
 			songLength: '00:00', // 总时长
 			playType: 2, // 播放模式 0随机 1循环 2单曲循环 3列表循环
-			playTime: 0
+			playTime: 0, // 当前播放进度
+			isLyric: false // 歌词显示
 		}
 	},
 	computed: {
@@ -173,7 +176,7 @@ export default {
 			'handleReplaceSongList'
 		]),
 		// Audio标签准备好了
-		HandleAudioReady() {
+		HandleAudioReady(e) {
 			try {
 				const songLength = this.$refs.audio.duration
 				this.songLength = UTILS.formatSecondTime(songLength)
@@ -232,6 +235,11 @@ export default {
 		},
 		// 播放
 		handlePlay() {
+			const type = document.getElementById('my_audio').networkState
+			if (type === 3) {
+				TOAST.error('由于接口限制，歌曲源已过期，请稍等几秒再试试~')
+				return
+			}
 			this.$nextTick(() => {
 				this.$refs.audio.play()
 				this.isPlay = true
@@ -307,8 +315,17 @@ export default {
 		},
 		// 播放列表播放
 		handleListClick(index) {
+			const type = document.getElementById('my_audio').networkState
+			if (type === 3) {
+				TOAST.error('由于接口限制，歌曲源已过期，请稍等几秒再试试~')
+				return
+			}
 			const param = UTILS.deepClone(this.songList[index])
 			this.setSongInfo(param)
+		},
+		// 显示歌词
+		handleShowLyric() {
+			this.isLyric = !this.isLyric
 		}
 	}
 }
