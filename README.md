@@ -28,7 +28,7 @@
 
 # 使用
 
-- Clone该项目：https://github.com/pdd11997110103/web-Music.git
+- Clone该项目：https://github.com/wp993080086/web-Music.git
 - 安装：npm install
 - 运行：npm run serve
 - 测试环境打包：npm run test
