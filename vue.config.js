@@ -40,6 +40,9 @@ module.exports = {
 				LOADING: [path.resolve(__dirname, './src/utils/Loading.js'), 'default']
 			})
 		]
+	},
+	css: {
+		extract: false
 	}
 }
 // 导入全局less
