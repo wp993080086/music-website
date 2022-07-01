@@ -1,4 +1,4 @@
-const baseURL = process.env.VUE_APP_BASE_URL
+// const baseURL = process.env.VUE_APP_BASE_URL
 const webpack = require('webpack')
 const path = require('path')
 
@@ -21,17 +21,17 @@ module.exports = {
 			},
 			host: 'localhost',
 			port: '9000',
-			hotOnly: false,
-			proxy: {
-				'/api': {
-					target: baseURL,
-					secure: false,
-					changeOrigin: true, // 开启代理
-					pathRewrite: {
-						'^/api': '/'
-					}
-				}
-			}
+			hotOnly: false
+			// proxy: {
+			// 	'/api': {
+			// 		target: baseURL,
+			// 		secure: false,
+			// 		changeOrigin: true, // 允许跨域
+			// 		pathRewrite: {
+			// 			'^/api': '/'
+			// 		}
+			// 	}
+			// }
 		},
 		plugins: [
 			new webpack.ProvidePlugin({

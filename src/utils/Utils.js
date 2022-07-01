@@ -3,7 +3,7 @@ const publicFunction = {
 	* 将接口路径后面加上时间戳
 	* @param {String} url 接口路径
 	*/
-	joinTime: url => `/api${url}?time=${new Date().getTime()}`,
+	joinTime: url => `${url}?time=${new Date().getTime()}`,
 	/**
 	* 数字转整数 如 100000 转为10万
 	* @param {Number} num 需要转化的数

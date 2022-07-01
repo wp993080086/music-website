@@ -54,7 +54,7 @@ export default {
 			{
 				title: 'gitHub',
 				path: require('../../assets/image/info/github.png'),
-				url: 'https://github.com/pdd11997110103'
+				url: 'https://github.com/wp993080086'
 			},
 			{
 				title: '简书',

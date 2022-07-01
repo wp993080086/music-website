@@ -40,7 +40,8 @@ const RequestInfo = {
 // axios实例
 const instance = axios.create({
 	timeout: 10 * 1000,
-	headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+	headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+	baseURL: process.env.VUE_APP_BASE_URL
 })
 
 // 请求拦截器

@@ -2,6 +2,7 @@
 
 > 感谢`binaryify`大佬的接口支持：`https://binaryify.github.io/NeteaseCloudMusicApi/#/`
 
+预览地址：[web-music](http://116.62.13.54/#/index)
 # 已有功能
 
 - 网易云APP扫码登录 & 网易云账号登录
