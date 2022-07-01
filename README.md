@@ -1,4 +1,4 @@
-# 一个流畅，简单好用的PC端音乐网站 🎵
+# 一个流畅，简单好用的PC端音乐网站
 
 <div align=center>
   
@@ -20,13 +20,14 @@
 </div>
 
 
-# 👂 前言
+## 👂 前言
 
 > 感谢 [binaryify](https://github.com/Binaryify) 大佬的 `NeteaseCloudMusicApi` 接口支持 😜
 
 - [项目预览地址](http://116.62.13.54)
 - [接口文档地址](https://binaryify.github.io/NeteaseCloudMusicApi)
-# 📔 已有功能
+
+## 📔 已有功能
 
 - 网易云APP扫码登录 & 网易云账号登录
 - 注册
@@ -40,7 +41,7 @@
 - 评论
 - 歌词
 
-# 🚀 运行项目
+## 🚀 运行项目
 
 - clone该项目：[music-website](https://github.com/wp993080086/music-website.git)
 - 安装：npm install
@@ -52,13 +53,13 @@
 
 ## ⚡️ 本地开发准备
 
-- 本地开发请先下载[NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi.git) 项目
+- 本地开发请先下载 [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi.git) 项目
 
 - 下载完成后，进入`NeteaseCloudMusicApi`文件夹，打开`cmd`终端，`npm install`安装依赖，使用`node app.js`命令启动
 
 - 将`music-website`项目根目录下`.env.development`文件里`VUE_APP_BASE_URL`字段修改为`NeteaseCloudMusicApi`项目启动后的地址，并重启`music-website`项目
 
-# 📦️ 目录结构
+## 📦️ 目录结构
 
 ```javascript
 │  .env.development
