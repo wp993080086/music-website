@@ -4,7 +4,7 @@ const path = require('path')
 
 module.exports = {
 	publicPath: './',
-	outputDir: process.env.VUE_APP_BASE_OUTPUTDIR,
+	outputDir: 'dist',
 	assetsDir: 'assets',
 	lintOnSave: true,
 	productionSourceMap: false,
