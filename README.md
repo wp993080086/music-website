@@ -61,7 +61,7 @@
 
 ## 📦️ 目录结构
 
-```javascript
+```
 │  .env.development
 │  .env.production
 │  .env.test => .env环境文件
