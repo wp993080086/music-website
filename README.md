@@ -1,8 +1,7 @@
 # 一个流畅，简单好用的PC端音乐网站
 
 <div align=center>
-  
-![vue](https://img.shields.io/badge/vue-2.6.11-%23007d65)
+
 ![element-ui](https://img.shields.io/badge/element--ui-2.15.3-%23009ad6)
 ![vue-router](https://img.shields.io/badge/vue--router-3.4.7-brightgreen)
 ![eslint](https://img.shields.io/badge/eslint-6.7.2-yellow)
@@ -11,6 +10,7 @@
 
 <div align=center>
 
+![vue](https://img.shields.io/badge/vue-2.6.11-%23007d65)
 ![axios](https://img.shields.io/badge/axios-0.20.0-blue)
 ![vuex](https://img.shields.io/badge/vuex-3.5.1-red)
 ![qrcodejs2](https://img.shields.io/badge/qrcodejs2-0.0.2-green)
