@@ -1,5 +1,3 @@
-# 一个PC端音乐网站练手项目，使用了开源网易云API
-
 <div align=center>
 
 ![element-ui](https://img.shields.io/badge/element--ui-2.15.3-%23009ad6)
@@ -20,14 +18,15 @@
 </div>
 
 
-## 👂 前言
+# 👂 前言
+
+这是一个清爽流畅的PC端音乐网站练手项目，服务端使用了开源的网易云音乐API ~
 
 > 感谢 [binaryify](https://github.com/Binaryify) 大佬的 `NeteaseCloudMusicApi` 接口支持 😜
 
-- [项目预览地址](http://116.62.13.54)
 - [接口文档地址](https://binaryify.github.io/NeteaseCloudMusicApi)
 
-## 📔 已有功能
+# 📔 已有功能
 
 - 网易云APP扫码登录 & 网易云账号登录
 - 注册
@@ -51,7 +50,7 @@
 - 同时打包正式环境 & 测试环境：npm run all
 - 修复：npm run lint
 
-## ⚡️ 本地开发准备
+# ⚡️ 本地开发准备
 
 - 本地开发请先下载 [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi.git) 项目
 
@@ -59,7 +58,7 @@
 
 - 将`music-website`项目根目录下`.env.development`文件里`VUE_APP_BASE_URL`字段修改为`NeteaseCloudMusicApi`项目启动后的地址，并重启`music-website`项目
 
-## 📦️ 目录结构
+# 📦️ 目录结构
 
 ```
 │  .env.development
