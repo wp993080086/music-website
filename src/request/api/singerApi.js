@@ -1,4 +1,4 @@
-import fetch from '../fetch'
+import Request from '../request'
 
 export default {
 	apis: {
@@ -16,7 +16,7 @@ export default {
 	* @param {Number} offset 页码 默认0
 	*/
 	singerList(param) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.singerList),
 			method: 'post',
 			data: {
@@ -30,7 +30,7 @@ export default {
 	* @param {String} id 歌手id
 	*/
 	singerSong(id) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.singerSong),
 			method: 'post',
 			data: {
@@ -44,7 +44,7 @@ export default {
 	* @param {String} id 歌手id
 	*/
 	singerInfo(id) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.singerInfo),
 			method: 'post',
 			data: {
@@ -58,7 +58,7 @@ export default {
 	* @param {String} id 歌手id
 	*/
 	singerMv(id) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.singerMv),
 			method: 'post',
 			data: {

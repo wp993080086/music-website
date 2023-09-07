@@ -1,4 +1,4 @@
-import fetch from '../fetch'
+import Request from '../request'
 
 export default {
 	apis: {
@@ -13,7 +13,7 @@ export default {
 	* @param {Number} type 类型
 	*/
 	banner(type = 0) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.banner),
 			method: 'post',
 			data: {
@@ -27,7 +27,7 @@ export default {
 	* @param {Number} limit 数量
 	*/
 	recommendSongList(limit = 18) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.recommendSongList),
 			method: 'post',
 			data: {
@@ -41,7 +41,7 @@ export default {
 	* @param {Number} limit 数量
 	*/
 	recommendSong(limit = 10) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.recommendSong),
 			method: 'post',
 			data: {
@@ -55,7 +55,7 @@ export default {
 	* @param {Number} limit 数量
 	*/
 	topSinger(limit = 28) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.topSinger),
 			method: 'post',
 			data: {

@@ -1,4 +1,4 @@
-import fetch from '../fetch'
+import Request from '../request'
 
 export default {
 	apis: {
@@ -16,7 +16,7 @@ export default {
 	* @param {String} password 密码
 	*/
 	phoneLogin(param) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.phone_login),
 			method: 'post',
 			data: {
@@ -28,7 +28,7 @@ export default {
 	* 生成二维码key
 	*/
 	getKey() {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.get_key),
 			method: 'post',
 			data: {}
@@ -39,7 +39,7 @@ export default {
 	* @param {String} key key值
 	*/
 	getQRcode(key) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.get_qrcode),
 			method: 'post',
 			data: {
@@ -52,7 +52,7 @@ export default {
 	* @param {String} key key值
 	*/
 	queryQRcode(key) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.check_qrcode),
 			method: 'post',
 			data: {
@@ -66,7 +66,7 @@ export default {
 	* @param {String} phone 手机号码
 	*/
 	sendCaptcha(phone) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.sendCaptcha),
 			method: 'post',
 			data: {
@@ -82,7 +82,7 @@ export default {
 	* @param {String} captcha 验证码
 	*/
 	signin(param) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.signin),
 			method: 'post',
 			data: {
@@ -94,7 +94,7 @@ export default {
 	* 获取用户信息
 	*/
 	getInfo() {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.getInfo),
 			method: 'post'
 		})

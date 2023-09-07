@@ -99,7 +99,7 @@
     │      snowflake.js => 雪花插件
     │      
     ├─request
-    │  │  fetch.js => axios封装
+    │  │  request.js => axios封装
     │  └─api => 接口定义
     ├─store => vuex
     ├─utils => 工具类

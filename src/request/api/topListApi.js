@@ -1,4 +1,4 @@
-import fetch from '../fetch'
+import Request from '../request'
 
 export default {
 	apis: {
@@ -9,7 +9,7 @@ export default {
 	* 获取所有榜单
 	*/
 	topList() {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.topList),
 			method: 'post',
 			data: {}
@@ -21,7 +21,7 @@ export default {
 	* @param {String} s 歌单最近的收藏者，默认为8
 	*/
 	getSongListDetail(id, s = 10) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.songListDetail),
 			method: 'post',
 			data: {

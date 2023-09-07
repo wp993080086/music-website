@@ -4,7 +4,8 @@
   "private": true,
   "author": {
     "name": "鹏多多",
-    "email": "993080086@qq.com"
+    "email": "993080086@qq.com",
+    "url": "https://github.com/wp993080086/music-website"
   },
   "scripts": {
     "serve": "vue-cli-service serve",

@@ -8,9 +8,9 @@ module.exports = {
 	assetsDir: 'assets',
 	lintOnSave: true,
 	productionSourceMap: false,
-	chainWebpack: config => {
+	chainWebpack: (config) => {
 		const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
-		types.forEach(type => addStyleResource(config.module.rule('less').oneOf(type)))
+		types.forEach((type) => addStyleResource(config.module.rule('less').oneOf(type)))
 	},
 	configureWebpack: {
 		devServer: {
@@ -47,11 +47,10 @@ module.exports = {
 }
 // 导入全局less
 function addStyleResource(rule) {
-	rule.use('style-resource')
-	.loader('style-resources-loader')
-	.options({
-		patterns: [
-			path.resolve(__dirname, './src/assets/css/globalColor.less')
-		],
-	})
+	rule
+		.use('style-resource')
+		.loader('style-resources-loader')
+		.options({
+			patterns: [path.resolve(__dirname, './src/assets/css/globalColor.less')]
+		})
 }

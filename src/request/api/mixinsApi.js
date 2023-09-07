@@ -1,4 +1,4 @@
-import fetch from '../fetch'
+import Request from '../request'
 
 export default {
 	apis: {
@@ -14,7 +14,7 @@ export default {
 	* @param {String} id id
 	*/
 	getSongUrl(id) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.getSongUrl),
 			method: 'post',
 			data: {
@@ -27,7 +27,7 @@ export default {
 	* @param {String} id id
 	*/
 	getCheckMusic(id) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.getCheckMusic),
 			method: 'post',
 			data: {
@@ -39,7 +39,7 @@ export default {
 	* 获取登录状态
 	*/
 	getLogin() {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.getLogin),
 			method: 'post'
 		})
@@ -49,7 +49,7 @@ export default {
 	* @param {String} uid id
 	*/
 	getUserDetails(uid) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.getLogin),
 			method: 'post',
 			data: {
@@ -65,7 +65,7 @@ export default {
 	* @param {String} t 1 发送, 2 回复
 	*/
 	sendComment(id, type, content, t = 1) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.comment),
 			method: 'post',
 			data: {
@@ -81,7 +81,7 @@ export default {
 	* @param {String} id 歌曲id
 	*/
 	getLyric(id) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.lyric),
 			method: 'post',
 			data: {

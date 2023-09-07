@@ -1,4 +1,4 @@
-import fetch from '../fetch'
+import Request from '../request'
 
 export default {
 	apis: {
@@ -17,7 +17,7 @@ export default {
 	* @param {Number} offset 页码 默认0
 	*/
 	mvList(param) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.mvList),
 			method: 'post',
 			data: {
@@ -32,7 +32,7 @@ export default {
 	* @param {Number} r 分辨率
 	*/
 	mvURL(id) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.mvURL),
 			method: 'post',
 			data: {
@@ -46,7 +46,7 @@ export default {
 	* @param {Number} mvid id
 	*/
 	mvDetail(mvid) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.mvDetail),
 			method: 'post',
 			data: {
@@ -60,7 +60,7 @@ export default {
 	* @param {Number} mvid id
 	*/
 	mvSimilar(mvid) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.mvSimilar),
 			method: 'post',
 			data: {
@@ -77,7 +77,7 @@ export default {
 	* @param {Number} before 分页参数：取上一页最后一项的time获取下一页数据（获取超过5000条评论的时候需要用到）
 	*/
 	mvComment(param) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.mvComment),
 			method: 'post',
 			data: {

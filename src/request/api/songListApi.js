@@ -1,4 +1,4 @@
-import fetch from '../fetch'
+import Request from '../request'
 
 export default {
 	apis: {
@@ -15,7 +15,7 @@ export default {
 	* @param {Number} limit 每页数量
 	*/
 	highqualitySongList(limit = 18, cat = '') {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.highqualitySongList),
 			method: 'post',
 			data: {
@@ -31,7 +31,7 @@ export default {
 	* @param {Number} s 该歌单的收藏者个数
 	*/
 	songListDetail(id, s = 8) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.songListDetail),
 			method: 'post',
 			data: {
@@ -49,7 +49,7 @@ export default {
 	* @param {Number} before 分页参数 取上一页最后一项的time获取下一页数据(获取超过5000条评论的时候需要用到)
 	*/
 	songListComment(id, offset = 0, limit = 20) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.songListComment),
 			method: 'post',
 			data: {
@@ -67,7 +67,7 @@ export default {
 	* @param {String} offset 分页
 	*/
 	songListSubscribers(id, limit = 28, offset = 0) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.songListSubscribers),
 			method: 'post',
 			data: {
@@ -83,7 +83,7 @@ export default {
 	* @param {String} ids 音乐id 多个用,隔开
 	*/
 	songDatails(ids) {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.songDatails),
 			method: 'post',
 			data: {
@@ -96,7 +96,7 @@ export default {
 	* 歌单分类
 	*/
 	getALLListType() {
-		return fetch({
+		return Request({
 			url: UTILS.joinTime(this.apis.all),
 			method: 'post',
 			notLoad: true
